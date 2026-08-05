@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  eshop.api:
+    build:
+      context: .
+      dockerfile: Web.API/Dockerfile
+    container_name: eshop-api
+    depends_on:
+      - eshop.db
+    ports:
+      - "32768:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Host=eshop.db;Port=5432;Database=eshop;Username=postgres;Password=postgres
+
+  eshop.db:
+    image: postgres:latest
+    container_name: eshop-db
+    environment:
+      POSTGRES_DB: eshop
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
