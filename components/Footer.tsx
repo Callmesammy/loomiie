@@ -191,16 +191,16 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bigger Monumental L [LOGO MARK] M I E Brand Headline */}
-        <div className="w-full pt-12 pb-6 overflow-hidden border-b border-border-custom bg-surface flex justify-center">
+        {/* Elegant Proportional LOOMIE Brand Headline */}
+        <div className="w-full pt-8 pb-4 overflow-hidden border-b border-border-custom bg-surface flex justify-center items-center">
           <h2
             ref={giantLogoRef}
-            className="text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] xl:text-[13rem] font-black tracking-tighter leading-none text-foreground uppercase select-none font-sans text-center flex items-center justify-center gap-1 sm:gap-2 max-w-full"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter leading-none text-foreground uppercase select-none font-sans text-center flex items-center justify-center gap-1 sm:gap-2 max-w-full"
             style={{ perspective: "1000px" }}
           >
             <span className="inline-block">L</span>
             <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
-              <LoomieLogoMark className="h-[0.68em] w-[0.92em] inline-block" />
+              <LoomieLogoMark className="h-[0.65em] w-auto inline-block align-middle" />
             </span>
             <span className="inline-block">M</span>
             <span className="inline-block">I</span>
