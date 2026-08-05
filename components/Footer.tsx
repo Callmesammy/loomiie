@@ -199,8 +199,8 @@ export function Footer() {
             style={{ perspective: "1000px" }}
           >
             <span className="inline-block">L</span>
-            <span className="inline-flex items-center justify-center px-1 sm:px-2">
-              <LoomieLogoMark className="h-[0.68em] w-auto inline-block" />
+            <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
+              <LoomieLogoMark className="h-[0.68em] w-[0.92em] inline-block" />
             </span>
             <span className="inline-block">M</span>
             <span className="inline-block">I</span>
