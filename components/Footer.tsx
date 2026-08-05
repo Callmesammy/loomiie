@@ -195,12 +195,12 @@ export function Footer() {
         <div className="w-full pt-12 pb-6 overflow-hidden border-b border-border-custom bg-surface flex justify-center">
           <h2
             ref={giantLogoRef}
-            className="text-7xl sm:text-[11rem] md:text-[14rem] lg:text-[18rem] xl:text-[21rem] font-black tracking-tighter leading-none text-foreground uppercase select-none font-sans text-center flex items-center justify-center gap-1.5 sm:gap-3 max-w-full"
+            className="text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] xl:text-[13rem] font-black tracking-tighter leading-none text-foreground uppercase select-none font-sans text-center flex items-center justify-center gap-1 sm:gap-2 max-w-full"
             style={{ perspective: "1000px" }}
           >
             <span className="inline-block">L</span>
-            <span className="inline-flex items-center justify-center px-1 sm:px-3">
-              <LoomieLogoMark className="h-[0.76em] w-auto inline-block" />
+            <span className="inline-flex items-center justify-center px-1 sm:px-2">
+              <LoomieLogoMark className="h-[0.68em] w-auto inline-block" />
             </span>
             <span className="inline-block">M</span>
             <span className="inline-block">I</span>
