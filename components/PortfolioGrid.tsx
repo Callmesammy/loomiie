@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Plus, ArrowUpRight, ChevronDown } from "lucide-react";
 
 interface CaseStudy {
   id: string;
+  slug: string;
   title: string;
   category: string;
   categoryCode: "ecommerce" | "food" | "entertainment" | "tech" | "industrial" | "spatial";
@@ -19,6 +21,7 @@ interface CaseStudy {
 const CASE_STUDIES: CaseStudy[] = [
   {
     id: "cs1",
+    slug: "vortex-matte-titanium",
     title: "VORTEX Matte Titanium Module",
     category: "Spatial Hardware & Industrial Design",
     categoryCode: "industrial",
@@ -29,6 +32,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs2",
+    slug: "outfindr-mountain-dynamics",
     title: "OUTFINDR Mountain Dynamics",
     category: "Outdoor & Spatial Exploration",
     categoryCode: "spatial",
@@ -39,6 +43,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs3",
+    slug: "sat-cybernetic-hud",
     title: "SAT Cybernetic System HUD",
     category: "Autonomous WebGL Interface",
     categoryCode: "tech",
@@ -49,6 +54,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs4",
+    slug: "lumino-3d-kinetic",
     title: "LUMINO 3D Kinetic Realm",
     category: "Motion Shaders & WebGL",
     categoryCode: "tech",
@@ -59,6 +65,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs5",
+    slug: "brutalist-spatial-pavilion",
     title: "Brutalist Spatial Pavilion",
     category: "Architecture & Acoustics",
     categoryCode: "spatial",
@@ -69,6 +76,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs6",
+    slug: "vortex-matte-titanium",
     title: "Monochrome Editorial N°5",
     category: "Editorial & Grid Typography",
     categoryCode: "entertainment",
@@ -79,6 +87,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs7",
+    slug: "lumino-3d-kinetic",
     title: "JEA Architectural Interior",
     category: "Spatial Living & Craft",
     categoryCode: "spatial",
@@ -89,6 +98,7 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs8",
+    slug: "outfindr-mountain-dynamics",
     title: "LAUR High-Fashion Identity",
     category: "Luxury Identity & Craft",
     categoryCode: "ecommerce",
@@ -164,8 +174,9 @@ export function PortfolioGrid() {
       {/* 2-Column Asymmetric Case Study Showcase (Matching Reference Screenshot 100%) */}
       <div className="grid grid-cols-12 gap-8 md:gap-12">
         {filteredStudies.map((study) => (
-          <div
+          <Link
             key={study.id}
+            href={`/work/${study.slug}`}
             className={`${study.span} group flex flex-col justify-between cursor-pointer`}
           >
             {/* Image Container with Brand Overlay */}
@@ -207,7 +218,7 @@ export function PortfolioGrid() {
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LenisScrollProvider } from "@/components/LenisScrollProvider";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,14 +11,21 @@ const inter = Inter({
   display: "swap",
 });
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  weight: ["300", "500", "700", "900"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "LOOMIE — Design That Connects",
+  title: "LOOMIE — Clear. Connected. Complete.",
   description:
-    "LOOMIE is a premium design & technology studio specializing in kinetic web development, brutalist spatial concepts, and digital branding.",
+    "LOOMIE is a premium design & technology studio. Clear. Connected. Complete. — Specializing in kinetic web development, brutalist spatial concepts, and digital branding.",
   keywords: [
     "LOOMIE",
+    "Clear Connected Complete",
     "Branding Studio",
-    "Design News",
     "Kinetic Web Development",
     "Spatial Architecture",
     "Digital Branding",
@@ -28,9 +36,9 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   openGraph: {
-    title: "LOOMIE — Design That Connects",
+    title: "LOOMIE — Clear. Connected. Complete.",
     description:
-      "LOOMIE is a premium design & technology studio specializing in kinetic web development, brutalist spatial concepts, and digital branding.",
+      "LOOMIE is a premium design & technology studio. Clear. Connected. Complete.",
     url: "https://loomiestudio.com",
     siteName: "LOOMIE Studio",
     locale: "en_US",
@@ -45,9 +53,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
+      <body className={`${inter.variable} ${montserrat.variable} font-sans antialiased bg-background text-foreground`}>
         <ThemeProvider>
-          <LenisScrollProvider>{children}</LenisScrollProvider>
+          <LenisScrollProvider>
+            <ScrollToTop />
+            {children}
+          </LenisScrollProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -115,8 +115,8 @@ export function PinnedProjects() {
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 pb-8 border-b border-border-custom gap-6">
         <div>
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-accent mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-foreground-secondary mb-3">
+            <span className="w-2 h-2 bg-foreground rounded-none animate-pulse" />
             <span>01 / SELECTED CASE STUDIES</span>
           </div>
           <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase text-foreground">
