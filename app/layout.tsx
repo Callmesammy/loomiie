@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "../components/ThemeProvider";
-import { LenisScrollProvider } from "../components/LenisScrollProvider";
-import { ScrollToTop } from "../components/ScrollToTop";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { LenisScrollProvider } from "@/components/LenisScrollProvider";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const inter = Inter({
   subsets: ["latin"],

@@ -1,8 +1,8 @@
 import React from "react";
-import { Navbar } from "../../components/Navbar";
-import { WhoWeBuildForSection } from "../../components/WhoWeBuildForSection";
-import { Footer } from "../../components/Footer";
-import { Preloader } from "../../components/Preloader";
+import { Navbar } from "@/components/Navbar";
+import { WhoWeBuildForSection } from "@/components/WhoWeBuildForSection";
+import { Footer } from "@/components/Footer";
+import { Preloader } from "@/components/Preloader";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
