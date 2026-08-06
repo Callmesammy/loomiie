@@ -69,6 +69,7 @@ const HERO_BENTO_ITEMS: BentoCard[] = [
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -77,10 +78,19 @@ export function HeroSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Master Initial Landing Page Animation Timeline
-      const masterTL = gsap.timeline({ delay: 0.1 });
+      // Master Catchy Post-Loading Hero Entrance Timeline (Timed at 2.0s to sync with Preloader lift)
+      const masterTL = gsap.timeline({ delay: 2.0 });
 
-      // 1. Kinetic Headline 3D Character Entry
+      // 1. Studio Badge Entrance
+      if (badgeRef.current) {
+        masterTL.fromTo(
+          badgeRef.current,
+          { y: -25, opacity: 0, scale: 0.92 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" }
+        );
+      }
+
+      // 2. Kinetic Headline 3D Character Explosion
       if (headlineRef.current) {
         const textSplit = new SplitType(headlineRef.current, {
           types: "chars,words",
@@ -91,10 +101,10 @@ export function HeroSection() {
           masterTL.fromTo(
             textSplit.chars,
             {
-              y: 120,
-              rotateX: -85,
+              y: 130,
+              rotateX: -105,
               opacity: 0,
-              scale: 0.85,
+              scale: 0.75,
             },
             {
               y: 0,
@@ -102,33 +112,35 @@ export function HeroSection() {
               opacity: 1,
               scale: 1,
               duration: 1.2,
-              stagger: 0.025,
+              stagger: 0.03,
               ease: "power4.out",
-            }
+            },
+            "-=0.4"
           );
         }
       }
 
-      // 2. Subtitle Fade & Slide Up
+      // 3. Subtitle Fade & Slide Up
       if (subtitleRef.current) {
         masterTL.fromTo(
           subtitleRef.current,
-          { y: 40, opacity: 0 },
+          { y: 45, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-          "-=0.6"
+          "-=0.7"
         );
       }
 
-      // 3. Bento Grid Cards Entrance
+      // 4. Bento Grid Cards Entrance
       if (gridRef.current) {
         gsap.fromTo(
           gridRef.current.children,
-          { y: 80, opacity: 0 },
+          { y: 90, opacity: 0, scale: 0.96 },
           {
             y: 0,
             opacity: 1,
-            duration: 1,
-            stagger: 0.12,
+            scale: 1,
+            duration: 1.1,
+            stagger: 0.14,
             ease: "power3.out",
             scrollTrigger: {
               trigger: gridRef.current,
@@ -139,7 +151,7 @@ export function HeroSection() {
         );
       }
 
-      // 4. Parallax Scrub on Headline after initial entry
+      // 5. Parallax Scrub on Headline after initial entry
       if (headlineRef.current && containerRef.current) {
         gsap.to(headlineRef.current, {
           yPercent: -20,
@@ -164,7 +176,10 @@ export function HeroSection() {
       className="pt-36 pb-24 md:pt-44 md:pb-32 px-6 md:px-12 max-w-[1700px] mx-auto overflow-hidden select-none"
     >
       {/* Studio Badge */}
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase tracking-wider mb-8">
+      <div
+        ref={badgeRef}
+        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase tracking-wider mb-8"
+      >
         <span className="w-2 h-2 bg-foreground rounded-none animate-pulse" />
         <span>CLEAR. CONNECTED. COMPLETE. // LOOMIE STUDIO 2026</span>
       </div>
