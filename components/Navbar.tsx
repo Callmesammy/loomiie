@@ -1,16 +1,17 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { gsap } from "gsap";
 import { LoomieLogoMark } from "./LoomieLogoMark";
 
 const NAV_ITEMS = [
-  { label: "Story", href: "#story", number: "01" },
-  { label: "Values", href: "#values", number: "02" },
-  { label: "Identity", href: "#identity", number: "03" },
-  { label: "Who We Build For", href: "#who-we-build-for", number: "04" },
-  { label: "Connect", href: "#contact", number: "05" },
+  { label: "Story", href: "/story", number: "01" },
+  { label: "Values", href: "/values", number: "02" },
+  { label: "Identity", href: "/identity", number: "03" },
+  { label: "Who We Build For", href: "/who-we-build-for", number: "04" },
+  { label: "Connect", href: "/contact", number: "05" },
 ];
 
 export function Navbar() {
@@ -25,16 +26,12 @@ export function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Always visible at the top
       if (currentScrollY < 20) {
         setShowMenuLinks(true);
       } else {
-        // Scrolling down -> hide middle menu links
         if (currentScrollY > lastScrollY.current + 6) {
           setShowMenuLinks(false);
-        }
-        // Scrolling up -> reveal middle menu links
-        else if (currentScrollY < lastScrollY.current - 6) {
+        } else if (currentScrollY < lastScrollY.current - 6) {
           setShowMenuLinks(true);
         }
       }
@@ -47,7 +44,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // GSAP Powerup & Down Overlay Animation
   const toggleMenu = () => {
     if (!overlayRef.current) return;
 
@@ -57,7 +53,6 @@ export function Navbar() {
 
       const tl = gsap.timeline();
 
-      // Curtain Powerup Down Animation
       tl.to(overlayRef.current, {
         display: "flex",
         clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
@@ -65,7 +60,6 @@ export function Navbar() {
         ease: "power4.inOut",
       });
 
-      // Stagger Kinetic Menu Links Slide Up
       if (menuLinksRef.current) {
         tl.fromTo(
           menuLinksRef.current.children,
@@ -92,7 +86,6 @@ export function Navbar() {
         },
       });
 
-      // Slide out links
       if (menuLinksRef.current) {
         tl.to(menuLinksRef.current.children, {
           y: -50,
@@ -103,7 +96,6 @@ export function Navbar() {
         });
       }
 
-      // Curtain Powerdown Up Animation
       tl.to(overlayRef.current, {
         clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
         duration: 0.65,
@@ -117,43 +109,47 @@ export function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "py-3 bg-glass-bg backdrop-blur-xl border-b border-glass-border shadow-2xl"
+            ? "py-4 bg-background/90 backdrop-blur-xl border-b border-border-custom shadow-2xl"
             : "py-6 bg-transparent"
         }`}
       >
         <div className="max-w-[1700px] mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Constant Brand Logo Icon */}
-          <a
-            href="#"
-            className="group flex items-center transition-transform duration-300 hover:scale-110 select-none"
+          {/* Exact Brand Wordmark: L [LOOMIE LOGO MARK] M I E */}
+          <Link
+            href="/"
+            className="group flex items-center gap-0.5 sm:gap-1 font-sans text-2xl sm:text-3xl font-black tracking-tighter uppercase text-foreground select-none hover:scale-105 transition-transform"
             aria-label="LOOMIE Home"
           >
-            <LoomieLogoMark className="w-14 h-7" />
-          </a>
+            <span>L</span>
+            <span className="inline-flex items-center justify-center px-0.5">
+              <LoomieLogoMark className="w-8 sm:w-10 h-4 sm:h-5 inline-block align-middle" />
+            </span>
+            <span>MIE</span>
+          </Link>
 
-          {/* Middle Menu Links (Disappears on scroll DOWN, re-appears on scroll UP) */}
-          <nav
-            className={`hidden md:flex items-center gap-10 xl:gap-14 text-base md:text-lg font-sans transition-all duration-500 transform ${
-              showMenuLinks
-                ? "opacity-100 translate-y-0 pointer-events-auto"
-                : "opacity-0 -translate-y-4 pointer-events-none"
-            }`}
-          >
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-foreground font-medium tracking-normal opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 relative group py-1"
-              >
-                <span>{item.label}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
+          {/* Menu Bar & Action Group (Aligned to the Far Right End) */}
+          <div className="flex items-center gap-8 lg:gap-12">
+            {/* Larger Bolder Menu Bar Links */}
+            <nav
+              className={`hidden md:flex items-center gap-8 lg:gap-12 text-base lg:text-lg font-bold font-sans tracking-wide transition-all duration-500 transform ${
+                showMenuLinks
+                  ? "opacity-100 translate-y-0 pointer-events-auto"
+                  : "opacity-0 -translate-y-4 pointer-events-none"
+              }`}
+            >
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-foreground/90 font-bold tracking-tight transition-all duration-300 hover:text-foreground hover:scale-105 relative group py-1"
+                >
+                  <span>{item.label}</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
+                </Link>
+              ))}
+            </nav>
 
-          {/* Right Action Group: Menu Trigger (hidden on desktop when text links show) & Lets Talk CTA (hidden on scroll down) */}
-          <div className="flex items-center gap-4">
-            {/* GSAP Fullscreen Menu Trigger Button: Hidden on desktop when header text links are visible, shown on mobile or on scroll down */}
+            {/* Mobile / Scroll Menu Trigger Button */}
             <button
               onClick={toggleMenu}
               className={`p-3.5 rounded-none bg-surface-card border border-border-custom text-foreground transition-all duration-500 hover:scale-105 hover:border-foreground items-center gap-2.5 shadow-sm group ${
@@ -167,23 +163,23 @@ export function Navbar() {
               </span>
             </button>
 
-            {/* "Lets Talk" Button: Hides smoothly on scroll down */}
-            <a
-              href="#contact"
-              className={`px-7 py-3 rounded-none bg-foreground text-background font-medium text-base transition-all duration-500 hover:bg-surface-card hover:text-foreground items-center gap-3 shadow-md border border-foreground transform ${
+            {/* Bigger "Lets Talk" Button at the Far Right End */}
+            <Link
+              href="/contact"
+              className={`px-8 sm:px-10 py-3.5 sm:py-4 rounded-none bg-white text-black font-extrabold text-base sm:text-lg transition-all duration-500 hover:bg-neutral-200 items-center gap-3 shadow-2xl border border-white transform ${
                 showMenuLinks
                   ? "opacity-100 translate-y-0 pointer-events-auto flex"
                   : "opacity-0 -translate-y-4 pointer-events-none hidden"
               }`}
             >
               <span>Lets Talk</span>
-              <ArrowRight className="w-4.5 h-4.5" />
-            </a>
+              <ArrowRight className="w-5 h-5 text-black" />
+            </Link>
           </div>
         </div>
       </header>
 
-      {/* GSAP Fullscreen Powerup & Down Curtain Overlay Menu */}
+      {/* Fullscreen Curtain Menu Overlay */}
       <div
         ref={overlayRef}
         className="fixed inset-0 z-[99999] bg-background text-foreground hidden flex-col justify-between p-8 md:p-16 overflow-hidden select-none border-b border-foreground"
@@ -192,7 +188,6 @@ export function Navbar() {
           willChange: "clip-path",
         }}
       >
-        {/* Overlay Header */}
         <div className="flex items-center justify-between max-w-[1700px] w-full mx-auto pb-8 border-b border-border-custom">
           <div className="flex items-center gap-3">
             <LoomieLogoMark className="w-14 h-7" />
@@ -210,7 +205,6 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Large GSAP Powerup Menu Links */}
         <div className="max-w-[1700px] w-full mx-auto my-auto py-8">
           <div
             ref={menuLinksRef}
@@ -218,7 +212,7 @@ export function Navbar() {
             style={{ perspective: "1000px" }}
           >
             {NAV_ITEMS.map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 onClick={toggleMenu}
@@ -230,15 +224,14 @@ export function Navbar() {
                 <span className="group-hover:tracking-wider transition-all duration-500">
                   {item.label}
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
 
-        {/* Overlay Footer */}
         <div className="max-w-[1700px] w-full mx-auto pt-8 border-t border-border-custom flex flex-col md:flex-row items-center justify-between text-xs font-mono text-foreground-secondary gap-4">
           <div>
-            <span>LOOMIE STUDIO 2026</span> • <span>TOKYO / LONDON / NYC</span>
+            <span>LOOMIE STUDIO 2026</span>
           </div>
           <div className="flex items-center gap-8">
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">
