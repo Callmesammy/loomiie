@@ -221,20 +221,20 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Smooth Menu Links: Fits comfortably within viewport */}
-        <div className="max-w-[1700px] w-full mx-auto my-auto py-4 md:py-6">
+        {/* Smooth Menu Links: Larger font & generous spacing on mobile, standard proportions on desktop */}
+        <div className="max-w-[1700px] w-full mx-auto my-auto py-6 md:py-4">
           <div
             ref={menuLinksRef}
-            className="flex flex-col gap-2 sm:gap-3 md:gap-4 font-sans font-bold"
+            className="flex flex-col gap-6 sm:gap-6 md:gap-3 lg:gap-4 font-sans font-bold"
           >
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={toggleMenu}
-                className="group flex items-center gap-4 sm:gap-6 text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl tracking-tight text-foreground-secondary hover:text-foreground transition-all duration-300 hover:translate-x-3 leading-tight"
+                className="group flex items-center gap-4 sm:gap-5 md:gap-6 text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl tracking-tight text-foreground-secondary hover:text-foreground transition-all duration-300 hover:translate-x-3 leading-snug py-3 sm:py-3 md:py-1"
               >
-                <span className="font-mono text-sm sm:text-base md:text-lg font-bold opacity-40 group-hover:opacity-100 text-foreground transition-opacity">
+                <span className="font-mono text-base sm:text-base md:text-lg font-extrabold opacity-40 group-hover:opacity-100 text-foreground transition-opacity">
                   ({item.number})
                 </span>
                 <span className="group-hover:tracking-wider transition-all duration-300">

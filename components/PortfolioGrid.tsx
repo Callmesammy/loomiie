@@ -111,6 +111,18 @@ const CASE_STUDIES: CaseStudy[] = [
 
 export function PortfolioGrid() {
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  const filterOptions = [
+    { id: "ALL", label: "ALL", count: 24 },
+    { id: "ECOMMERCE", label: "ECOMMERCE", count: 7 },
+    { id: "FOOD", label: "FOOD & BEVERAGE", count: 2 },
+    { id: "ENTERTAINMENT", label: "ENTERTAINMENT", count: 3 },
+    { id: "INDUSTRIAL", label: "MANUFACTURING & INDUSTRIAL", count: 2 },
+    { id: "TECH", label: "TECH", count: 4 },
+  ];
+
+  const currentOption = filterOptions.find((opt) => opt.id === activeFilter) || filterOptions[0];
 
   const filteredStudies =
     activeFilter === "ALL"
@@ -139,16 +151,50 @@ export function PortfolioGrid() {
         </div>
       </div>
 
-      {/* Pill Filter Bar (Matching Reference Screenshot 100%) */}
-      <div className="flex flex-wrap items-center gap-3.5 mb-16">
-        {[
-          { id: "ALL", label: "ALL", count: 24 },
-          { id: "ECOMMERCE", label: "ECOMMERCE", count: 7 },
-          { id: "FOOD", label: "FOOD & BEVERAGE", count: 2 },
-          { id: "ENTERTAINMENT", label: "ENTERTAINMENT", count: 3 },
-          { id: "INDUSTRIAL", label: "MANUFACTURING & INDUSTRIAL", count: 2 },
-          { id: "TECH", label: "TECH", count: 4 },
-        ].map((pill) => (
+      {/* Mobile Category Dropdown (Replaces Scattered Wrapped Buttons) */}
+      <div className="block md:hidden relative mb-12">
+        <span className="text-xs font-mono font-bold uppercase tracking-widest text-foreground-secondary mb-2 block">
+          SELECT CATEGORY
+        </span>
+        <button
+          type="button"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="w-full px-5 py-4 rounded-none bg-surface-card border-2 border-foreground text-foreground font-mono text-xs sm:text-sm font-bold tracking-wider uppercase flex items-center justify-between shadow-xl transition-all"
+        >
+          <div className="flex items-center gap-2">
+            <span>{currentOption.label}</span>
+            <span className="text-xs opacity-70">({currentOption.count})</span>
+          </div>
+          <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isMobileMenuOpen ? "rotate-180" : ""}`} />
+        </button>
+
+        {isMobileMenuOpen && (
+          <div className="absolute top-full left-0 right-0 z-40 mt-2 bg-background border-2 border-foreground shadow-2xl overflow-hidden flex flex-col divide-y divide-border-custom">
+            {filterOptions.map((option) => (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => {
+                  setActiveFilter(option.id);
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`w-full px-5 py-4 text-left font-mono text-xs font-bold tracking-wider uppercase flex items-center justify-between transition-colors ${
+                  activeFilter === option.id
+                    ? "bg-foreground text-background"
+                    : "text-foreground hover:bg-surface-card"
+                }`}
+              >
+                <span>{option.label}</span>
+                <span>({option.count})</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Desktop Horizontal Pill Filter Bar */}
+      <div className="hidden md:flex flex-wrap items-center gap-3.5 mb-16">
+        {filterOptions.map((pill) => (
           <button
             key={pill.id}
             onClick={() => setActiveFilter(pill.id)}
