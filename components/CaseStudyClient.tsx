@@ -257,3 +257,5 @@ export function CaseStudyClient({ project }: { project: ProjectDetail }) {
     </div>
   );
 }
+
+export default CaseStudyClient;
