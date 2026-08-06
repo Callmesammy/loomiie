@@ -151,12 +151,14 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Right Action Group: Constant Menu Trigger & Lets Talk CTA */}
+          {/* Right Action Group: Menu Trigger (hidden on desktop when text links show) & Lets Talk CTA (hidden on scroll down) */}
           <div className="flex items-center gap-4">
-            {/* GSAP Fullscreen Menu Trigger Button */}
+            {/* GSAP Fullscreen Menu Trigger Button: Hidden on desktop when header text links are visible, shown on mobile or on scroll down */}
             <button
               onClick={toggleMenu}
-              className="p-3.5 rounded-none bg-surface-card border border-border-custom text-foreground transition-all duration-300 hover:scale-105 hover:border-foreground flex items-center gap-2.5 shadow-sm group"
+              className={`p-3.5 rounded-none bg-surface-card border border-border-custom text-foreground transition-all duration-500 hover:scale-105 hover:border-foreground items-center gap-2.5 shadow-sm group ${
+                showMenuLinks ? "flex md:hidden" : "flex"
+              }`}
               aria-label="Toggle Fullscreen Menu"
             >
               <Menu className="w-5 h-5 transition-transform duration-300 group-hover:rotate-180" />
@@ -165,10 +167,14 @@ export function Navbar() {
               </span>
             </button>
 
-            {/* "Lets Talk" Button */}
+            {/* "Lets Talk" Button: Hides smoothly on scroll down */}
             <a
               href="#contact"
-              className="px-7 py-3 rounded-none bg-foreground text-background font-medium text-base transition-all duration-300 hover:bg-surface-card hover:text-foreground flex items-center gap-3 shadow-md border border-foreground"
+              className={`px-7 py-3 rounded-none bg-foreground text-background font-medium text-base transition-all duration-500 hover:bg-surface-card hover:text-foreground items-center gap-3 shadow-md border border-foreground transform ${
+                showMenuLinks
+                  ? "opacity-100 translate-y-0 pointer-events-auto flex"
+                  : "opacity-0 -translate-y-4 pointer-events-none hidden"
+              }`}
             >
               <span>Lets Talk</span>
               <ArrowRight className="w-4.5 h-4.5" />
