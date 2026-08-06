@@ -16,34 +16,20 @@ const NAV_ITEMS = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [showMenuLinks, setShowMenuLinks] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const lastScrollY = useRef(0);
   const overlayRef = useRef<HTMLDivElement>(null);
   const menuLinksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY < 20) {
-        setShowMenuLinks(true);
-      } else {
-        if (currentScrollY > lastScrollY.current + 6) {
-          setShowMenuLinks(false);
-        } else if (currentScrollY < lastScrollY.current - 6) {
-          setShowMenuLinks(true);
-        }
-      }
-
-      setScrolled(currentScrollY > 120);
-      lastScrollY.current = currentScrollY;
+      setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Silky Smooth GSAP Fullscreen Menu Animation
   const toggleMenu = () => {
     if (!overlayRef.current) return;
 
@@ -51,28 +37,31 @@ export function Navbar() {
       setMenuOpen(true);
       document.body.style.overflow = "hidden";
 
+      gsap.killTweensOf([overlayRef.current, menuLinksRef.current?.children || []]);
+
+      gsap.set(overlayRef.current, { display: "flex", opacity: 0, y: -20 });
+
       const tl = gsap.timeline();
 
       tl.to(overlayRef.current, {
-        display: "flex",
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-        duration: 0.75,
-        ease: "power4.inOut",
+        opacity: 1,
+        y: 0,
+        duration: 0.45,
+        ease: "power3.out",
       });
 
       if (menuLinksRef.current) {
         tl.fromTo(
           menuLinksRef.current.children,
-          { y: 90, opacity: 0, rotateX: -35 },
+          { y: 35, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            rotateX: 0,
-            duration: 0.8,
-            stagger: 0.08,
-            ease: "power3.out",
+            duration: 0.5,
+            stagger: 0.06,
+            ease: "power2.out",
           },
-          "-=0.4"
+          "-=0.25"
         );
       }
     } else {
@@ -88,140 +77,167 @@ export function Navbar() {
 
       if (menuLinksRef.current) {
         tl.to(menuLinksRef.current.children, {
-          y: -50,
+          y: -20,
           opacity: 0,
-          duration: 0.3,
-          stagger: 0.04,
+          duration: 0.25,
+          stagger: 0.03,
           ease: "power2.in",
         });
       }
 
-      tl.to(overlayRef.current, {
-        clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-        duration: 0.65,
-        ease: "power4.inOut",
-      });
+      tl.to(
+        overlayRef.current,
+        {
+          opacity: 0,
+          y: -15,
+          duration: 0.35,
+          ease: "power2.inOut",
+        },
+        "-=0.15"
+      );
     }
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "py-4 bg-background/90 backdrop-blur-xl border-b border-border-custom shadow-2xl"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+            ? "py-3 bg-background/85 backdrop-blur-xl border-b border-border-custom shadow-xl"
             : "py-6 bg-transparent"
-        }`}
+          }`}
       >
         <div className="max-w-[1700px] mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Exact Brand Wordmark: L [LOOMIE LOGO MARK] M I E */}
-          <Link
+          {/* Brand Logo Icon with L [LoomieLogoMark] MIE Lockup */}
+          <a
             href="/"
-            className="group flex items-center gap-0.5 sm:gap-1 font-sans text-2xl sm:text-3xl font-black tracking-tighter uppercase text-foreground select-none hover:scale-105 transition-transform"
-            aria-label="LOOMIE Home"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                window.location.reload();
+              }
+            }}
+            className="group flex items-center gap-0.5 sm:gap-1 font-black text-2xl sm:text-3xl md:text-4xl tracking-tighter text-foreground uppercase transition-transform duration-300 hover:scale-105 select-none font-sans"
+            aria-label="LOOMIE Home - Refresh"
           >
             <span>L</span>
-            <span className="inline-flex items-center justify-center px-0.5">
-              <LoomieLogoMark className="w-8 sm:w-10 h-4 sm:h-5 inline-block align-middle" />
+            <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
+              <LoomieLogoMark className="h-[0.72em] w-auto inline-block align-middle" />
             </span>
             <span>MIE</span>
-          </Link>
+          </a>
 
-          {/* Menu Bar & Action Group (Aligned to the Far Right End) */}
-          <div className="flex items-center gap-8 lg:gap-12">
-            {/* Larger Bolder Menu Bar Links */}
-            <nav
-              className={`hidden md:flex items-center gap-8 lg:gap-12 text-base lg:text-lg font-bold font-sans tracking-wide transition-all duration-500 transform ${
-                showMenuLinks
-                  ? "opacity-100 translate-y-0 pointer-events-auto"
-                  : "opacity-0 -translate-y-4 pointer-events-none"
+          {/* Middle Desktop Menu Links: Hides smoothly on scroll down */}
+          <nav
+            className={`hidden lg:flex items-center gap-8 xl:gap-12 text-base md:text-lg font-sans transition-all duration-500 transform ${scrolled
+                ? "opacity-0 -translate-y-3 pointer-events-none"
+                : "opacity-100 translate-y-0 pointer-events-auto"
               }`}
-            >
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="text-foreground/90 font-bold tracking-tight transition-all duration-300 hover:text-foreground hover:scale-105 relative group py-1"
-                >
-                  <span>{item.label}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
-                </Link>
-              ))}
-            </nav>
+          >
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-foreground font-medium tracking-normal opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 relative group py-1"
+              >
+                <span>{item.label}</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </nav>
 
-            {/* Mobile / Scroll Menu Trigger Button */}
+          {/* Right Action Group */}
+          <div className="flex items-center justify-end">
+            {/* "Lets Talk" CTA: Positions at the absolute end on desktop when not scrolled */}
+            <a
+              href="/contact"
+              className={`hidden md:inline-flex px-7 py-3 rounded-none bg-foreground text-background font-bold text-base transition-all duration-500 hover:bg-white hover:text-black items-center gap-2.5 shadow-md border border-foreground group transform ${scrolled
+                  ? "opacity-0 -translate-y-3 pointer-events-none lg:hidden"
+                  : "opacity-100 translate-y-0 pointer-events-auto flex"
+                }`}
+            >
+              <span>Lets Talk</span>
+              <ArrowRight className="w-4.5 h-4.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+
+            {/* Menu Trigger Button: Positioned at the absolute end, hidden on desktop when Lets Talk is visible, replaces it smoothly on scroll down */}
             <button
               onClick={toggleMenu}
-              className={`p-3.5 rounded-none bg-surface-card border border-border-custom text-foreground transition-all duration-500 hover:scale-105 hover:border-foreground items-center gap-2.5 shadow-sm group ${
-                showMenuLinks ? "flex md:hidden" : "flex"
-              }`}
-              aria-label="Toggle Fullscreen Menu"
+              className={`px-4 py-3 sm:px-6 sm:py-3.5 rounded-none bg-surface-card border-2 border-border-custom text-foreground transition-all duration-500 hover:border-foreground hover:bg-foreground hover:text-background items-center gap-2.5 shadow-md group transform ${scrolled
+                  ? "opacity-100 translate-y-0 pointer-events-auto flex"
+                  : "lg:hidden opacity-100 translate-y-0 pointer-events-auto flex"
+                }`}
+              aria-label="Toggle Navigation Menu"
             >
-              <Menu className="w-5 h-5 transition-transform duration-300 group-hover:rotate-180" />
-              <span className="hidden sm:inline-block font-mono text-xs font-bold tracking-wider">
+              {menuOpen ? (
+                <X className="w-6 h-6 transition-transform duration-300 group-hover:rotate-90" />
+              ) : (
+                <Menu className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+              )}
+              <span className="hidden sm:inline-block font-mono text-sm font-extrabold tracking-widest uppercase">
                 {menuOpen ? "Close" : "Menu"}
               </span>
             </button>
-
-            {/* Bigger "Lets Talk" Button at the Far Right End */}
-            <Link
-              href="/contact"
-              className={`px-8 sm:px-10 py-3.5 sm:py-4 rounded-none bg-white text-black font-extrabold text-base sm:text-lg transition-all duration-500 hover:bg-neutral-200 items-center gap-3 shadow-2xl border border-white transform ${
-                showMenuLinks
-                  ? "opacity-100 translate-y-0 pointer-events-auto flex"
-                  : "opacity-0 -translate-y-4 pointer-events-none hidden"
-              }`}
-            >
-              <span>Lets Talk</span>
-              <ArrowRight className="w-5 h-5 text-black" />
-            </Link>
           </div>
         </div>
       </header>
 
-      {/* Fullscreen Curtain Menu Overlay */}
+      {/* Silky Smooth Fullscreen Navigation Overlay */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[99999] bg-background text-foreground hidden flex-col justify-between p-8 md:p-16 overflow-hidden select-none border-b border-foreground"
-        style={{
-          clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-          willChange: "clip-path",
-        }}
+        className="fixed inset-0 z-[99999] bg-background/98 backdrop-blur-2xl text-foreground hidden flex-col justify-between p-6 sm:p-10 md:p-12 overflow-y-auto select-none border-b border-border-custom"
       >
-        <div className="flex items-center justify-between max-w-[1700px] w-full mx-auto pb-8 border-b border-border-custom">
-          <div className="flex items-center gap-3">
-            <LoomieLogoMark className="w-14 h-7" />
-            <span className="font-mono text-xs font-bold tracking-widest text-foreground-secondary uppercase">
-              STUDIO NAVIGATION ENGINE
+        {/* Overlay Header */}
+        <div className="flex items-center justify-between max-w-[1700px] w-full mx-auto pb-4 md:pb-6 border-b border-border-custom">
+          <div className="flex items-center gap-4">
+            <a
+              href="/"
+              onClick={(e) => {
+                setMenuOpen(false);
+                document.body.style.overflow = "auto";
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  window.location.reload();
+                }
+              }}
+              className="flex items-center gap-0.5 sm:gap-1 font-black text-2xl sm:text-3xl md:text-4xl tracking-tighter text-foreground uppercase font-sans hover:scale-105 transition-transform cursor-pointer"
+            >
+              <span>L</span>
+              <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
+                <LoomieLogoMark className="h-[0.72em] w-auto inline-block align-middle" />
+              </span>
+              <span>MIE</span>
+            </a>
+            <span className="font-mono text-xs font-bold tracking-widest text-foreground-secondary uppercase hidden sm:inline-block">
+              STUDIO NAVIGATION
             </span>
           </div>
 
           <button
             onClick={toggleMenu}
-            className="p-4 rounded-none bg-foreground text-background font-bold text-sm transition-all duration-300 hover:scale-110 flex items-center gap-2"
+            className="p-2.5 sm:px-5 sm:py-2.5 rounded-none bg-foreground text-background font-bold text-sm transition-all duration-300 hover:bg-white hover:text-black flex items-center gap-2"
           >
             <span>Close</span>
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="max-w-[1700px] w-full mx-auto my-auto py-8">
+        {/* Smooth Menu Links: Fits comfortably within viewport */}
+        <div className="max-w-[1700px] w-full mx-auto my-auto py-4 md:py-6">
           <div
             ref={menuLinksRef}
-            className="flex flex-col gap-4 md:gap-6 font-sans font-bold"
-            style={{ perspective: "1000px" }}
+            className="flex flex-col gap-2 sm:gap-3 md:gap-4 font-sans font-bold"
           >
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={toggleMenu}
-                className="group flex items-center gap-6 text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-foreground-secondary hover:text-foreground transition-all duration-500 hover:translate-x-4"
+                className="group flex items-center gap-4 sm:gap-6 text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl tracking-tight text-foreground-secondary hover:text-foreground transition-all duration-300 hover:translate-x-3 leading-tight"
               >
-                <span className="font-mono text-base md:text-xl font-bold opacity-40 group-hover:opacity-100 text-foreground transition-opacity">
+                <span className="font-mono text-sm sm:text-base md:text-lg font-bold opacity-40 group-hover:opacity-100 text-foreground transition-opacity">
                   ({item.number})
                 </span>
-                <span className="group-hover:tracking-wider transition-all duration-500">
+                <span className="group-hover:tracking-wider transition-all duration-300">
                   {item.label}
                 </span>
               </Link>
@@ -229,11 +245,12 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className="max-w-[1700px] w-full mx-auto pt-8 border-t border-border-custom flex flex-col md:flex-row items-center justify-between text-xs font-mono text-foreground-secondary gap-4">
+        {/* Overlay Footer */}
+        <div className="max-w-[1700px] w-full mx-auto pt-4 md:pt-6 border-t border-border-custom flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-foreground-secondary gap-3 sm:gap-4">
           <div>
             <span>LOOMIE STUDIO 2026</span>
           </div>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6 sm:gap-8">
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">
               X / Twitter ↗
             </a>

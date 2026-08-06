@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Compass, ShieldCheck, RefreshCw, Eye, Feather } from "lucide-react";
+import { ArrowUpRight, Compass, ShieldCheck, RefreshCw, Eye, Feather, Quote } from "lucide-react";
 
 interface ExhibitionPiece {
   id: string;
@@ -100,6 +100,7 @@ export function ValuesSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // GSAP ScrollTrigger Animations for both UP and DOWN scrolling
       EXHIBITION_PIECES.forEach((piece) => {
         const el = document.getElementById(`exhibition-${piece.id}`);
         if (el) {
@@ -173,11 +174,10 @@ export function ValuesSection() {
             <button
               key={piece.id}
               onClick={() => scrollToPiece(piece.id, idx)}
-              className={`px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${
-                activeExhibition === idx
+              className={`px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${activeExhibition === idx
                   ? "bg-foreground text-background border-foreground shadow-md"
                   : "bg-surface-card text-foreground-secondary border-border-custom hover:border-foreground"
-              }`}
+                }`}
             >
               {piece.number} {piece.title}
             </button>
@@ -209,7 +209,7 @@ export function ValuesSection() {
             {/* 2-Column Split Layout Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left Column: Compact Image Preview Frame */}
-              <div className="lg:col-span-5 w-full h-[260px] sm:h-[300px] relative overflow-hidden rounded-none border border-border-custom shadow-xl group">
+              <div className="lg:col-span-5 w-full h-[260px] sm:h-[300px] relative overflow-hidden rounded-none border border-border-custom shadow-xl group cursor-pointer">
                 <Image
                   src={piece.image}
                   alt={piece.title}
@@ -221,6 +221,7 @@ export function ValuesSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
+                {/* Artwork Overlay Badge */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-[11px] text-white font-bold uppercase tracking-widest">
                   <span className="px-2.5 py-1 bg-black/70 backdrop-blur-md border border-white/20">
                     PLATE 0{index + 1}

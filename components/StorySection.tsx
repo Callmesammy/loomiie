@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Feather, Compass, Layers, CheckCircle2, Sparkles } from "lucide-react";
 
 export function StorySection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,6 +14,7 @@ export function StorySection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // Parallax Zoom for Story Hero Image
       if (heroImageRef.current) {
         gsap.to(heroImageRef.current.querySelector("img"), {
           scale: 1.12,
@@ -27,6 +28,7 @@ export function StorySection() {
         });
       }
 
+      // GSAP ScrollTrigger Animations for both UP and DOWN scrolling on story blocks
       const blocks = document.querySelectorAll(".story-phase-block");
       blocks.forEach((el) => {
         gsap.fromTo(
@@ -181,6 +183,7 @@ export function StorySection() {
               Every project follows one process — strategic thinking, clean execution, endless refinement. The result: brands people get, remember, and trust from first glance.
             </p>
 
+            {/* Bottom Summary Callout */}
             <div className="p-8 bg-surface-card border border-border-custom shadow-2xl space-y-4 mt-8">
               <span className="font-mono text-xs font-bold text-foreground tracking-widest uppercase block">
                 THE LOOMIE GUARANTEE

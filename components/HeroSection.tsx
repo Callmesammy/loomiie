@@ -1,17 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
-import { ArrowDown, Plus, ChevronDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
 
 interface BentoCard {
   id: string;
+  slug: string;
   title: string;
   category: string;
-  categoryCode: "ecommerce" | "food" | "entertainment" | "tech" | "industrial";
   image: string;
   aspect: string;
   span: string;
@@ -19,12 +20,12 @@ interface BentoCard {
   tag?: string;
 }
 
-const BENTO_GRID_ITEMS: BentoCard[] = [
+const HERO_BENTO_ITEMS: BentoCard[] = [
   {
-    id: "b1",
+    id: "hb1",
+    slug: "lumino-3d-kinetic",
     title: "Fluid 3D Spatial Dynamics",
     category: "Motion & WebGL Shaders",
-    categoryCode: "tech",
     image: "/images/hero-3d-fluid.jpg",
     aspect: "aspect-[16/10]",
     span: "col-span-12 lg:col-span-7",
@@ -32,21 +33,21 @@ const BENTO_GRID_ITEMS: BentoCard[] = [
     tag: "FEATURED SHOWCASE",
   },
   {
-    id: "b2",
-    title: "VORTEX Matte Titanium Module",
-    category: "Spatial Hardware & Industrial Design",
-    categoryCode: "industrial",
+    id: "hb2",
+    slug: "vortex-matte-titanium",
+    title: "VORTEX Titanium Module",
+    category: "Spatial Hardware & Industrial",
     image: "/images/project-minimal.jpg",
     aspect: "aspect-[16/10]",
     span: "col-span-12 lg:col-span-5",
     logoOverlay: "VORTEX",
-    tag: "TITANIUM",
+    tag: "HARDWARE UI",
   },
   {
-    id: "b3",
+    id: "hb3",
+    slug: "brutalist-spatial-pavilion",
     title: "Brutalist Spatial Pavilion",
-    category: "Architecture & Spatial Dynamics",
-    categoryCode: "industrial",
+    category: "Architecture & Acoustics",
     image: "/images/project-spatial.jpg",
     aspect: "aspect-[4/3]",
     span: "col-span-12 lg:col-span-5",
@@ -54,15 +55,15 @@ const BENTO_GRID_ITEMS: BentoCard[] = [
     tag: "ARCHITECTURAL",
   },
   {
-    id: "b4",
-    title: "SAT Cybernetic System",
-    category: "Autonomous HUD Interface",
-    categoryCode: "tech",
+    id: "hb4",
+    slug: "sat-cybernetic-hud",
+    title: "SAT Cybernetic System HUD",
+    category: "Autonomous WebGL Interface",
     image: "/images/project-digital.jpg",
-    aspect: "aspect-[16/9]",
+    aspect: "aspect-[4/3]",
     span: "col-span-12 lg:col-span-7",
     logoOverlay: "SAT",
-    tag: "HARDWARE UI",
+    tag: "WEBGL HUD",
   },
 ];
 
@@ -70,9 +71,7 @@ export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
-  const pillBarRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const [activeFilter, setActiveFilter] = useState<string>("ALL");
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -120,24 +119,7 @@ export function HeroSection() {
         );
       }
 
-      // 3. Filter Bar Pop In
-      if (pillBarRef.current) {
-        masterTL.fromTo(
-          pillBarRef.current.children,
-          { y: 20, opacity: 0, scale: 0.95 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.5,
-            stagger: 0.04,
-            ease: "back.out(1.5)",
-          },
-          "-=0.4"
-        );
-      }
-
-      // 4. Bento Grid Cards Entrance
+      // 3. Bento Grid Cards Entrance
       if (gridRef.current) {
         gsap.fromTo(
           gridRef.current.children,
@@ -146,7 +128,7 @@ export function HeroSection() {
             y: 0,
             opacity: 1,
             duration: 1,
-            stagger: 0.15,
+            stagger: 0.12,
             ease: "power3.out",
             scrollTrigger: {
               trigger: gridRef.current,
@@ -157,11 +139,11 @@ export function HeroSection() {
         );
       }
 
-      // 5. ScrollTrigger Parallax Scrub on Headline after initial entry
+      // 4. Parallax Scrub on Headline after initial entry
       if (headlineRef.current && containerRef.current) {
         gsap.to(headlineRef.current, {
-          yPercent: -25,
-          opacity: 0.3,
+          yPercent: -20,
+          opacity: 0.35,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -176,26 +158,15 @@ export function HeroSection() {
     return () => ctx.revert();
   }, []);
 
-  const filteredCards =
-    activeFilter === "ALL"
-      ? BENTO_GRID_ITEMS
-      : BENTO_GRID_ITEMS.filter((item) => {
-          if (activeFilter === "FOOD") return item.categoryCode === "food";
-          if (activeFilter === "TECH") return item.categoryCode === "tech";
-          if (activeFilter === "ENTERTAINMENT") return item.categoryCode === "entertainment";
-          if (activeFilter === "INDUSTRIAL") return item.categoryCode === "industrial";
-          return true;
-        });
-
   return (
     <section
       ref={containerRef}
-      className="pt-36 pb-24 md:pt-44 md:pb-36 px-6 md:px-12 max-w-[1700px] mx-auto overflow-hidden select-none"
+      className="pt-36 pb-24 md:pt-44 md:pb-32 px-6 md:px-12 max-w-[1700px] mx-auto overflow-hidden select-none"
     >
       {/* Studio Badge */}
       <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase tracking-wider mb-8">
         <span className="w-2 h-2 bg-foreground rounded-none animate-pulse" />
-        <span>LOOMIE STUDIO 2026 EDITION</span>
+        <span>CLEAR. CONNECTED. COMPLETE. // LOOMIE STUDIO 2026</span>
       </div>
 
       {/* Headline & Subtitle Block */}
@@ -217,7 +188,10 @@ export function HeroSection() {
           className="lg:col-span-5 flex flex-col justify-end space-y-6 lg:pl-10 text-foreground-secondary text-base sm:text-lg font-sans"
         >
           <p className="leading-snug font-normal max-w-md">
-            Where ideas turn into identities we craft experience that resonates
+            <span className="text-foreground font-bold uppercase tracking-wider block mb-1">
+              Clear. Connected. Complete.
+            </span>
+            Where ideas turn into identities, we craft experiences that resonate across brutalist spatial concepts and kinetic web systems.
           </p>
           <div className="flex items-center justify-between pt-4 border-t border-border-custom font-mono text-xs sm:text-sm text-foreground font-bold tracking-wider">
             <span>Lat : 19.075983 Long : 72.877655</span>
@@ -226,44 +200,13 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Pill Filter Bar */}
-      <div ref={pillBarRef} className="flex flex-wrap items-center gap-3.5 mb-16 select-none">
-        {[
-          { id: "ALL", label: "ALL", count: 24 },
-          { id: "ECOMMERCE", label: "ECOMMERCE", count: 7 },
-          { id: "FOOD", label: "FOOD & BEVERAGE", count: 2 },
-          { id: "ENTERTAINMENT", label: "ENTERTAINMENT", count: 3 },
-          { id: "INDUSTRIAL", label: "MANUFACTURING & INDUSTRIAL", count: 2 },
-          { id: "TECH", label: "TECH", count: 4 },
-        ].map((pill) => (
-          <button
-            key={pill.id}
-            onClick={() => setActiveFilter(pill.id)}
-            className={`px-6 py-3.5 rounded-none text-xs sm:text-sm font-mono font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2.5 ${
-              activeFilter === pill.id
-                ? "bg-foreground text-background shadow-xl scale-105 border border-foreground"
-                : "bg-surface-card border border-border-custom text-foreground-secondary hover:text-foreground hover:border-foreground"
-            }`}
-          >
-            <span>
-              {pill.label} <sup className="text-[11px] opacity-70">({pill.count})</sup>
-            </span>
-            <Plus className="w-4 h-4" />
-          </button>
-        ))}
-
-        <button className="px-6 py-3.5 rounded-none bg-surface-card border border-border-custom text-foreground-secondary hover:text-foreground text-xs sm:text-sm font-mono font-bold tracking-wider uppercase flex items-center gap-2.5">
-          <span>SEE MORE</span>
-          <ChevronDown className="w-4 h-4" />
-        </button>
-      </div>
-
-      {/* Bento Grid Showcase */}
+      {/* Stylish Hero Bento Grid Showcase */}
       <div ref={gridRef} className="grid grid-cols-12 gap-8 md:gap-10">
-        {filteredCards.map((card) => (
-          <div
+        {HERO_BENTO_ITEMS.map((card) => (
+          <Link
             key={card.id}
-            className={`${card.span} group relative rounded-none overflow-hidden bg-surface-card border border-border-custom shadow-2xl transition-all duration-500 hover:border-foreground cursor-pointer`}
+            href={`/work/${card.slug}`}
+            className={`${card.span} group relative rounded-none overflow-hidden bg-surface-card border border-border-custom shadow-2xl transition-all duration-500 hover:border-foreground cursor-pointer block`}
           >
             <div className={`w-full ${card.aspect} relative overflow-hidden rounded-none`}>
               <Image
@@ -280,7 +223,7 @@ export function HeroSection() {
 
               {card.tag && (
                 <div className="absolute top-6 left-6 px-3.5 py-1.5 bg-black/60 backdrop-blur-md border border-white/15 text-white font-mono text-xs font-bold tracking-widest uppercase">
-                  {card.tag}
+                  <span>{card.tag}</span>
                 </div>
               )}
 
@@ -307,7 +250,7 @@ export function HeroSection() {
                 <ArrowUpRight className="w-5 h-5" />
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

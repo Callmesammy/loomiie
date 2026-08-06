@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Preloader } from "@/components/Preloader";
 import { CaseStudyClient } from "@/components/CaseStudyClient";
 import { Metadata } from "next";
 
@@ -174,6 +175,7 @@ export default async function CaseStudyPage({
 
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
+      <Preloader variant="brief" pageTitle={project.title} />
       <Navbar />
       <CaseStudyClient project={project} />
       <Footer />

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Plus, Minus, Check, Copy, Clock, Globe, ArrowUpRight } from "lucide-react";
+import { Plus, Minus, Check, Copy, Calendar as CalendarIcon, Clock, Globe, ArrowUpRight, Sparkles } from "lucide-react";
 
 interface FAQItem {
   id: string;
@@ -49,18 +49,21 @@ const TIME_SLOTS = ["7:00 AM", "7:30 AM", "8:00 AM", "10:30 AM", "2:00 PM", "4:3
 export function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Calendar State
   const [selectedDate, setSelectedDate] = useState<number>(7);
   const [selectedTime, setSelectedTime] = useState<string>("10:30 AM");
-  const [selectedTimezone] = useState<string>("Africa/Lagos (GMT+1)");
+  const [selectedTimezone, setSelectedTimezone] = useState<string>("Africa/Lagos (GMT+1)");
   const [isBooked, setIsBooked] = useState<boolean>(false);
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
 
+  // FAQ Accordion State
   const [openFaq, setOpenFaq] = useState<string | null>("faq-1");
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // GSAP ScrollTrigger Animations for both UP and DOWN scrolling
       const anims = document.querySelectorAll(".contact-anim-block");
       anims.forEach((el) => {
         gsap.fromTo(
@@ -116,7 +119,7 @@ export function ContactSection() {
           </h1>
         </div>
 
-        {/* 2-Column Contact Layout */}
+        {/* 2-Column Contact Layout (Matching Reference Screenshot 2 100%) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Contact Details */}
           <div className="lg:col-span-5 space-y-8">
@@ -166,7 +169,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Interactive Meeting Calendar Booker */}
+          {/* Right Column: Interactive Meeting Calendar Booker (Matching Screenshot 2 100%) */}
           <div className="lg:col-span-7 bg-surface-card border border-border-custom p-6 sm:p-8 md:p-10 shadow-2xl space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-border-custom pb-4 gap-3 font-mono text-xs font-bold text-foreground">
               <div className="flex items-center gap-2">
@@ -181,6 +184,7 @@ export function ContactSection() {
 
             {/* Calendar Widget Interior */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start pt-2">
+              {/* Date Selection Grid (7 cols) */}
               <div className="md:col-span-7 space-y-4 font-mono">
                 <div className="flex items-center justify-between text-xs font-bold text-foreground uppercase border-b border-border-custom/60 pb-2">
                   <span>AUGUST 2026</span>
@@ -190,6 +194,7 @@ export function ContactSection() {
                   </div>
                 </div>
 
+                {/* Day Headers */}
                 <div className="grid grid-cols-7 text-center text-[10px] font-bold text-foreground-secondary uppercase tracking-widest">
                   <span>SUN</span>
                   <span>MON</span>
@@ -200,7 +205,9 @@ export function ContactSection() {
                   <span>SAT</span>
                 </div>
 
+                {/* Days Grid */}
                 <div className="grid grid-cols-7 gap-1 text-center font-mono text-xs font-bold text-foreground">
+                  {/* Empty offset padding for August 2026 */}
                   <span className="p-2 opacity-20">26</span>
                   <span className="p-2 opacity-20">27</span>
                   <span className="p-2 opacity-20">28</span>
@@ -212,11 +219,10 @@ export function ContactSection() {
                     <button
                       key={day}
                       onClick={() => setSelectedDate(day)}
-                      className={`p-2 border transition-all ${
-                        selectedDate === day
-                          ? "bg-foreground text-background border-foreground font-black shadow-md scale-105"
-                          : "bg-background text-foreground border-border-custom/50 hover:border-foreground"
-                      }`}
+                      className={`p-2 border transition-all ${selectedDate === day
+                        ? "bg-foreground text-background border-foreground font-black shadow-md scale-105"
+                        : "bg-background text-foreground border-border-custom/50 hover:border-foreground"
+                        }`}
                     >
                       {day}
                     </button>
@@ -224,6 +230,7 @@ export function ContactSection() {
                 </div>
               </div>
 
+              {/* Time Slots (5 cols) */}
               <div className="md:col-span-5 space-y-4 font-mono">
                 <div className="text-xs font-bold text-foreground uppercase border-b border-border-custom/60 pb-2 flex items-center justify-between">
                   <span>FRI {selectedDate} AUG</span>
@@ -235,17 +242,17 @@ export function ContactSection() {
                     <button
                       key={time}
                       onClick={() => setSelectedTime(time)}
-                      className={`w-full py-2.5 px-3 text-xs font-bold uppercase transition-all border text-center ${
-                        selectedTime === time
-                          ? "bg-foreground text-background border-foreground shadow-md"
-                          : "bg-background text-foreground border-border-custom hover:border-foreground"
-                      }`}
+                      className={`w-full py-2.5 px-3 text-xs font-bold uppercase transition-all border text-center ${selectedTime === time
+                        ? "bg-foreground text-background border-foreground shadow-md"
+                        : "bg-background text-foreground border-border-custom hover:border-foreground"
+                        }`}
                     >
                       {time}
                     </button>
                   ))}
                 </div>
 
+                {/* Instant Book Button */}
                 <button
                   onClick={() => setIsBooked(true)}
                   className="w-full py-3.5 bg-foreground text-background font-mono text-xs font-bold uppercase tracking-widest hover:bg-white transition-all border border-foreground shadow-xl mt-2"
@@ -255,6 +262,7 @@ export function ContactSection() {
               </div>
             </div>
 
+            {/* Confirmation Alert */}
             {isBooked && (
               <div className="p-4 bg-foreground/10 border border-foreground/30 text-foreground font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-between">
                 <span>CONFIRMED FOR AUG {selectedDate}, 2026 AT {selectedTime} ({selectedTimezone})</span>
@@ -265,7 +273,7 @@ export function ContactSection() {
         </div>
       </div>
 
-      {/* 2. FREQUENTLY ASKED QUESTIONS */}
+      {/* 2. FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION - Matching Reference Screenshot 1 100%) */}
       <div className="contact-anim-block space-y-10 pt-12 border-t border-border-custom">
         <div className="space-y-3">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-foreground-secondary block">
@@ -276,6 +284,7 @@ export function ContactSection() {
           </h2>
         </div>
 
+        {/* Accordion FAQ Stack (Matching Screenshot 1 100%) */}
         <div className="border-t border-border-custom divide-y divide-border-custom">
           {FAQ_ITEMS.map((faq) => {
             const isOpen = openFaq === faq.id;

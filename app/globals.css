@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f4f7;
+  --background: #f6f5f0;
   --surface: #ffffff;
-  --surface-card: #eaeae9;
-  --foreground: #08080a;
-  --foreground-secondary: #5e5e6e;
-  --accent: #08080a;
-  --accent-glow: rgba(8, 8, 10, 0.1);
-  --border-color: rgba(8, 8, 10, 0.12);
-  --glass-bg: rgba(244, 244, 247, 0.88);
-  --glass-border: rgba(8, 8, 10, 0.12);
+  --surface-card: #ededea;
+  --foreground: #0c0c0a;
+  --foreground-secondary: #636158;
+  --accent: #d4a338;
+  --accent-glow: rgba(212, 163, 56, 0.12);
+  --border-color: rgba(12, 12, 10, 0.10);
+  --glass-bg: rgba(246, 245, 240, 0.88);
+  --glass-border: rgba(12, 12, 10, 0.10);
 }
 
 .dark {
-  --background: #050507;
-  --surface: #0b0b0e;
-  --surface-card: #111116;
-  --foreground: #ffffff;
-  --foreground-secondary: #8a8a9a;
-  --accent: #ffffff;
-  --accent-glow: rgba(255, 255, 255, 0.15);
-  --border-color: rgba(255, 255, 255, 0.12);
-  --glass-bg: rgba(5, 5, 7, 0.88);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  --background: #070706;
+  --surface: #0d0c0a;
+  --surface-card: #13120f;
+  --foreground: #f5f4ef;
+  --foreground-secondary: #8c887d;
+  --accent: #e5c158;
+  --accent-glow: rgba(229, 193, 88, 0.10);
+  --border-color: rgba(229, 193, 88, 0.08);
+  --glass-bg: rgba(7, 7, 6, 0.90);
+  --glass-border: rgba(229, 193, 88, 0.08);
 }
 
 @theme inline {
@@ -67,7 +67,7 @@ html, body {
   will-change: transform;
 }
 
-/* Subtle Noise Background Overlay */
+/* Subtle Noise & Ultra-Faint Dusty Warm Aura Overlay */
 body::before {
   content: "";
   position: fixed;
@@ -75,9 +75,21 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 99990;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 30%, rgba(229, 193, 88, 0.018) 0%, rgba(180, 140, 50, 0.008) 50%, transparent 85%);
+  pointer-events: none;
+  z-index: 99989;
 }
 
 /* Lenis Scroll Styles */

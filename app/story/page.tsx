@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { StorySection } from "@/components/StorySection";
 import { Footer } from "@/components/Footer";
+import { Preloader } from "@/components/Preloader";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function StoryPage() {
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
+      <Preloader variant="brief" pageTitle="OUR STORY" />
       <Navbar />
       <div className="pt-20">
         <StorySection />
