@@ -313,5 +313,3 @@ export function ContactSection() {
     </section>
   );
 }
-
-export default ContactSection;
