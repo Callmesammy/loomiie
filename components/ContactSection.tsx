@@ -52,7 +52,7 @@ export function ContactSection() {
   // Calendar State
   const [selectedDate, setSelectedDate] = useState<number>(7);
   const [selectedTime, setSelectedTime] = useState<string>("10:30 AM");
-  const [selectedTimezone, setSelectedTimezone] = useState<string>("Africa/Lagos (GMT+1)");
+  const [selectedTimezone, setSelectedTimezone] = useState<string>("UTC (GMT+0)");
   const [isBooked, setIsBooked] = useState<boolean>(false);
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
 
