@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
-import { ArrowUpRight, Compass, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface DisciplineItem {
   id: string;
@@ -114,29 +114,14 @@ export function ScrollTextReveal() {
         )}
       </div>
 
-      <div className="max-w-[1700px] mx-auto w-full space-y-14">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-stone-300 pb-6 font-mono text-xs text-[#0E0E0E]">
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="font-bold tracking-widest uppercase text-[#0E0E0E]">
-              02 // STUDIO CAPABILITIES & DISCIPLINE MATRIX
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3 font-bold uppercase tracking-widest text-stone-600">
-            <Compass className="w-4 h-4 text-[#0E0E0E]" />
-            <span>LOOMIE CREATIVE DIRECTIVE © 2026</span>
-          </div>
-        </div>
-
+      <div className="max-w-[1700px] mx-auto w-full space-y-12">
         {/* Section Editorial Title */}
-        <div className="space-y-3 max-w-4xl">
+        <div className="space-y-3 max-w-4xl border-b border-stone-300 pb-8">
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-light font-sans tracking-tight leading-[0.95] text-[#0E0E0E]">
-            Capabilities & Core Discipline
+            Capabilities & Core Disciplines
           </h2>
           <p className="text-stone-600 font-sans text-base sm:text-lg leading-relaxed">
-            We bridge mathematical precision with artistic endurance — engineering bespoke web experiences, identity systems, and WebGL kinetic shaders.
+            We bridge mathematical precision with artistic endurance — engineering bespoke web experiences, identity systems, and WebGL shaders.
           </p>
         </div>
 
@@ -155,12 +140,8 @@ export function ScrollTextReveal() {
                   isHovered ? "pl-4 lg:pl-6 bg-stone-200/40" : "pl-0"
                 }`}
               >
-                {/* Left Side: Number + Title + Subtitle */}
+                {/* Left Side: Title + Subtitle */}
                 <div className="flex items-start sm:items-center gap-6 sm:gap-10">
-                  <span className="font-mono text-sm sm:text-base font-bold text-stone-400 group-hover:text-emerald-600 transition-colors">
-                    [{disc.number}]
-                  </span>
-
                   <div className="space-y-1">
                     <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light font-sans tracking-tight text-[#0E0E0E] group-hover:font-normal transition-all">
                       {disc.title}
@@ -191,12 +172,6 @@ export function ScrollTextReveal() {
               </Link>
             );
           })}
-        </div>
-
-        {/* Footer Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-stone-600 font-bold uppercase tracking-widest border-t border-stone-300/60 mt-4">
-          <span>LOOMIE CAPABILITIES & CORE DISCIPLINES</span>
-          <span>CLEAR. CONNECTED. COMPLETE.</span>
         </div>
       </div>
     </section>

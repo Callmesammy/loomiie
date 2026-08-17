@@ -173,9 +173,6 @@ export function AboutUsSection() {
         <div className="border-b border-stone-300 pb-10 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
-              <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block mb-1">
-                LOOMIE DISCOVERY // 3D CANVAS
-              </span>
               <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-[#0E0E0E]">
                 Kinetic 3D Studio Canvas
               </h2>
@@ -195,11 +192,8 @@ export function AboutUsSection() {
         <div className="space-y-16 lg:space-y-24">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-stone-300 pb-6">
             <div>
-              <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block mb-1">
-                LOOMIE TEAM & SPECIALISTS
-              </span>
               <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-[#0E0E0E]">
-                Studio Disciplinarians
+                Team & Specialists
               </h2>
             </div>
             <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest">

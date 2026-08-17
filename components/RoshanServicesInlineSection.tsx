@@ -75,18 +75,7 @@ function InlineSwappingImage({
 export function RoshanServicesInlineSection() {
   return (
     <section className="relative w-full bg-[#F5F3EF] text-[#0E0E0E] py-24 px-6 sm:px-12 md:px-16 overflow-hidden select-none border-t border-b border-stone-300">
-      <div className="max-w-[1700px] mx-auto w-full space-y-10">
-        {/* Section Header */}
-        <div className="flex items-center justify-between border-b border-stone-300 pb-6 font-mono text-xs text-[#0E0E0E]">
-          <div className="flex items-center gap-3 font-bold uppercase tracking-widest">
-            <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
-            <span>04 // LOOMIE CAPABILITIES & CORE DISCIPLINES</span>
-          </div>
-
-          <span className="font-bold uppercase tracking-widest text-stone-600 hidden sm:inline">
-            LOOMIE TECH MATRIX © 2026
-          </span>
-        </div>
+      <div className="max-w-[1700px] mx-auto w-full space-y-8">
 
         {/* Monumental Typography with LOOMIE Brand Inline Swapping Photos */}
         <div className="pt-4">

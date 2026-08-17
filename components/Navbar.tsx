@@ -229,16 +229,20 @@ export function Navbar() {
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    setIsNavigating(true);
+    setNavigatingTitle("LOOMIE // HOME");
+
     if (menuOpen) {
       closeMenuWithSwipeLeft("/", "HOME");
     } else {
-      if (pathname === "/") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        setIsNavigating(true);
-        setNavigatingTitle("LOOMIE // HOME");
-        setTimeout(() => router.push("/"), 350);
-      }
+      setTimeout(() => {
+        if (pathname === "/") {
+          window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+          window.location.reload();
+        } else {
+          router.push("/");
+        }
+      }, 400);
     }
   };
 
@@ -378,7 +382,7 @@ export function Navbar() {
 
         {/* Menu Bottom Footer */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] sm:text-xs text-stone-500 uppercase tracking-widest max-w-[1800px] w-full mx-auto border-t border-stone-300 pt-4 shrink-0">
-          <span className="text-[#0E0E0E] font-bold">LOOMIE KINETIC STUDIO © 2026</span>
+          <span className="text-[#0E0E0E] font-bold">LOOMIE STUDIO</span>
           <div className="flex items-center gap-4 text-[#0E0E0E] font-bold">
             <a href="https://www.instagram.com/byloomie/" target="_blank" rel="noopener noreferrer" className="hover:underline">INSTAGRAM</a>
             <span>•</span>

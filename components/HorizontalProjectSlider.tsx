@@ -313,8 +313,8 @@ export function HorizontalProjectSlider() {
             </div>
 
             {/* Headline, Monumental Video Showcase & Intro Text */}
-            <div className="my-auto space-y-2.5 sm:space-y-4">
-              <h1 className="text-6xl sm:text-[8.5rem] lg:text-[10rem] font-black tracking-tighter uppercase leading-[0.85] font-sans flex items-center gap-1 sm:gap-2">
+            <div className="space-y-2 sm:space-y-3 my-auto">
+              <h1 className="text-5xl sm:text-[8.5rem] lg:text-[10rem] font-black tracking-tighter uppercase leading-[0.85] font-sans flex items-center gap-1 sm:gap-2">
                 <span>L</span>
                 <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
                   <InteractiveEyeLogoMark
@@ -327,8 +327,8 @@ export function HorizontalProjectSlider() {
                 <span>MIE</span>
               </h1>
 
-              {/* Video Showcase Player - Expanded height to fill empty space on mobile */}
-              <div className="relative w-full h-[54vh] sm:h-[58vh] lg:h-[42vh] overflow-hidden border border-current/20 shadow-2xl my-1 sm:my-2 group">
+              {/* Video Showcase Player — Clean video without text/number overlays */}
+              <div className="relative w-full h-[48vh] sm:h-[54vh] lg:h-[42vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
                 <video
                   src="/make_a_video_with_those_please.mp4"
                   autoPlay
@@ -337,78 +337,71 @@ export function HorizontalProjectSlider() {
                   playsInline
                   className="w-full h-full object-cover scale-[1.08] transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-                <div className="absolute top-3 left-3 px-3 py-1 bg-black/85 backdrop-blur-md text-white font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest border border-white/20 z-10">
-                  01 // KINETIC REEL
-                </div>
-                <div className="absolute bottom-3 right-3 px-3 py-1.5 bg-black/85 backdrop-blur-md text-white font-mono text-[10px] sm:text-xs font-bold uppercase tracking-widest flex items-center gap-2 border border-white/20 z-10 shadow-2xl">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                  <span>LOOMIE STUDIO © 2026</span>
-                </div>
               </div>
 
               <p className="font-sans text-xs sm:text-sm md:text-base leading-relaxed font-normal max-w-xl opacity-90">
                 We are a kinetic web & design agency. Clear. Connected. Complete. Engineering bold spatial concepts and high-converting visual systems.
               </p>
-            </div>
 
-            {/* Social Links Bottom Footer (Icon-Only SVG Logo Badges) */}
-            <div className="pt-2 sm:pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-4 font-mono text-xs font-bold tracking-widest shrink-0">
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://www.instagram.com/byloomie/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
-                >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/loomieofficial/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
-                >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://x.com/Loomieofficial"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="X"
-                  className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
-                >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </a>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="hidden sm:flex items-center gap-2 text-[10px] opacity-60">
-                  <span>SCROLL HORIZONTALLY</span>
-                  <ArrowRight className="w-4 h-4 animate-pulse" />
+              {/* Social Links Row — Pulled UP right underneath the description text */}
+              <div className="pt-2.5 sm:pt-4 border-t border-current/15 flex flex-wrap items-center justify-between gap-3 font-mono text-xs font-bold tracking-widest shrink-0 mt-2 sm:mt-3">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.instagram.com/byloomie/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/loomieofficial/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://x.com/Loomieofficial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X"
+                    className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </a>
                 </div>
-                <div className="flex items-center gap-2 pl-4 border-l border-current/20">
-                  <LoomieLogoMark className="h-6 w-auto text-current" />
-                  <span className="font-sans font-bold text-sm tracking-tight">LOOMIE</span>
+
+                <div className="flex items-center gap-4">
+                  <div className="hidden sm:flex items-center gap-2 text-[10px] opacity-60">
+                    <span>SCROLL HORIZONTALLY</span>
+                    <ArrowRight className="w-4 h-4 animate-pulse" />
+                  </div>
+                  <div className="flex items-center gap-2 pl-4 border-l border-current/20">
+                    <LoomieLogoMark className="h-6 w-auto text-current" />
+                    <span className="font-sans font-bold text-sm tracking-tight">LOOMIE</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* SLIDES 1 TO 4: Studio Showcase Cards (Filled height with zero empty space) */}
+          {/* SLIDES 1 TO 4: Studio Showcase Cards — Clean without numbers */}
           {AKARU_PROJECTS.map((project) => (
             <div
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame — Expanded to fill empty space */}
+              {/* Media Showcase Frame */}
               <div className="akaru-image-wrap relative w-full h-[60vh] sm:h-[64vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
@@ -425,13 +418,7 @@ export function HorizontalProjectSlider() {
               {/* Bottom Info Container with Tight Spacing Right Below Image */}
               <div className="akaru-title-block p-3.5 sm:p-6 lg:p-8 flex flex-col justify-start gap-2 sm:gap-4 flex-1 relative gpu-layer">
                 <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs font-bold uppercase tracking-wider">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3.5 py-0.5 border border-current rounded-full">
-                      0{project.number}
-                    </span>
-                    <span className="opacity-90">{project.category}</span>
-                  </div>
-
+                  <span className="opacity-90">{project.category}</span>
                   <span className="text-[11px] opacity-70 hidden sm:inline-block">
                     {project.subCategory}
                   </span>
@@ -447,12 +434,6 @@ export function HorizontalProjectSlider() {
                     <p className="akaru-brand-story font-sans text-xs sm:text-sm leading-relaxed max-w-2xl opacity-85 font-normal">
                       {project.brandStory}
                     </p>
-                  </div>
-
-                  <div className="lg:col-span-4 flex items-center justify-start lg:justify-end pt-1 lg:pt-0">
-                    <div className="font-mono text-[11px] sm:text-xs font-bold opacity-70 uppercase tracking-widest">
-                      0{project.number} // {project.year}
-                    </div>
                   </div>
                 </div>
               </div>
