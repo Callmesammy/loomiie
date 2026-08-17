@@ -17,6 +17,7 @@ interface AkaruProject {
   category: string;
   subCategory: string;
   brandStory: string;
+  brandStory2?: string;
   year: string;
   image: string;
   bgColor: string;
@@ -32,9 +33,10 @@ const AKARU_PROJECTS: AkaruProject[] = [
     category: "2026 • SPATIAL PLAY",
     subCategory: "KINETIC MODULARITY",
     brandStory: "Modularity is at the heart of our craft. Like building blocks, we engineer fluid design systems that adapt, scale, and captivate across every touchpoint.",
+    brandStory2: "By bridging spatial architecture with dynamic digital motion, we transform complex identity requirements into playful, intuitive visual narratives that invite deep user engagement.",
     year: "2026",
     image: "/images/projects/hero-project-2.jpg",
-    bgColor: "#0E4C92", // Vibrant Blue Base (Second image now FIRST)
+    bgColor: "#0E4C92",
     textColor: "#F5F3EF",
   },
   {
@@ -45,9 +47,10 @@ const AKARU_PROJECTS: AkaruProject[] = [
     category: "2026 • BRAND SYSTEMS",
     subCategory: "CREATIVE REALIZATION",
     brandStory: "Loomie turns abstract vision into clear, working digital realities. We design every brand element to link together seamlessly making brands instantly understandable.",
+    brandStory2: "From strategic positioning to interactive web interfaces, our holistic execution ensures that every client message resonates with maximum clarity and measurable impact.",
     year: "2026",
     image: "/images/projects/hero-project-1.jpg",
-    bgColor: "#E6E3D8", // Warm Studio Linen
+    bgColor: "#E6E3D8",
     textColor: "#0E0E0E",
   },
   {
@@ -58,9 +61,10 @@ const AKARU_PROJECTS: AkaruProject[] = [
     category: "2026 • VISUAL CRAFT",
     subCategory: "ART DIRECTION & DESIGN",
     brandStory: "Uncompromising precision and artistic discipline. We approach every canvas with meticulous craft to create lasting, iconic visual legacies.",
+    brandStory2: "Rooted in bold design principles and refined technical execution, we construct memorable digital platforms engineered to command attention and endure across evolving trends.",
     year: "2026",
     image: "/images/projects/hero-project-3.jpg",
-    bgColor: "#F0ECE1", // Warm Gallery Off-White
+    bgColor: "#F0ECE1",
     textColor: "#0E0E0E",
   },
   {
@@ -71,49 +75,36 @@ const AKARU_PROJECTS: AkaruProject[] = [
     category: "2026 • DIGITAL EXPERIENCE",
     subCategory: "SENSORY EXPRESSION",
     brandStory: "Design that connects emotionally. We craft sensory brand experiences that spark instant delight, clarity, and enduring client loyalty.",
+    brandStory2: "Through thoughtful interaction design, vibrant typography, and micro-animations, we turn routine user journeys into unforgettable brand encounters.",
     year: "2026",
     image: "/images/projects/hero-project-4.jpg",
-    bgColor: "#1A1C23", // Deep Studio Onyx
+    bgColor: "#1A1C23",
     textColor: "#F5F3EF",
   },
 ];
 
 const SLIDE_COLORS = [
-  { bg: "#F5F3EF", text: "#0E0E0E" }, // Slide 0: Warm Studio Cream (UNTOUCHED)
-  { bg: "#0E4C92", text: "#F5F3EF" }, // Slide 1: Vibrant Blue Base (Second image now FIRST)
-  { bg: "#E6E3D8", text: "#0E0E0E" }, // Slide 2: Warm Studio Linen
-  { bg: "#F0ECE1", text: "#0E0E0E" }, // Slide 3: Warm Gallery Off-White
-  { bg: "#1A1C23", text: "#F5F3EF" }, // Slide 4: Deep Studio Onyx
+  { bg: "#F5F3EF", text: "#0E0E0E" },
+  { bg: "#0E4C92", text: "#F5F3EF" },
+  { bg: "#E6E3D8", text: "#0E0E0E" },
+  { bg: "#F0ECE1", text: "#0E0E0E" },
+  { bg: "#1A1C23", text: "#F5F3EF" },
 ];
 
-/**
- * High-End Pinned Horizontal Project Showcase with Non-Clickable Visual Frames & Brand Storytelling
- * Features:
- * - Slide 0 Untouched
- * - Second image ("PLAY" Lego Bricks) positioned FIRST
- * - Non-clickable visual showcase frames
- * - Removed "LOOMIE CRAFT" & "LOOMIE PHILOSOPHY" labels
- * - GSAP Card Entry/Exit Zoom-Scale
- * - GSAP Staggered Text Highlight Line Reveals
- */
 export function HorizontalProjectSlider() {
   const triggerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [currentTheme, setCurrentTheme] = useState(SLIDE_COLORS[0]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     const trigger = triggerRef.current;
     const container = containerRef.current;
     if (!trigger || !container) return;
 
     const ctx = gsap.context(() => {
       const getScrollAmount = () => container.scrollWidth - window.innerWidth;
-
-      // Master Pinned Horizontal Scrub Timeline
       const scrollTween = gsap.to(container, {
         x: () => -getScrollAmount(),
         ease: "none",
@@ -125,16 +116,10 @@ export function HorizontalProjectSlider() {
           end: () => `+=${getScrollAmount() * 0.75}`,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const totalItems = AKARU_PROJECTS.length + 1; // 5 total slides
+            const totalItems = AKARU_PROJECTS.length + 1;
             const progress = self.progress;
-            const idx = Math.min(
-              totalItems - 1,
-              Math.floor(progress * totalItems)
-            );
-
+            const idx = Math.min(totalItems - 1, Math.floor(progress * totalItems));
             setActiveIndex(idx);
-
-            // Dynamic Animated Background & Text Color Interpolation
             const targetColor = SLIDE_COLORS[idx] || SLIDE_COLORS[0];
             setCurrentTheme(targetColor);
 
@@ -149,108 +134,44 @@ export function HorizontalProjectSlider() {
         },
       });
 
-      // Advanced GSAP Card Zoom-Scale & Inner Image Parallax Zoom Engine
-      const projectCards = container.querySelectorAll(".akaru-project-card");
+      const projectCards = gsap.utils.toArray<HTMLElement>(".akaru-project-card");
       projectCards.forEach((card) => {
         const imageWrap = card.querySelector(".akaru-image-wrap");
-        const innerImg = card.querySelector(".akaru-image");
-        const titleText = card.querySelector(".akaru-project-title");
-        const categoryBadge = card.querySelector(".akaru-category-badge");
-        const brandStoryText = card.querySelector(".akaru-brand-story");
+        const titleBlock = card.querySelector(".akaru-title-block");
 
-        // 1. GSAP Outer Image Container Frame Scale & Opacity Zoom
         if (imageWrap) {
           gsap.fromTo(
             imageWrap,
-            { scale: 0.88, opacity: 0.75 },
+            { scale: 0.94, opacity: 0.8 },
             {
-              scale: 1.0,
-              opacity: 1.0,
+              scale: 1,
+              opacity: 1,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
                 containerAnimation: scrollTween,
-                start: "left 90%",
-                end: "left 30%",
-                scrub: 0.5,
+                start: "left right-=20%",
+                end: "center center",
+                scrub: true,
               },
             }
           );
         }
 
-        // 2. GSAP Inner Image Counter-Parallax Zoom & Scale Animation
-        if (innerImg) {
+        if (titleBlock) {
           gsap.fromTo(
-            innerImg,
-            { scale: 1.05, xPercent: -10 },
-            {
-              scale: 1.0,
-              xPercent: 10,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: scrollTween,
-                start: "left 100%",
-                end: "right 0%",
-                scrub: 0.5,
-              },
-            }
-          );
-        }
-
-        // 3. GSAP Text Highlight Reveal Animations
-        if (titleText) {
-          gsap.fromTo(
-            titleText,
-            { y: 35, opacity: 0 },
+            titleBlock,
+            { y: 30, opacity: 0 },
             {
               y: 0,
               opacity: 1,
+              duration: 0.6,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: card,
                 containerAnimation: scrollTween,
-                start: "left 80%",
-                end: "left 40%",
-                scrub: 0.5,
-              },
-            }
-          );
-        }
-
-        if (categoryBadge) {
-          gsap.fromTo(
-            categoryBadge,
-            { y: 20, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: scrollTween,
-                start: "left 85%",
-                end: "left 45%",
-                scrub: 0.5,
-              },
-            }
-          );
-        }
-
-        if (brandStoryText) {
-          gsap.fromTo(
-            brandStoryText,
-            { y: 25, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: scrollTween,
-                start: "left 75%",
-                end: "left 35%",
-                scrub: 0.5,
+                start: "left center+=20%",
+                toggleActions: "play none none reverse",
               },
             }
           );
@@ -266,51 +187,40 @@ export function HorizontalProjectSlider() {
   return (
     <section
       ref={triggerRef}
-      className="relative overflow-hidden select-none transition-colors duration-700 gpu-layer"
+      className="relative w-full h-screen overflow-hidden transition-colors duration-500 font-sans select-none gpu-layer"
       style={{ backgroundColor: currentTheme.bg, color: currentTheme.text }}
     >
-      {/* Full-Height Horizontal Track */}
-      <div className="h-screen w-full flex items-center overflow-hidden">
+      {/* Top Main Navigation Header */}
+      <div className="absolute top-0 left-0 right-0 z-30 px-4 sm:px-8 py-5 flex items-center justify-between pointer-events-auto">
+        <Link
+          href="/"
+          className="flex items-center gap-2 group transition-transform duration-300 active:scale-95"
+        >
+          <InteractiveEyeLogoMark
+            pillColor={isDarkText ? "fill-[#0E0E0E]" : "fill-white"}
+            socketColor={isDarkText ? "fill-white" : "fill-[#0C0C0F]"}
+            pupilColor={isDarkText ? "fill-[#0E0E0E]" : "fill-white"}
+            className="h-7 sm:h-9 w-auto transition-all duration-300 group-hover:scale-105"
+          />
+        </Link>
+
+        {/* Dynamic Section Indicator Pill */}
+        <div className="hidden md:flex items-center gap-3 px-4 py-1.5 rounded-full border border-current/20 bg-current/5 backdrop-blur-md font-mono text-xs font-bold tracking-widest uppercase transition-all duration-500">
+          <span className="w-2 h-2 rounded-full bg-current animate-ping" />
+          <span>{activeIndex === 0 ? "STUDIO SHOWCASE" : AKARU_PROJECTS[activeIndex - 1]?.title}</span>
+        </div>
+      </div>
+
+      {/* Horizontal Track Container */}
+      <div className="w-full h-full flex items-center">
         <div
           ref={containerRef}
-          className="flex flex-nowrap items-center h-full gpu-layer"
+          className="flex h-full items-center will-change-transform"
         >
-          {/* SLIDE 0: FIRST PAGE (UNTOUCHED COMPACT ELEGANT SIZE: 66vw lg / 62vw xl) */}
-          <div className="flex-none w-[100vw] lg:w-[66vw] xl:w-[62vw] h-full bg-transparent border-r border-current/15 pt-3 sm:pt-4 lg:pt-5 px-3.5 sm:px-8 lg:px-12 pb-5 flex flex-col justify-between relative z-10 gpu-layer">
-            {/* Top Slide 0 Agency Sub-Navigation Row */}
-            <div className="flex items-center justify-between w-full border-b border-current/15 pb-2.5 mb-1 z-20 pl-36 sm:pl-44 lg:pl-48">
-              {/* Navigation Links */}
-              <div className="hidden lg:flex items-center gap-6 lg:gap-8 font-mono text-xs font-bold tracking-widest">
-                <Link
-                  href="/story"
-                  className="px-3.5 py-1 border border-[#0E0E0E] text-[#0E0E0E] bg-transparent rounded-full flex items-center gap-2 hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 group shadow-xs"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0E0E0E] group-hover:bg-white transition-colors" />
-                  <span>Story</span>
-                </Link>
-                <Link href="/values" className="hover:opacity-60 transition-opacity">
-                  <span>Values</span>
-                </Link>
-                <Link href="/about-us" className="hover:opacity-60 transition-opacity">
-                  <span>About Us</span>
-                </Link>
-                <Link href="/who-we-build-for" className="hover:opacity-60 transition-opacity">
-                  <span>Who We Build For</span>
-                </Link>
-                <Link href="/contact" className="hover:opacity-60 transition-opacity">
-                  <span>Connect</span>
-                </Link>
-              </div>
-
-              {/* Right: Solid Dark #0E0E0E Lets Talk Button */}
-              <Link
-                href="/contact"
-                className="hidden sm:inline-flex px-5 py-2 bg-[#0E0E0E] text-white font-bold text-xs sm:text-sm tracking-wider items-center gap-2 shadow-md hover:bg-[#222225] transition-all rounded-full"
-              >
-                <span>Let's Talk</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
-            </div>
+          {/* SLIDE 0: Hero Title & Studio Video Showcase */}
+          <div className="akaru-project-card flex-none w-[100vw] h-full bg-transparent border-r border-current/15 px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-between py-16 sm:py-20 relative select-none">
+            {/* Top Spacer for Fixed Header */}
+            <div className="h-6 sm:h-10 shrink-0" />
 
             {/* Headline, Monumental Video Showcase & Intro Text */}
             <div className="my-auto space-y-2.5 sm:space-y-4">
@@ -327,8 +237,8 @@ export function HorizontalProjectSlider() {
                 <span>MIE</span>
               </h1>
 
-              {/* Video Showcase Player — Expanded on mobile to fill empty space */}
-              <div className="relative w-full h-[54vh] sm:h-[58vh] lg:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 sm:my-2 group">
+              {/* Video Showcase Player */}
+              <div className="relative w-full h-[46vh] sm:h-[50vh] lg:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 sm:my-2 group">
                 <video
                   src="/make_a_video_with_those_please.mp4"
                   autoPlay
@@ -395,14 +305,14 @@ export function HorizontalProjectSlider() {
             </div>
           </div>
 
-          {/* SLIDES 1 TO 4: Studio Showcase Cards */}
+          {/* SLIDES 1 TO 4: Studio Showcase Cards with Continuation Paragraphs */}
           {AKARU_PROJECTS.map((project) => (
             <div
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame */}
-              <div className="akaru-image-wrap relative w-full h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame — Increased height on mobile view only (h-[54vh]) */}
+              <div className="akaru-image-wrap relative w-full h-[54vh] sm:h-[56vh] lg:h-[66vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -415,9 +325,9 @@ export function HorizontalProjectSlider() {
                 />
               </div>
 
-              {/* Bottom Info Container — Larger font sizes to fill the space cleanly */}
-              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-start gap-2.5 sm:gap-4 flex-1 relative gpu-layer">
-                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
+              {/* Bottom Info Container — Larger Font Sizes to Fill the Mobile Page Cleanly */}
+              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-between flex-1 relative gpu-layer pb-8">
+                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-sm font-extrabold uppercase tracking-wider">
                   <span className="opacity-95">{project.category}</span>
                   <span className="text-xs opacity-75 hidden sm:inline-block">
                     {project.subCategory}
@@ -425,15 +335,22 @@ export function HorizontalProjectSlider() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
-                  <div className="lg:col-span-8 space-y-2 sm:space-y-3">
-                    <h2 className="akaru-project-title text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-none text-current uppercase">
+                  <div className="lg:col-span-11 space-y-2.5 sm:space-y-3">
+                    <h2 className="akaru-project-title text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight font-sans leading-tight text-current uppercase">
                       {project.title}
                     </h2>
 
-                    {/* Loomie Brand Story Narrative */}
-                    <p className="akaru-brand-story font-sans text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl opacity-90 font-medium">
+                    {/* Loomie Brand Story Paragraph 1 — Scaled to text-sm sm:text-base */}
+                    <p className="akaru-brand-story font-sans text-sm sm:text-base md:text-lg leading-relaxed opacity-95 font-medium">
                       {project.brandStory}
                     </p>
+
+                    {/* Loomie Brand Story Continuation Paragraph 2 — Scaled to text-sm sm:text-base */}
+                    {project.brandStory2 && (
+                      <p className="akaru-brand-story-2 font-sans text-sm sm:text-base md:text-lg leading-relaxed opacity-90 font-medium pt-0.5">
+                        {project.brandStory2}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
