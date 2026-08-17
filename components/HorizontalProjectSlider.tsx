@@ -395,14 +395,14 @@ export function HorizontalProjectSlider() {
             </div>
           </div>
 
-          {/* SLIDES 1 TO 4: Studio Showcase Cards (Filled height with zero empty space) */}
+          {/* SLIDES 1 TO 4: Studio Showcase Cards */}
           {AKARU_PROJECTS.map((project) => (
             <div
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame — Expanded on mobile to h-[68vh] to eliminate bottom gap */}
-              <div className="akaru-image-wrap relative w-full h-[68vh] sm:h-[70vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame — h-[60vh] on mobile so text is pulled UP closer */}
+              <div className="akaru-image-wrap relative w-full h-[60vh] sm:h-[64vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -415,23 +415,23 @@ export function HorizontalProjectSlider() {
                 />
               </div>
 
-              {/* Bottom Info Container with Compact Spacing Right Below Image */}
-              <div className="akaru-title-block p-3 sm:p-5 lg:p-8 flex flex-col justify-start gap-1.5 sm:gap-4 flex-1 relative gpu-layer">
-                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs font-bold uppercase tracking-wider">
-                  <span className="opacity-90">{project.category}</span>
-                  <span className="text-[11px] opacity-70 hidden sm:inline-block">
+              {/* Bottom Info Container — Larger text pulled UP cleanly */}
+              <div className="akaru-title-block px-4.5 pt-4 pb-6 sm:p-6 lg:p-8 flex flex-col justify-start gap-2.5 sm:gap-4 flex-1 relative gpu-layer">
+                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
+                  <span className="opacity-95">{project.category}</span>
+                  <span className="text-xs opacity-75 hidden sm:inline-block">
                     {project.subCategory}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-1.5 sm:gap-4 items-start pt-0.5">
-                  <div className="lg:col-span-8 space-y-1 sm:space-y-2">
-                    <h2 className="akaru-project-title text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
+                  <div className="lg:col-span-8 space-y-2 sm:space-y-3">
+                    <h2 className="akaru-project-title text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
                       {project.title}
                     </h2>
 
                     {/* Loomie Brand Story Narrative */}
-                    <p className="akaru-brand-story font-sans text-xs sm:text-sm leading-relaxed max-w-2xl opacity-85 font-normal">
+                    <p className="akaru-brand-story font-sans text-sm sm:text-base leading-relaxed max-w-2xl opacity-90 font-normal">
                       {project.brandStory}
                     </p>
                   </div>
