@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LenisScrollProvider } from "@/components/LenisScrollProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { Navbar } from "@/components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,6 +58,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LenisScrollProvider>
             <ScrollToTop />
+            <Navbar />
             {children}
           </LenisScrollProvider>
         </ThemeProvider>

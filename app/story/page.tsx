@@ -1,22 +1,28 @@
 import React from "react";
 import { Navbar } from "@/components/Navbar";
+import { SubpageHeroHeader } from "@/components/SubpageHeroHeader";
 import { StorySection } from "@/components/StorySection";
 import { Footer } from "@/components/Footer";
-import { Preloader } from "@/components/Preloader";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Story — Born from a Blank Screen | LOOMIE Studio",
+  title: "Our Story — LOOMIE Studio Chronicle",
   description:
-    "LOOMIE is a premium design & technology studio. Clear. Connected. Complete. Born from curiosity and the drive to create.",
+    "Explore LOOMIE's studio chronicle across Phase 01 (The Spark), Phase 02 (The Evolution), and Phase 03 (The Discipline). Clear. Connected. Complete.",
 };
 
 export default function StoryPage() {
   return (
-    <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      <Preloader variant="brief" pageTitle="OUR STORY" />
+    <main className="relative min-h-screen bg-[#F5F3EF] text-[#0E0E0E] overflow-hidden">
       <Navbar />
-      <div className="pt-20">
+      <SubpageHeroHeader
+        badge="[LOOMIE CHRONICLE // EST. 2026]"
+        line1="BUILDING WHAT'S NEXT"
+        line2="TOGETHER"
+        bannerImage="/images/partners/film-production.jpg"
+        bannerAlt="LOOMIE Strategic Production Alliances"
+      />
+      <div>
         <StorySection />
       </div>
       <Footer />

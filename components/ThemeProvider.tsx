@@ -97,24 +97,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
-
-      {/* Floating Theme Button with GSAP Icon Spin */}
-      {mounted && (
-        <button
-          onClick={(e) => toggleTheme(e)}
-          className="fixed bottom-8 right-8 z-[9999] p-4 rounded-none bg-surface-card/90 backdrop-blur-md border border-border-custom text-foreground shadow-2xl transition-all duration-300 hover:scale-110 hover:border-foreground group select-none"
-          aria-label="Toggle Light / Dark Theme"
-          data-cursor="hover"
-        >
-          <div ref={iconRef}>
-            {theme === "dark" ? (
-              <Sun className="w-5 h-5 text-amber-400" />
-            ) : (
-              <Moon className="w-5 h-5 text-indigo-600" />
-            )}
-          </div>
-        </button>
-      )}
     </ThemeContext.Provider>
   );
 }

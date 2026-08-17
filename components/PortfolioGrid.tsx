@@ -128,14 +128,14 @@ export function PortfolioGrid() {
     activeFilter === "ALL"
       ? CASE_STUDIES
       : CASE_STUDIES.filter((item) => {
-          if (activeFilter === "FOOD") return item.categoryCode === "food";
-          if (activeFilter === "TECH") return item.categoryCode === "tech";
-          if (activeFilter === "ENTERTAINMENT") return item.categoryCode === "entertainment";
-          if (activeFilter === "INDUSTRIAL") return item.categoryCode === "industrial";
-          if (activeFilter === "SPATIAL") return item.categoryCode === "spatial";
-          if (activeFilter === "ECOMMERCE") return item.categoryCode === "ecommerce";
-          return true;
-        });
+        if (activeFilter === "FOOD") return item.categoryCode === "food";
+        if (activeFilter === "TECH") return item.categoryCode === "tech";
+        if (activeFilter === "ENTERTAINMENT") return item.categoryCode === "entertainment";
+        if (activeFilter === "INDUSTRIAL") return item.categoryCode === "industrial";
+        if (activeFilter === "SPATIAL") return item.categoryCode === "spatial";
+        if (activeFilter === "ECOMMERCE") return item.categoryCode === "ecommerce";
+        return true;
+      });
 
   return (
     <section id="grid" className="py-32 px-6 md:px-12 max-w-[1700px] mx-auto border-t border-border-custom select-none">
@@ -151,7 +151,7 @@ export function PortfolioGrid() {
         </div>
       </div>
 
-      {/* Mobile Category Dropdown (Replaces Scattered Wrapped Buttons) */}
+      {/* Mobile Category Dropdown */}
       <div className="block md:hidden relative mb-12">
         <span className="text-xs font-mono font-bold uppercase tracking-widest text-foreground-secondary mb-2 block">
           SELECT CATEGORY
@@ -178,11 +178,10 @@ export function PortfolioGrid() {
                   setActiveFilter(option.id);
                   setIsMobileMenuOpen(false);
                 }}
-                className={`w-full px-5 py-4 text-left font-mono text-xs font-bold tracking-wider uppercase flex items-center justify-between transition-colors ${
-                  activeFilter === option.id
+                className={`w-full px-5 py-4 text-left font-mono text-xs font-bold tracking-wider uppercase flex items-center justify-between transition-colors ${activeFilter === option.id
                     ? "bg-foreground text-background"
                     : "text-foreground hover:bg-surface-card"
-                }`}
+                  }`}
               >
                 <span>{option.label}</span>
                 <span>({option.count})</span>
@@ -198,11 +197,10 @@ export function PortfolioGrid() {
           <button
             key={pill.id}
             onClick={() => setActiveFilter(pill.id)}
-            className={`px-6 py-3.5 rounded-none text-xs sm:text-sm font-mono font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2.5 ${
-              activeFilter === pill.id
+            className={`px-6 py-3.5 rounded-none text-xs sm:text-sm font-mono font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2.5 ${activeFilter === pill.id
                 ? "bg-foreground text-background shadow-xl scale-105 border border-foreground"
                 : "bg-surface-card border border-border-custom text-foreground-secondary hover:text-foreground hover:border-foreground"
-            }`}
+              }`}
           >
             <span>
               {pill.label} <sup className="text-[11px] opacity-70">({pill.count})</sup>
@@ -217,7 +215,7 @@ export function PortfolioGrid() {
         </button>
       </div>
 
-      {/* 2-Column Asymmetric Case Study Showcase (Matching Reference Screenshot 100%) */}
+      {/* 2-Column Asymmetric Case Study Showcase */}
       <div className="grid grid-cols-12 gap-8 md:gap-12">
         {filteredStudies.map((study) => (
           <Link
@@ -249,7 +247,7 @@ export function PortfolioGrid() {
               )}
             </div>
 
-            {/* Case Study Meta Description Below Card (Matching Screenshot Structure) */}
+            {/* Case Study Meta Description Below Card */}
             <div className="pt-4 pb-2 flex items-center justify-between border-b border-border-custom/60">
               <div>
                 <h3 className="text-xl md:text-2xl font-black uppercase text-foreground leading-tight">

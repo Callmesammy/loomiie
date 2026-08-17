@@ -1,107 +1,168 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { X, ExternalLink } from "lucide-react";
 
+const CURSOR_SPIN_CHARS = ["S", "E", "E", "•", "M", "O", "R", "E", "•"];
+
+/**
+ * High-Performance GSAP Ticker QuickSetter Magnetic Custom Cursor & Modal Engine
+ * Inspired by Cobra Winfrey / CodePen Kinetic Showcase Pattern:
+ * - GSAP quickSetter for butter-smooth 60fps+ cursor tracking (speed = 0.35)
+ * - Ticker deltaRatio interpolation for uniform physics across all refresh rates
+ * - Link hover state (.linkhover) & Card hover active state (.active)
+ * - Spinning circular text ring (SEE•MORE•)
+ * - Modal iframe / project preview lightbox drawer with Esc key & Close handlers
+ */
 export function CustomCursor() {
-  const cursorDotRef = useRef<HTMLDivElement>(null);
-  const cursorRingRef = useRef<HTMLDivElement>(null);
-  const [cursorText, setCursorText] = useState("");
-  const [cursorMode, setCursorMode] = useState<"default" | "hover" | "card">("default");
-  const [isVisible, setIsVisible] = useState(false);
-
-  const mousePos = useRef({ x: -100, y: -100 });
-  const ringPos = useRef({ x: -100, y: -100 });
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [modalSrc, setModalSrc] = useState<string | null>(null);
+  const [modalTitle, setModalTitle] = useState<string>("");
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-      if (!isVisible) setIsVisible(true);
+    const cursor = cursorRef.current;
+    if (!cursor) return;
 
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
+    gsap.set(cursor, { xPercent: -50, yPercent: -50 });
 
-      const card = target.closest("[data-cursor='card']") as HTMLElement | null;
-      const interactive = target.closest("a, button, [data-cursor='hover']") as HTMLElement | null;
-      const customText = target.closest("[data-cursor-text]") as HTMLElement | null;
+    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const mouse = { x: pos.x, y: pos.y };
+    const speed = 0.35;
 
-      if (customText) {
-        setCursorText(customText.getAttribute("data-cursor-text") || "VIEW");
-      } else {
-        setCursorText("");
-      }
+    const xSet = gsap.quickSetter(cursor, "x", "px");
+    const ySet = gsap.quickSetter(cursor, "y", "px");
 
-      if (card) {
-        setCursorMode("card");
-        if (!customText) setCursorText("EXPLORE");
-      } else if (interactive) {
-        setHoverMode("hover");
-      } else {
-        setCursorMode("default");
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    const tickerFunc = () => {
+      const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
+      pos.x += (mouse.x - pos.x) * dt;
+      pos.y += (mouse.y - pos.y) * dt;
+      xSet(pos.x);
+      ySet(pos.y);
+    };
+
+    gsap.ticker.add(tickerFunc);
+
+    // Event listeners for cards (.inner, .thumb) & links (a, button)
+    const updateListeners = () => {
+      const cards = document.querySelectorAll(".inner, .thumb, .waterfall-3d-card, .akaru-project-card");
+      cards.forEach((card) => {
+        card.addEventListener("mouseenter", () => cursor.classList.add("active"));
+        card.addEventListener("mouseleave", () => cursor.classList.remove("active"));
+      });
+
+      const links = document.querySelectorAll("a, button, .summary-list-item");
+      links.forEach((link) => {
+        link.addEventListener("mouseenter", () => cursor.classList.add("linkhover"));
+        link.addEventListener("mouseleave", () => cursor.classList.remove("linkhover"));
+      });
+    };
+
+    const timer = setTimeout(updateListeners, 800);
+
+    // Escape Key Modal Listener
+    const handleKeyDown = (evt: KeyboardEvent) => {
+      if (evt.key === "Escape" || evt.key === "Esc" || evt.keyCode === 27) {
+        closeModal();
       }
     };
 
-    const setHoverMode = (mode: "hover") => setCursorMode(mode);
-
-    const onMouseLeave = () => setIsVisible(false);
-
-    window.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("keydown", handleKeyDown);
+      gsap.ticker.remove(tickerFunc);
+      clearTimeout(timer);
     };
-  }, [isVisible]);
-
-  useEffect(() => {
-    let animFrame: number;
-
-    const render = () => {
-      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.18;
-      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.18;
-
-      if (cursorDotRef.current) {
-        cursorDotRef.current.style.transform = `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0)`;
-      }
-
-      if (cursorRingRef.current) {
-        cursorRingRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0)`;
-      }
-
-      animFrame = requestAnimationFrame(render);
-    };
-
-    animFrame = requestAnimationFrame(render);
-    return () => cancelAnimationFrame(animFrame);
   }, []);
 
-  if (!isVisible) return null;
+  const closeModal = () => {
+    setModalOpen(false);
+    document.body.classList.remove("active");
+    setTimeout(() => {
+      setModalSrc(null);
+    }, 400);
+  };
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[999999] overflow-hidden select-none">
-      {/* Precision Core Dot (Monochrome White/Black Dot, Sharp Box) */}
+    <>
+      {/* GSAP QuickSetter Magnetic Follower Cursor with Spinning Text Ring */}
       <div
-        ref={cursorDotRef}
-        className={`fixed top-0 left-0 w-2 h-2 rounded-none bg-foreground -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 ${
-          cursorMode === "card" || cursorMode === "hover" ? "opacity-0" : "opacity-100"
-        }`}
-      />
-
-      {/* Dynamic Trailing Lens Box (Sharp Rectangular Lens Box) */}
-      <div
-        ref={cursorRingRef}
-        className={`fixed top-0 left-0 rounded-none flex items-center justify-center -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-out font-mono font-bold tracking-widest text-xs uppercase ${
-          cursorMode === "card"
-            ? "w-24 h-24 bg-foreground text-background shadow-2xl scale-100 backdrop-blur-md border border-foreground"
-            : cursorMode === "hover"
-            ? "w-12 h-12 bg-white text-black mix-blend-difference scale-110"
-            : "w-8 h-8 border border-foreground/30 bg-transparent scale-100"
-        }`}
+        id="cursor"
+        ref={cursorRef}
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-[#a58725] pointer-events-none z-[99999] transition-all duration-300 flex items-center justify-center font-mono text-[9px] font-bold text-white uppercase tracking-widest [&.active]:scale-[2.6] [&.active]:border-[#fe4e01] [&.active]:bg-[#08350e] [&.active]:text-[#eeece5] [&.linkhover]:scale-[1.8] [&.linkhover]:border-[#fe4e01] [&.linkhover]:bg-[#fe4e01]/20"
       >
-        {cursorMode === "card" && (
-          <span className="animate-pulse">{cursorText || "EXPLORE"}</span>
-        )}
+        {/* Spinning Circular Text Ring (CodePen SEE•MORE• pattern) */}
+        <strong className="circle absolute inset-0 w-full h-full rounded-full animate-[rotateCircle_10s_linear_infinite] flex items-center justify-center pointer-events-none">
+          <span className="word absolute w-full h-full">
+            {CURSOR_SPIN_CHARS.map((char, i) => (
+              <span
+                key={i}
+                className="char absolute text-[8px] font-bold font-mono text-[#a58725] group-[.active]:text-white"
+                style={{
+                  transform: `rotate(${i * 40}deg) translateY(-14px)`,
+                  transformOrigin: "center 14px",
+                }}
+              >
+                {char}
+              </span>
+            ))}
+          </span>
+        </strong>
       </div>
-    </div>
+
+      {/* Lightbox Modal Drawer for Project Preview */}
+      {modalOpen && modalSrc && (
+        <div className="fixed inset-0 z-[99998] bg-[#0c0c0a]/95 backdrop-blur-xl flex flex-col justify-between p-6 sm:p-10 select-none animate-in fade-in duration-300">
+          <div className="flex items-center justify-between border-b border-[#a58725]/30 pb-4 max-w-7xl w-full mx-auto">
+            <div className="flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-widest text-[#a58725]">
+              <span className="w-2 h-2 rounded-full bg-[#fe4e01] animate-ping" />
+              <span>LOOMIE CODEPEN PREVIEW // {modalTitle}</span>
+            </div>
+
+            <button
+              id="close"
+              onClick={closeModal}
+              className="px-5 py-2 bg-[#fe4e01] text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full hover:bg-[#a58725] transition-colors flex items-center gap-2"
+            >
+              <X className="w-4 h-4" />
+              <span>ESC / CLOSE</span>
+            </button>
+          </div>
+
+          <div className="my-auto max-w-7xl w-full mx-auto h-[75vh] border border-[#a58725]/30 rounded-2xl overflow-hidden shadow-2xl relative bg-black">
+            <iframe
+              id="pen"
+              src={modalSrc}
+              className="w-full h-full border-0"
+              title="Project Live Preview"
+            />
+          </div>
+
+          <div className="flex items-center justify-between max-w-7xl w-full mx-auto border-t border-[#a58725]/30 pt-4 font-mono text-xs text-white/70 uppercase tracking-widest">
+            <span>LOOMIE KINETIC STUDIO © 2026</span>
+            <a
+              id="penlink"
+              href={modalSrc}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#fe4e01] flex items-center gap-1.5 transition-colors"
+            >
+              <span>VIEW FULLSCREEN</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

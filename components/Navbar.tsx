@@ -1,35 +1,137 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { X } from "lucide-react";
 import { gsap } from "gsap";
 import { LoomieLogoMark } from "./LoomieLogoMark";
+import { Preloader } from "./Preloader";
 
-const NAV_ITEMS = [
-  { label: "Story", href: "/story", number: "01" },
-  { label: "Values", href: "/values", number: "02" },
-  { label: "Identity", href: "/identity", number: "03" },
-  { label: "Who We Build For", href: "/who-we-build-for", number: "04" },
-  { label: "Connect", href: "/contact", number: "05" },
+interface MenuNavItem {
+  label: string;
+  href: string;
+  number: string;
+  image: string;
+  alt: string;
+}
+
+const MENU_ITEMS: MenuNavItem[] = [
+  {
+    label: "Home",
+    href: "/",
+    number: "01",
+    image: "/images/projects/hero-project-1.jpg",
+    alt: "LOOMIE Kinetic Web & Design Studio",
+  },
+  {
+    label: "Work",
+    href: "/work",
+    number: "02",
+    image: "/images/projects/hero-project-2.jpg",
+    alt: "LOOMIE Work & Portfolio Showcase",
+  },
+  {
+    label: "Expertise",
+    href: "/expertise",
+    number: "03",
+    image: "/images/services/service-sketch.jpg",
+    alt: "LOOMIE Studio Capabilities & Core Disciplines",
+  },
+  {
+    label: "About Us",
+    href: "/about-us",
+    number: "04",
+    image: "/images/about/brand-architecture.jpg",
+    alt: "LOOMIE Team & 3D Rolling Cube Canvas",
+  },
+  {
+    label: "Story",
+    href: "/story",
+    number: "05",
+    image: "/images/services/service-color.jpg",
+    alt: "LOOMIE Studio Chronicle & Genesis",
+  },
+  {
+    label: "Values",
+    href: "/values",
+    number: "06",
+    image: "/images/services/service-uiux.jpg",
+    alt: "LOOMIE Core Discipline Values",
+  },
+  {
+    label: "Connect",
+    href: "/contact",
+    number: "07",
+    image: "/images/services/service-desktop.jpg",
+    alt: "LOOMIE Studio Booking & Collaboration",
+  },
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+
+  // Preloader Navigation State for Submenu Clicks
+  const [isNavigating, setIsNavigating] = useState(false);
+  const [navigatingTitle, setNavigatingTitle] = useState("LOOMIE KINETIC STUDIO");
+
   const overlayRef = useRef<HTMLDivElement>(null);
   const menuLinksRef = useRef<HTMLDivElement>(null);
 
+  // Auto-cycle menu preview photo when menu is open
+  useEffect(() => {
+    if (!menuOpen) return;
+    const interval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setActiveImageIndex((prev) => (prev + 1) % MENU_ITEMS.length);
+        setIsFading(false);
+      }, 250);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [menuOpen]);
+
+  // Reset menu & navigating preloader on route change
+  useEffect(() => {
+    setIsNavigating(false);
+    if (menuOpen) {
+      setMenuOpen(false);
+      document.body.style.overflow = "auto";
+      if (overlayRef.current) {
+        overlayRef.current.style.display = "none";
+        gsap.set(overlayRef.current, { xPercent: 0, opacity: 1 });
+      }
+    }
+  }, [pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      if (!isHomePage || window.innerWidth < 1024) {
+        setShowNavbar(true);
+      } else {
+        setShowNavbar(window.scrollY > 120);
+      }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [isHomePage, pathname]);
 
-  // Silky Smooth GSAP Fullscreen Menu Animation
+  // GSAP Menu Toggle (Opening & Closing)
   const toggleMenu = () => {
     if (!overlayRef.current) return;
 
@@ -38,14 +140,11 @@ export function Navbar() {
       document.body.style.overflow = "hidden";
 
       gsap.killTweensOf([overlayRef.current, menuLinksRef.current?.children || []]);
-
-      gsap.set(overlayRef.current, { display: "flex", opacity: 0, y: -20 });
+      gsap.set(overlayRef.current, { display: "flex", opacity: 1, xPercent: 100 });
 
       const tl = gsap.timeline();
-
       tl.to(overlayRef.current, {
-        opacity: 1,
-        y: 0,
+        xPercent: 0,
         duration: 0.45,
         ease: "power3.out",
       });
@@ -53,213 +152,239 @@ export function Navbar() {
       if (menuLinksRef.current) {
         tl.fromTo(
           menuLinksRef.current.children,
-          { y: 35, opacity: 0 },
+          { y: 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.5,
-            stagger: 0.06,
+            duration: 0.4,
+            stagger: 0.04,
             ease: "power2.out",
           },
-          "-=0.25"
+          "-=0.2"
         );
       }
     } else {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setMenuOpen(false);
-          document.body.style.overflow = "auto";
-          if (overlayRef.current) {
-            overlayRef.current.style.display = "none";
-          }
-        },
-      });
-
-      if (menuLinksRef.current) {
-        tl.to(menuLinksRef.current.children, {
-          y: -20,
-          opacity: 0,
-          duration: 0.25,
-          stagger: 0.03,
-          ease: "power2.in",
-        });
-      }
-
-      tl.to(
-        overlayRef.current,
-        {
-          opacity: 0,
-          y: -15,
-          duration: 0.35,
-          ease: "power2.inOut",
-        },
-        "-=0.15"
-      );
+      closeMenuWithSwipeLeft();
     }
   };
 
+  // Swipe Left GSAP Exit Animation on Submenu Click + Preloader Trigger
+  const closeMenuWithSwipeLeft = (targetHref?: string, label?: string) => {
+    if (targetHref && pathname !== targetHref) {
+      setIsNavigating(true);
+      setNavigatingTitle(`LOOMIE // ${label || "DISCOVERY"}`);
+    }
+
+    if (!overlayRef.current) {
+      if (targetHref) {
+        if (pathname === targetHref) {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          setIsNavigating(false);
+        } else {
+          setTimeout(() => router.push(targetHref), 350);
+        }
+      }
+      return;
+    }
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setMenuOpen(false);
+        document.body.style.overflow = "auto";
+        if (overlayRef.current) {
+          overlayRef.current.style.display = "none";
+          gsap.set(overlayRef.current, { xPercent: 0, opacity: 1 });
+        }
+        if (targetHref) {
+          if (pathname === targetHref) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setIsNavigating(false);
+          } else {
+            setTimeout(() => router.push(targetHref), 350);
+          }
+        }
+      },
+    });
+
+    if (menuLinksRef.current) {
+      tl.to(menuLinksRef.current.children, {
+        x: -30,
+        opacity: 0,
+        duration: 0.25,
+        stagger: 0.02,
+        ease: "power2.in",
+      });
+    }
+
+    tl.to(
+      overlayRef.current,
+      {
+        xPercent: -100,
+        duration: 0.45,
+        ease: "power3.inOut",
+      },
+      "-=0.15"
+    );
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (menuOpen) {
+      closeMenuWithSwipeLeft("/", "HOME");
+    } else {
+      if (pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        setIsNavigating(true);
+        setNavigatingTitle("LOOMIE // HOME");
+        setTimeout(() => router.push("/"), 350);
+      }
+    }
+  };
+
+  const handleSubmenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, label: string) => {
+    e.preventDefault();
+    closeMenuWithSwipeLeft(href, label);
+  };
+
+  const handleLinkHover = (index: number) => {
+    if (index === activeImageIndex) return;
+    setIsFading(true);
+    setTimeout(() => {
+      setActiveImageIndex(index);
+      setIsFading(false);
+    }, 200);
+  };
+
+  const currentMedia = MENU_ITEMS[activeImageIndex];
+
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-            ? "py-3 bg-background/85 backdrop-blur-xl border-b border-border-custom shadow-xl"
-            : "py-6 bg-transparent"
+      {/* Submenu Click Navigation Loading Preloader Overlay */}
+      {isNavigating && (
+        <div className="fixed inset-0 z-[9999] bg-[#F5F3EF] flex items-center justify-center animate-in fade-in duration-200">
+          <Preloader variant="brief" pageTitle={navigatingTitle} />
+        </div>
+      )}
+
+      {/* Universal Floating Header Overlay */}
+      <header className="fixed top-0 left-0 right-0 z-50 pt-3 px-6 sm:px-10 lg:px-14 pointer-events-none flex items-center justify-between">
+        {/* Top Left: LOOMIE Logo Mark */}
+        <a
+          href="/"
+          onClick={handleLogoClick}
+          className="pointer-events-auto group flex items-center gap-1 font-bold text-xl sm:text-2xl tracking-tighter uppercase px-4 py-2 rounded-full bg-[#0E0E0E] text-white border border-white/20 shadow-2xl transition-all duration-300 hover:scale-105 select-none font-sans cursor-pointer backdrop-blur-md"
+          aria-label="LOOMIE Home"
+        >
+          <span>L</span>
+          <span className="inline-flex items-center justify-center px-0.5 relative">
+            <LoomieLogoMark className="h-[0.75em] w-auto inline-block align-middle transition-transform duration-700 ease-out group-hover:rotate-180 text-white" />
+          </span>
+          <span>MIE</span>
+        </a>
+
+        {/* Top Right: MENU • Button */}
+        <button
+          onClick={toggleMenu}
+          className={`pointer-events-auto px-7 py-3 bg-[#0E0E0E] text-white rounded-full font-mono text-xs sm:text-sm font-bold tracking-[0.2em] uppercase flex items-center gap-3 shadow-2xl transition-all duration-500 border border-white/15 group ${
+            !isHomePage || showNavbar
+              ? "opacity-100 translate-y-0 hover:bg-[#222225] hover:scale-105 active:scale-95"
+              : "opacity-0 -translate-y-4 pointer-events-none"
           }`}
+          aria-label="Toggle Navigation Menu"
+        >
+          <span>MENU</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-white group-hover:scale-125 transition-transform duration-300" />
+        </button>
+      </header>
+
+      {/* FULL-SCREEN OVERLAY MENU */}
+      <div
+        ref={overlayRef}
+        className="fixed inset-0 z-[9990] bg-[#F5F3EF] text-[#0E0E0E] hidden flex-col justify-between p-6 sm:p-12 lg:p-16 select-none overflow-hidden"
+        style={{ display: "none" }}
       >
-        <div className="max-w-[1700px] mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Brand Logo Icon with L [LoomieLogoMark] MIE Lockup */}
+        {/* Menu Top Header Bar */}
+        <div className="flex items-center justify-between max-w-[1800px] w-full mx-auto pb-4 border-b border-stone-300 shrink-0">
           <a
             href="/"
-            onClick={(e) => {
-              if (window.location.pathname === "/") {
-                e.preventDefault();
-                window.location.reload();
-              }
-            }}
-            className="group flex items-center gap-0.5 sm:gap-1 font-black text-2xl sm:text-3xl md:text-4xl tracking-tighter text-foreground uppercase transition-transform duration-300 hover:scale-105 select-none font-sans"
-            aria-label="LOOMIE Home - Refresh"
+            onClick={handleLogoClick}
+            className="flex items-center gap-1 font-bold text-2xl tracking-tighter uppercase text-[#0E0E0E]"
           >
             <span>L</span>
-            <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
-              <LoomieLogoMark className="h-[0.72em] w-auto inline-block align-middle" />
+            <span className="inline-flex items-center justify-center px-0.5">
+              <LoomieLogoMark className="h-[0.75em] w-auto inline-block align-middle text-[#0E0E0E]" />
             </span>
             <span>MIE</span>
           </a>
 
-          {/* Middle Desktop Menu Links: Hides smoothly on scroll down */}
-          <nav
-            className={`hidden lg:flex items-center gap-8 xl:gap-12 text-base md:text-lg font-sans transition-all duration-500 transform ${scrolled
-                ? "opacity-0 -translate-y-3 pointer-events-none"
-                : "opacity-100 translate-y-0 pointer-events-auto"
-              }`}
-          >
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-foreground font-medium tracking-normal opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 relative group py-1"
-              >
-                <span>{item.label}</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
-
-          {/* Right Action Group */}
-          <div className="flex items-center justify-end">
-            {/* "Lets Talk" CTA: Positions at the absolute end on desktop when not scrolled */}
-            <a
-              href="/contact"
-              className={`hidden md:inline-flex px-7 py-3 rounded-none bg-foreground text-background font-bold text-base transition-all duration-500 hover:bg-white hover:text-black items-center gap-2.5 shadow-md border border-foreground group transform ${scrolled
-                  ? "opacity-0 -translate-y-3 pointer-events-none lg:hidden"
-                  : "opacity-100 translate-y-0 pointer-events-auto flex"
-                }`}
-            >
-              <span>Lets Talk</span>
-              <ArrowRight className="w-4.5 h-4.5 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-
-            {/* Menu Trigger Button: Positioned at the absolute end, hidden on desktop when Lets Talk is visible, replaces it smoothly on scroll down */}
-            <button
-              onClick={toggleMenu}
-              className={`px-4 py-3 sm:px-6 sm:py-3.5 rounded-none bg-surface-card border-2 border-border-custom text-foreground transition-all duration-500 hover:border-foreground hover:bg-foreground hover:text-background items-center gap-2.5 shadow-md group transform ${scrolled
-                  ? "opacity-100 translate-y-0 pointer-events-auto flex"
-                  : "lg:hidden opacity-100 translate-y-0 pointer-events-auto flex"
-                }`}
-              aria-label="Toggle Navigation Menu"
-            >
-              {menuOpen ? (
-                <X className="w-6 h-6 transition-transform duration-300 group-hover:rotate-90" />
-              ) : (
-                <Menu className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
-              )}
-              <span className="hidden sm:inline-block font-mono text-sm font-extrabold tracking-widest uppercase">
-                {menuOpen ? "Close" : "Menu"}
-              </span>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Silky Smooth Fullscreen Navigation Overlay */}
-      <div
-        ref={overlayRef}
-        className="fixed inset-0 z-[99999] bg-background/98 backdrop-blur-2xl text-foreground hidden flex-col justify-between p-6 sm:p-10 md:p-12 overflow-y-auto select-none border-b border-border-custom"
-      >
-        {/* Overlay Header */}
-        <div className="flex items-center justify-between max-w-[1700px] w-full mx-auto pb-4 md:pb-6 border-b border-border-custom">
-          <div className="flex items-center gap-4">
-            <a
-              href="/"
-              onClick={(e) => {
-                setMenuOpen(false);
-                document.body.style.overflow = "auto";
-                if (window.location.pathname === "/") {
-                  e.preventDefault();
-                  window.location.reload();
-                }
-              }}
-              className="flex items-center gap-0.5 sm:gap-1 font-black text-2xl sm:text-3xl md:text-4xl tracking-tighter text-foreground uppercase font-sans hover:scale-105 transition-transform cursor-pointer"
-            >
-              <span>L</span>
-              <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
-                <LoomieLogoMark className="h-[0.72em] w-auto inline-block align-middle" />
-              </span>
-              <span>MIE</span>
-            </a>
-            <span className="font-mono text-xs font-bold tracking-widest text-foreground-secondary uppercase hidden sm:inline-block">
-              STUDIO NAVIGATION
-            </span>
-          </div>
-
           <button
             onClick={toggleMenu}
-            className="p-2.5 sm:px-5 sm:py-2.5 rounded-none bg-foreground text-background font-bold text-sm transition-all duration-300 hover:bg-white hover:text-black flex items-center gap-2"
+            className="p-3 rounded-full bg-stone-200 hover:bg-[#0E0E0E] hover:text-white transition-colors duration-300 cursor-pointer"
+            aria-label="Close Menu"
           >
-            <span>Close</span>
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" />
           </button>
         </div>
 
-        {/* Smooth Menu Links: Larger font & generous spacing on mobile, standard proportions on desktop */}
-        <div className="max-w-[1700px] w-full mx-auto my-auto py-6 md:py-4">
-          <div
-            ref={menuLinksRef}
-            className="flex flex-col gap-6 sm:gap-6 md:gap-3 lg:gap-4 font-sans font-bold"
-          >
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={toggleMenu}
-                className="group flex items-center gap-4 sm:gap-5 md:gap-6 text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl tracking-tight text-foreground-secondary hover:text-foreground transition-all duration-300 hover:translate-x-3 leading-snug py-3 sm:py-3 md:py-1"
-              >
-                <span className="font-mono text-base sm:text-base md:text-lg font-extrabold opacity-40 group-hover:opacity-100 text-foreground transition-opacity">
-                  ({item.number})
-                </span>
-                <span className="group-hover:tracking-wider transition-all duration-300">
-                  {item.label}
-                </span>
-              </Link>
-            ))}
+        {/* Menu Main Grid Layout */}
+        <div className="max-w-[1800px] w-full mx-auto my-auto py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* LEFT COLUMN: Dynamic Hover Photo Preview Box */}
+            <div className="lg:col-span-8 hidden lg:block">
+              <div className="relative w-full h-[360px] xl:h-[460px] rounded-2xl overflow-hidden border border-stone-300 bg-stone-900 shadow-2xl">
+                <Image
+                  src={currentMedia.image}
+                  alt={currentMedia.alt}
+                  fill
+                  priority
+                  sizes="(max-width: 1280px) 60vw, 800px"
+                  className={`object-cover transition-all duration-700 ease-out ${
+                    isFading ? "opacity-0 scale-95 blur-xs" : "opacity-100 scale-100 blur-none"
+                  }`}
+                />
+                <div className="absolute top-4 left-4 font-mono text-xs font-bold px-3 py-1 bg-black/80 text-white backdrop-blur-md rounded-xs">
+                  {currentMedia.number} // {currentMedia.label.toUpperCase()}
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN: Navigation Links List */}
+            <div
+              ref={menuLinksRef}
+              className="lg:col-span-4 flex flex-col items-start lg:items-end gap-3 sm:gap-4 font-sans tracking-tight text-3xl sm:text-4xl xl:text-5xl font-light"
+            >
+              {MENU_ITEMS.map((item, idx) => {
+                const isActive = activeImageIndex === idx;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onMouseEnter={() => handleLinkHover(idx)}
+                    onClick={(e) => handleSubmenuClick(e, item.href, item.label.toUpperCase())}
+                    className={`group cursor-pointer transition-all duration-300 py-1 ${
+                      isActive
+                        ? "text-[#0E0E0E] font-normal translate-x-0 lg:-translate-x-2"
+                        : "text-stone-400 hover:text-[#0E0E0E]"
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Overlay Footer */}
-        <div className="max-w-[1700px] w-full mx-auto pt-4 md:pt-6 border-t border-border-custom flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-foreground-secondary gap-3 sm:gap-4">
-          <div>
-            <span>LOOMIE STUDIO 2026</span>
-          </div>
-          <div className="flex items-center gap-6 sm:gap-8">
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">
-              X / Twitter ↗
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">
-              Instagram ↗
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">
-              LinkedIn ↗
-            </a>
+        {/* Menu Bottom Footer */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] sm:text-xs text-stone-500 uppercase tracking-widest max-w-[1800px] w-full mx-auto border-t border-stone-300 pt-4 shrink-0">
+          <span className="text-[#0E0E0E] font-bold">LOOMIE KINETIC STUDIO © 2026</span>
+          <div className="flex items-center gap-4 text-[#0E0E0E] font-bold">
+            <a href="https://www.instagram.com/byloomie/" target="_blank" rel="noopener noreferrer" className="hover:underline">INSTAGRAM</a>
+            <span>•</span>
+            <a href="https://www.linkedin.com/company/loomieofficial/" target="_blank" rel="noopener noreferrer" className="hover:underline">LINKEDIN</a>
+            <span>•</span>
+            <a href="https://x.com/Loomieofficial" target="_blank" rel="noopener noreferrer" className="hover:underline">X</a>
           </div>
         </div>
       </div>

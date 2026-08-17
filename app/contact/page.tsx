@@ -1,22 +1,28 @@
 import React from "react";
 import { Navbar } from "@/components/Navbar";
+import { SubpageHeroHeader } from "@/components/SubpageHeroHeader";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
-import { Preloader } from "@/components/Preloader";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us & Book a Meeting | LOOMIE Studio",
+  title: "Contact Us & Book a Call — LOOMIE Studio",
   description:
-    "Let's Build Bold Together. Book a strategy call with LOOMIE Studio or explore our Frequently Asked Questions.",
+    "Schedule a 30-minute discovery call with LOOMIE Studio or contact us directly. Clear. Connected. Complete.",
 };
 
 export default function ContactPage() {
   return (
-    <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      <Preloader variant="brief" pageTitle="CONTACT US" />
+    <main className="relative min-h-screen bg-[#F5F3EF] text-[#0E0E0E] overflow-hidden">
       <Navbar />
-      <div className="pt-20">
+      <SubpageHeroHeader
+        badge="[LOOMIE STUDIO // CONTACT]"
+        line1="START A PROJECT"
+        line2="& BUILD TOGETHER"
+        bannerImage="/images/contact/contact-hero.jpg"
+        bannerAlt="LOOMIE Contact & Strategy Workspace"
+      />
+      <div>
         <ContactSection />
       </div>
       <Footer />

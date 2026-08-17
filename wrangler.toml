@@ -1,0 +1,11 @@
+# Cloudflare Workers & D1 Configuration for LOOMIE Studio
+name = "loomie-studio"
+main = ".opennext/worker.js"
+compatibility_date = "2026-08-16"
+
+# Cloudflare D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "loomie_db"
+database_id = "0bb8f81f-591c-4f5b-9cd1-01401fc2ec8d"
+migrations_dir = "./db"

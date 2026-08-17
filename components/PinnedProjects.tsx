@@ -160,7 +160,7 @@ export function PinnedProjects() {
                     </div>
                   </div>
 
-                  <h3 className="text-3xl md:text-5xl font-black tracking-tight text-foreground mb-4 leading-[1.05]">
+                  <h3 style={{ fontVariant: "small-caps" }} className="text-3xl md:text-5xl font-bold tracking-wide text-foreground mb-4 leading-[1.05]">
                     {project.title}
                   </h3>
 

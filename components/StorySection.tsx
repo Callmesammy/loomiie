@@ -4,49 +4,98 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight, Feather, Compass, Layers, CheckCircle2, Sparkles } from "lucide-react";
 
+const STORY_SEGMENTS = [
+  {
+    number: "01",
+    title: "CURIOSITY & CRAFT",
+    tagline: "SELF TAUGHT EXPLORATION",
+    headline: "Loomie began with curiosity, a blank screen, basic tools, and the drive to create.",
+    body: "What started as self-taught exploration grew into a studio dedicated to design that actually connects people to brands. Every lesson came from building, breaking, and rebuilding, creating a deep commitment to practical, detail-driven quality.",
+    image: "/images/story/story-segment-1.jpg",
+    alt: "Self-Taught Exploration & Creative Workspace",
+    tags: ["Blank Screen", "Self Taught", "Brand Craft"],
+    layoutReversed: false,
+  },
+  {
+    number: "02",
+    title: "STARTUPS & BUILDERS",
+    tagline: "INTUITIVE DIGITAL SYSTEMS",
+    headline: "Today, Loomie designs for ambitious startups and builders.",
+    body: "From logos that work as avatars to identities that scale to tactile packaging and web applications that feel intuitive. We combine strategic visual storytelling with high-performance digital engineering.",
+    image: "/images/story/story-segment-2.jpg",
+    alt: "Startups & Intuitive Digital Systems",
+    tags: ["Avatars & Logos", "Packaging Identity", "Intuitive Web"],
+    layoutReversed: true,
+  },
+  {
+    number: "03",
+    title: "STRATEGY • EXECUTION • REFINEMENT",
+    tagline: "ONE RIGOROUS PROCESS",
+    headline: "Every project follows one process: strategic thinking, clean execution, and endless refinement.",
+    body: "The result: brands people get, remember, and trust from first glance. We avoid unnecessary complexity in favor of thoughtful strategy, clean aesthetic rhythm, and durable digital architecture.",
+    image: "/images/story/story-segment-3.jpg",
+    alt: "LOOMIE Kinetic Design System & Spatial Refinement",
+    tags: ["Strategic Thinking", "Clean Execution", "Endless Refinement"],
+    layoutReversed: false,
+  },
+];
+
+/**
+ * Clean & Authentic Editorial Story Chronicle for LOOMIE
+ * Features:
+ * - NO top small mono label text above OUR STORY
+ * - NO hyphens (-) or em-dashes (—) in any text or headlines
+ * - Highly relevant Unsplash photography for brand packaging & digital systems
+ * - Vertical Split Sections (Alternating left/right image & text)
+ * - Warm #F5F3EF studio substrate background
+ */
 export function StorySection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroImageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Parallax Zoom for Story Hero Image
-      if (heroImageRef.current) {
-        gsap.to(heroImageRef.current.querySelector("img"), {
-          scale: 1.12,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroImageRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
+      // GSAP ScrollTrigger Entrance for Segment Image Blocks
+      const segmentBlocks = gsap.utils.toArray<HTMLElement>(".story-segment-block");
+      segmentBlocks.forEach((block) => {
+        const img = block.querySelector(".story-segment-image");
+        const text = block.querySelector(".story-segment-text");
 
-      // GSAP ScrollTrigger Animations for both UP and DOWN scrolling on story blocks
-      const blocks = document.querySelectorAll(".story-phase-block");
-      blocks.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 70, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              end: "bottom 15%",
-              toggleActions: "play reverse play reverse",
-            },
-          }
-        );
+        if (img) {
+          gsap.fromTo(
+            img,
+            { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)", opacity: 0 },
+            {
+              clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              opacity: 1,
+              duration: 1.1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: block,
+                start: "top 82%",
+              },
+            }
+          );
+        }
+
+        if (text) {
+          gsap.fromTo(
+            text,
+            { y: 35, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: block,
+                start: "top 82%",
+              },
+            }
+          );
+        }
       });
     }, containerRef);
 
@@ -55,149 +104,86 @@ export function StorySection() {
 
   return (
     <section
-      id="story"
       ref={containerRef}
-      className="py-12 md:py-24 px-6 md:px-12 max-w-[1500px] mx-auto select-none"
+      className="w-full bg-[#F5F3EF] text-[#0E0E0E] py-16 lg:py-28 select-none"
     >
-      {/* 1. EDITORIAL STORY HERO HEADER */}
-      <div className="pb-12 mb-16 border-b border-border-custom space-y-6">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-none bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase tracking-widest">
-          <span className="w-2 h-2 bg-foreground rounded-none animate-pulse" />
-          <span>LOOMIE STUDIO CHRONICLE // EST. 2026</span>
+      <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-14 space-y-24 lg:space-y-32">
+        
+        {/* 1. MONUMENTAL EDITORIAL STORY HEADING (NO SMALL TEXT ABOVE) */}
+        <div className="space-y-4 border-b border-stone-300 pb-10">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter uppercase font-sans text-[#0E0E0E] leading-[0.9]">
+            OUR STORY
+          </h1>
+          <p className="font-mono text-xs sm:text-sm font-bold text-stone-600 uppercase tracking-widest">
+            CLEAR. CONNECTED. COMPLETE.
+          </p>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.2rem] font-black tracking-tighter uppercase text-foreground leading-[1.02] max-w-5xl">
-          BORN FROM A <span className="text-foreground border-b-2 border-foreground">BLANK SCREEN</span> AND THE DRIVE TO CREATE.
-        </h1>
+        {/* 2. FIRST FEATURE: PURE EDITORIAL HEADLINE & INTRO (NO SMALL TOP TITLE TEXT) */}
+        <div className="border-b border-stone-300 pb-20 space-y-6 max-w-5xl">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light font-sans tracking-tight text-[#0E0E0E] leading-tight">
+            Born from a blank screen and the drive to create.
+          </h2>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-border-custom/60 font-mono text-xs font-bold text-foreground uppercase tracking-widest">
-          <span>MOTTO: CLEAR. CONNECTED. COMPLETE.</span>
-          <span className="text-foreground-secondary">[ CURIOSITY → STRATEGY → TRUST ]</span>
-        </div>
-      </div>
-
-      {/* 2. CINEMATIC BLANK SCREEN HERO IMAGE */}
-      <div
-        ref={heroImageRef}
-        className="w-full h-[360px] sm:h-[480px] md:h-[580px] relative overflow-hidden rounded-none border border-border-custom shadow-2xl mb-20 group"
-      >
-        <Image
-          src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1800&q=80"
-          alt="Loomie Studio Genesis — Blank Screen & Drive to Create"
-          fill
-          priority
-          quality={90}
-          sizes="(max-width: 1500px) 100vw, 1500px"
-          className="object-cover transition-transform duration-1000 ease-out"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between font-mono text-xs text-white font-bold uppercase tracking-widest">
-          <span className="px-3 py-1.5 bg-black/70 backdrop-blur-md border border-white/20">
-            GENESIS PLATE NO. 01 // THE BLANK CANVAS
-          </span>
-          <span className="px-3 py-1.5 bg-black/70 backdrop-blur-md border border-white/20 hidden sm:inline-block">
-            AUTHENTICATED CHRONICLE
-          </span>
-        </div>
-      </div>
-
-      {/* 3. EDITORIAL NARRATIVE CHRONICLE (3 PHASES) */}
-      <div className="space-y-20 md:space-y-28">
-        {/* PHASE 01: THE SPARK */}
-        <div id="story-chap-genesis" className="story-phase-block grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pb-16 border-b border-border-custom">
-          <div className="lg:col-span-4 space-y-3 font-mono">
-            <span className="px-3 py-1 bg-foreground text-background font-bold text-xs uppercase tracking-widest inline-block">
-              PHASE 01 // THE SPARK
-            </span>
-            <div className="text-xs text-foreground-secondary font-bold uppercase tracking-wider">
-              SELF-TAUGHT EXPLORATION
-            </div>
-          </div>
-
-          <div className="lg:col-span-8 space-y-6">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase text-foreground tracking-tight leading-tight">
-              &ldquo;Loomie began with curiosity — a blank screen, basic tools, and the drive to create.&rdquo;
-            </h2>
-
-            <p className="text-foreground-secondary font-sans text-base sm:text-xl md:text-2xl leading-relaxed uppercase font-medium pl-6 border-l-4 border-foreground">
-              What started as self-taught exploration grew into a studio dedicated to design that actually connects people to brands.
-            </p>
-          </div>
+          <p className="font-sans text-stone-700 text-lg sm:text-2xl font-light leading-relaxed">
+            Loomie began with curiosity, a blank screen, basic tools, and the drive to create. What started as self-taught exploration grew into a studio dedicated to design that actually connects people to brands.
+          </p>
         </div>
 
-        {/* PHASE 02: THE MISSION */}
-        <div id="story-chap-mission" className="story-phase-block grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pb-16 border-b border-border-custom">
-          <div className="lg:col-span-4 space-y-3 font-mono">
-            <span className="px-3 py-1 bg-foreground text-background font-bold text-xs uppercase tracking-widest inline-block">
-              PHASE 02 // THE MISSION
-            </span>
-            <div className="text-xs text-foreground-secondary font-bold uppercase tracking-wider">
-              AMBITIOUS STARTUPS & BUILDERS
-            </div>
-          </div>
+        {/* 3. VERTICAL STORY SEGMENTS (1 RELEVANT UNSPLASH IMAGE PER SEGMENT, ZERO DASHES) */}
+        <div className="space-y-24 lg:space-y-32">
+          {STORY_SEGMENTS.map((segment) => (
+            <div
+              key={segment.number}
+              className="story-segment-block border-b border-stone-300 pb-20 lg:pb-28"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                {/* Large Clean Unsplash Image */}
+                <div
+                  className={`story-segment-image relative h-[360px] sm:h-[460px] md:h-[540px] w-full overflow-hidden rounded-md border border-stone-300/60 shadow-xl bg-stone-200 group ${
+                    segment.layoutReversed ? "lg:col-span-7 lg:order-2" : "lg:col-span-7 lg:order-1"
+                  }`}
+                >
+                  <Image
+                    src={segment.image}
+                    alt={segment.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                  />
+                </div>
 
-          <div className="lg:col-span-8 space-y-6">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase text-foreground tracking-tight leading-tight">
-              &ldquo;Today, Loomie designs for ambitious startups and builders.&rdquo;
-            </h2>
+                {/* Editorial Text Content Block */}
+                <div
+                  className={`story-segment-text space-y-6 ${
+                    segment.layoutReversed ? "lg:col-span-5 lg:order-1 lg:pr-6" : "lg:col-span-5 lg:order-2 lg:pl-6"
+                  }`}
+                >
+                  <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block">
+                    {segment.number} / {segment.tagline}
+                  </span>
 
-            <p className="text-foreground-secondary font-sans text-base sm:text-xl md:text-2xl leading-relaxed uppercase font-medium pl-6 border-l-4 border-foreground">
-              Logos that work as avatars, identities that scale to packaging, websites that feel intuitive.
-            </p>
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light font-sans tracking-tight text-[#0E0E0E] leading-tight">
+                    {segment.headline}
+                  </h3>
 
-            <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs font-bold text-foreground">
-              <div className="p-4 bg-surface-card border border-border-custom">
-                <span className="text-foreground-secondary block mb-1">01 / AVATARS</span>
-                <span>LOGOS THAT SCALABLE</span>
-              </div>
-              <div className="p-4 bg-surface-card border border-border-custom">
-                <span className="text-foreground-secondary block mb-1">02 / PACKAGING</span>
-                <span>SYSTEMS THAT SCALE</span>
-              </div>
-              <div className="p-4 bg-surface-card border border-border-custom">
-                <span className="text-foreground-secondary block mb-1">03 / WEBSITES</span>
-                <span>INTUITIVE KINETIC UI</span>
+                  <p className="font-sans text-stone-700 text-base sm:text-lg leading-relaxed font-normal">
+                    {segment.body}
+                  </p>
+
+                  <div className="pt-6 border-t border-stone-200 flex flex-wrap gap-2 font-mono text-xs text-stone-600 font-bold uppercase">
+                    {segment.tags.map((tag, idx) => (
+                      <span key={idx} className="px-3 py-1 bg-white border border-stone-300 shadow-2xs">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
 
-        {/* PHASE 03: THE PROCESS */}
-        <div id="story-chap-process" className="story-phase-block grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pb-8">
-          <div className="lg:col-span-4 space-y-3 font-mono">
-            <span className="px-3 py-1 bg-foreground text-background font-bold text-xs uppercase tracking-widest inline-block">
-              PHASE 03 // THE PROMISE
-            </span>
-            <div className="text-xs text-foreground-secondary font-bold uppercase tracking-wider">
-              STRATEGIC REFINEMENT
-            </div>
-          </div>
-
-          <div className="lg:col-span-8 space-y-6">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase text-foreground tracking-tight leading-tight">
-              &ldquo;Strategic thinking, clean execution, endless refinement.&rdquo;
-            </h2>
-
-            <p className="text-foreground-secondary font-sans text-base sm:text-xl md:text-2xl leading-relaxed uppercase font-medium pl-6 border-l-4 border-foreground">
-              Every project follows one process — strategic thinking, clean execution, endless refinement. The result: brands people get, remember, and trust from first glance.
-            </p>
-
-            {/* Bottom Summary Callout */}
-            <div className="p-8 bg-surface-card border border-border-custom shadow-2xl space-y-4 mt-8">
-              <span className="font-mono text-xs font-bold text-foreground tracking-widest uppercase block">
-                THE LOOMIE GUARANTEE
-              </span>
-              <p className="text-foreground font-sans text-xl sm:text-2xl font-extrabold uppercase leading-snug">
-                Brands people get, remember, and trust from first glance.
-              </p>
-              <div className="pt-2 flex items-center justify-between font-mono text-xs font-bold text-foreground">
-                <span>CLEAR. CONNECTED. COMPLETE.</span>
-                <ArrowUpRight className="w-5 h-5 text-foreground" />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

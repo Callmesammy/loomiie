@@ -165,3 +165,11 @@ html.lenis, html.lenis body {
   background: var(--foreground-secondary);
   border-radius: 0px;
 }
+
+/* Hardware Acceleration & Render Isolation Engine */
+.gpu-layer {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
