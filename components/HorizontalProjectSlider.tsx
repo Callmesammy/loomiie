@@ -401,8 +401,8 @@ export function HorizontalProjectSlider() {
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame — h-[60vh] on mobile so text is pulled UP closer */}
-              <div className="akaru-image-wrap relative w-full h-[60vh] sm:h-[64vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame */}
+              <div className="akaru-image-wrap relative w-full h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -415,8 +415,8 @@ export function HorizontalProjectSlider() {
                 />
               </div>
 
-              {/* Bottom Info Container — Larger text pulled UP cleanly */}
-              <div className="akaru-title-block px-4.5 pt-4 pb-6 sm:p-6 lg:p-8 flex flex-col justify-start gap-2.5 sm:gap-4 flex-1 relative gpu-layer">
+              {/* Bottom Info Container — Larger font sizes to fill the space cleanly */}
+              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-start gap-2.5 sm:gap-4 flex-1 relative gpu-layer">
                 <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
                   <span className="opacity-95">{project.category}</span>
                   <span className="text-xs opacity-75 hidden sm:inline-block">
@@ -426,12 +426,12 @@ export function HorizontalProjectSlider() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
                   <div className="lg:col-span-8 space-y-2 sm:space-y-3">
-                    <h2 className="akaru-project-title text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
+                    <h2 className="akaru-project-title text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-none text-current uppercase">
                       {project.title}
                     </h2>
 
                     {/* Loomie Brand Story Narrative */}
-                    <p className="akaru-brand-story font-sans text-sm sm:text-base leading-relaxed max-w-2xl opacity-90 font-normal">
+                    <p className="akaru-brand-story font-sans text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl opacity-90 font-medium">
                       {project.brandStory}
                     </p>
                   </div>
