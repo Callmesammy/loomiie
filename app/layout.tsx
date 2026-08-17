@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { LenisScrollProvider } from "@/components/LenisScrollProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { Navbar } from "@/components/Navbar";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
             <ScrollToTop />
             <Navbar />
             {children}
+            <CookieConsent />
           </LenisScrollProvider>
         </ThemeProvider>
       </body>

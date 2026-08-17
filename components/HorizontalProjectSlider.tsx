@@ -313,8 +313,8 @@ export function HorizontalProjectSlider() {
             </div>
 
             {/* Headline, Monumental Video Showcase & Intro Text */}
-            <div className="my-auto space-y-3 sm:space-y-4">
-              <h1 className="text-7xl sm:text-[8.5rem] lg:text-[10rem] font-black tracking-tighter uppercase leading-[0.85] font-sans flex items-center gap-1 sm:gap-2">
+            <div className="my-auto space-y-2.5 sm:space-y-4">
+              <h1 className="text-6xl sm:text-[8.5rem] lg:text-[10rem] font-black tracking-tighter uppercase leading-[0.85] font-sans flex items-center gap-1 sm:gap-2">
                 <span>L</span>
                 <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
                   <InteractiveEyeLogoMark
@@ -327,8 +327,8 @@ export function HorizontalProjectSlider() {
                 <span>MIE</span>
               </h1>
 
-              {/* Video Showcase Player - Stretch closer to both margins on mobile */}
-              <div className="relative w-full h-[46vh] sm:h-[50vh] lg:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-2 group">
+              {/* Video Showcase Player - Expanded height to fill empty space on mobile */}
+              <div className="relative w-full h-[54vh] sm:h-[58vh] lg:h-[42vh] overflow-hidden border border-current/20 shadow-2xl my-1 sm:my-2 group">
                 <video
                   src="/make_a_video_with_those_please.mp4"
                   autoPlay
@@ -352,7 +352,7 @@ export function HorizontalProjectSlider() {
             </div>
 
             {/* Social Links Bottom Footer (Icon-Only SVG Logo Badges) */}
-            <div className="pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-4 font-mono text-xs font-bold tracking-widest shrink-0">
+            <div className="pt-2 sm:pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-4 font-mono text-xs font-bold tracking-widest shrink-0">
               <div className="flex items-center gap-3">
                 <a
                   href="https://www.instagram.com/byloomie/"
@@ -402,14 +402,14 @@ export function HorizontalProjectSlider() {
             </div>
           </div>
 
-          {/* SLIDES 1 TO 4: Studio Showcase Cards (Non-Clickable, Second Image First, Cleaned Badges) */}
+          {/* SLIDES 1 TO 4: Studio Showcase Cards (Filled height with zero empty space) */}
           {AKARU_PROJECTS.map((project) => (
             <div
               key={project.id}
-              className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-between relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
+              className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame */}
-              <div className="akaru-image-wrap relative w-full h-[68vh] sm:h-[72vh] lg:h-[74vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame — Expanded to fill empty space */}
+              <div className="akaru-image-wrap relative w-full h-[60vh] sm:h-[64vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -422,8 +422,8 @@ export function HorizontalProjectSlider() {
                 />
               </div>
 
-              {/* Bottom Info Container with Brand Narrative */}
-              <div className="akaru-title-block p-6 sm:p-8 flex flex-col justify-between flex-1 relative gpu-layer">
+              {/* Bottom Info Container with Tight Spacing Right Below Image */}
+              <div className="akaru-title-block p-3.5 sm:p-6 lg:p-8 flex flex-col justify-start gap-2 sm:gap-4 flex-1 relative gpu-layer">
                 <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs font-bold uppercase tracking-wider">
                   <div className="flex items-center gap-3">
                     <span className="px-3.5 py-0.5 border border-current rounded-full">
@@ -437,9 +437,9 @@ export function HorizontalProjectSlider() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-end pt-3">
-                  <div className="lg:col-span-8 space-y-2">
-                    <h2 className="akaru-project-title text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-none text-current uppercase">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
+                  <div className="lg:col-span-8 space-y-1 sm:space-y-2">
+                    <h2 className="akaru-project-title text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
                       {project.title}
                     </h2>
 
@@ -449,8 +449,8 @@ export function HorizontalProjectSlider() {
                     </p>
                   </div>
 
-                  <div className="lg:col-span-4 flex items-center justify-end">
-                    <div className="font-mono text-xs font-bold opacity-70 uppercase tracking-widest">
+                  <div className="lg:col-span-4 flex items-center justify-start lg:justify-end pt-1 lg:pt-0">
+                    <div className="font-mono text-[11px] sm:text-xs font-bold opacity-70 uppercase tracking-widest">
                       0{project.number} // {project.year}
                     </div>
                   </div>
@@ -459,11 +459,6 @@ export function HorizontalProjectSlider() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Floating Dynamic Index Pill */}
-      <div className="fixed bottom-6 right-8 px-4 py-2 bg-[#0E0E0E] text-white font-mono text-xs font-bold tracking-widest rounded-full z-30 shadow-2xl pointer-events-none">
-        SLIDE 0{activeIndex} / 0{AKARU_PROJECTS.length}
       </div>
     </section>
   );

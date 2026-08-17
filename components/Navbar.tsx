@@ -267,13 +267,13 @@ export function Navbar() {
         </div>
       )}
 
-      {/* Universal Floating Header Overlay */}
-      <header className="fixed top-0 left-0 right-0 z-50 pt-3 px-6 sm:px-10 lg:px-14 pointer-events-none flex items-center justify-between">
+      {/* Universal Floating Header Overlay — Sleek Mobile Sizing */}
+      <header className="fixed top-0 left-0 right-0 z-50 pt-2 sm:pt-3 px-4 sm:px-10 lg:px-14 pointer-events-none flex items-center justify-between">
         {/* Top Left: LOOMIE Logo Mark */}
         <a
           href="/"
           onClick={handleLogoClick}
-          className="pointer-events-auto group flex items-center gap-1 font-bold text-xl sm:text-2xl tracking-tighter uppercase px-4 py-2 rounded-full bg-[#0E0E0E] text-white border border-white/20 shadow-2xl transition-all duration-300 hover:scale-105 select-none font-sans cursor-pointer backdrop-blur-md"
+          className="pointer-events-auto group flex items-center gap-1 font-bold text-sm sm:text-2xl tracking-tighter uppercase px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#0E0E0E] text-white border border-white/20 shadow-2xl transition-all duration-300 hover:scale-105 select-none font-sans cursor-pointer backdrop-blur-md"
           aria-label="LOOMIE Home"
         >
           <span>L</span>
@@ -286,7 +286,7 @@ export function Navbar() {
         {/* Top Right: MENU • Button */}
         <button
           onClick={toggleMenu}
-          className={`pointer-events-auto px-7 py-3 bg-[#0E0E0E] text-white rounded-full font-mono text-xs sm:text-sm font-bold tracking-[0.2em] uppercase flex items-center gap-3 shadow-2xl transition-all duration-500 border border-white/15 group ${
+          className={`pointer-events-auto px-4 py-1.5 sm:px-7 sm:py-3 bg-[#0E0E0E] text-white rounded-full font-mono text-[11px] sm:text-sm font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase flex items-center gap-2 sm:gap-3 shadow-2xl transition-all duration-500 border border-white/15 group ${
             !isHomePage || showNavbar
               ? "opacity-100 translate-y-0 hover:bg-[#222225] hover:scale-105 active:scale-95"
               : "opacity-0 -translate-y-4 pointer-events-none"
@@ -294,7 +294,7 @@ export function Navbar() {
           aria-label="Toggle Navigation Menu"
         >
           <span>MENU</span>
-          <span className="w-2.5 h-2.5 rounded-full bg-white group-hover:scale-125 transition-transform duration-300" />
+          <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white group-hover:scale-125 transition-transform duration-300" />
         </button>
       </header>
 
@@ -349,10 +349,10 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Navigation Links List */}
+            {/* RIGHT COLUMN: Navigation Links List shifted rightwards on mobile */}
             <div
               ref={menuLinksRef}
-              className="lg:col-span-4 flex flex-col items-start lg:items-end gap-3 sm:gap-4 font-sans tracking-tight text-3xl sm:text-4xl xl:text-5xl font-light"
+              className="lg:col-span-4 flex flex-col items-start lg:items-end gap-3 sm:gap-4 font-sans tracking-tight text-3xl sm:text-4xl xl:text-5xl font-light pl-8 sm:pl-16 lg:pl-0"
             >
               {MENU_ITEMS.map((item, idx) => {
                 const isActive = activeImageIndex === idx;
