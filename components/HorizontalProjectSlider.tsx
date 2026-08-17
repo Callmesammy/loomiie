@@ -327,8 +327,8 @@ export function HorizontalProjectSlider() {
                 <span>MIE</span>
               </h1>
 
-              {/* Video Showcase Player — Clean video without text/number overlays */}
-              <div className="relative w-full h-[48vh] sm:h-[54vh] lg:h-[42vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
+              {/* Video Showcase Player — Expanded to fill mobile viewport without empty space */}
+              <div className="relative w-full h-[56vh] sm:h-[60vh] lg:h-[42vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
                 <video
                   src="/make_a_video_with_those_please.mp4"
                   autoPlay
@@ -344,7 +344,7 @@ export function HorizontalProjectSlider() {
               </p>
 
               {/* Social Links Row — Pulled UP right underneath the description text */}
-              <div className="pt-2.5 sm:pt-4 border-t border-current/15 flex flex-wrap items-center justify-between gap-3 font-mono text-xs font-bold tracking-widest shrink-0 mt-2 sm:mt-3">
+              <div className="pt-2 sm:pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-3 font-mono text-xs font-bold tracking-widest shrink-0 mt-1.5 sm:mt-3">
                 <div className="flex items-center gap-3">
                   <a
                     href="https://www.instagram.com/byloomie/"
@@ -395,14 +395,14 @@ export function HorizontalProjectSlider() {
             </div>
           </div>
 
-          {/* SLIDES 1 TO 4: Studio Showcase Cards — Clean without numbers */}
+          {/* SLIDES 1 TO 4: Studio Showcase Cards — Height filled with zero unnecessary space */}
           {AKARU_PROJECTS.map((project) => (
             <div
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame */}
-              <div className="akaru-image-wrap relative w-full h-[60vh] sm:h-[64vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame — Expanded to h-[72vh] on mobile to eliminate all bottom gap */}
+              <div className="akaru-image-wrap relative w-full h-[70vh] sm:h-[72vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -416,7 +416,7 @@ export function HorizontalProjectSlider() {
               </div>
 
               {/* Bottom Info Container with Tight Spacing Right Below Image */}
-              <div className="akaru-title-block p-3.5 sm:p-6 lg:p-8 flex flex-col justify-start gap-2 sm:gap-4 flex-1 relative gpu-layer">
+              <div className="akaru-title-block p-3 sm:p-5 lg:p-8 flex flex-col justify-start gap-1.5 sm:gap-3 flex-1 relative gpu-layer">
                 <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs font-bold uppercase tracking-wider">
                   <span className="opacity-90">{project.category}</span>
                   <span className="text-[11px] opacity-70 hidden sm:inline-block">
@@ -424,9 +424,9 @@ export function HorizontalProjectSlider() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-1.5 sm:gap-4 items-start pt-0.5">
                   <div className="lg:col-span-8 space-y-1 sm:space-y-2">
-                    <h2 className="akaru-project-title text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
+                    <h2 className="akaru-project-title text-xl sm:text-4xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
                       {project.title}
                     </h2>
 
