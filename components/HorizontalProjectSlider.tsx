@@ -313,7 +313,7 @@ export function HorizontalProjectSlider() {
             </div>
 
             {/* Headline, Monumental Video Showcase & Intro Text */}
-            <div className="space-y-2.5 sm:space-y-3.5 my-auto">
+            <div className="my-auto space-y-2.5 sm:space-y-4">
               <h1 className="text-6xl sm:text-[8.5rem] lg:text-[10rem] font-black tracking-tighter uppercase leading-[0.85] font-sans flex items-center gap-1 sm:gap-2">
                 <span>L</span>
                 <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
@@ -327,8 +327,8 @@ export function HorizontalProjectSlider() {
                 <span>MIE</span>
               </h1>
 
-              {/* Video Showcase Player — Compact mobile height */}
-              <div className="relative w-full h-[38vh] sm:h-[44vh] lg:h-[42vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
+              {/* Video Showcase Player — Expanded on mobile to fill empty space */}
+              <div className="relative w-full h-[54vh] sm:h-[58vh] lg:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 sm:my-2 group">
                 <video
                   src="/make_a_video_with_those_please.mp4"
                   autoPlay
@@ -339,12 +339,12 @@ export function HorizontalProjectSlider() {
                 />
               </div>
 
-              <p className="font-sans text-sm sm:text-base md:text-lg leading-relaxed font-medium max-w-2xl opacity-95">
+              <p className="font-sans text-xs sm:text-sm md:text-base leading-relaxed font-normal max-w-xl opacity-90">
                 We are a kinetic web & design agency. Clear. Connected. Complete. Engineering bold spatial concepts and high-converting visual systems.
               </p>
 
-              {/* Social Links Row — Compact spacing */}
-              <div className="pt-2 sm:pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-3 font-mono text-xs font-bold tracking-widest shrink-0 mt-1.5 sm:mt-3">
+              {/* Social Links Row */}
+              <div className="pt-2 sm:pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-3 sm:gap-4 font-mono text-xs font-bold tracking-widest shrink-0">
                 <div className="flex items-center gap-3">
                   <a
                     href="https://www.instagram.com/byloomie/"
@@ -395,14 +395,14 @@ export function HorizontalProjectSlider() {
             </div>
           </div>
 
-          {/* SLIDES 1 TO 4: Studio Showcase Cards — Compact mobile frame */}
+          {/* SLIDES 1 TO 4: Studio Showcase Cards (Filled height with zero empty space) */}
           {AKARU_PROJECTS.map((project) => (
             <div
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame — Compact height to h-[46vh] on mobile */}
-              <div className="akaru-image-wrap relative w-full h-[46vh] sm:h-[54vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame — Expanded on mobile to h-[68vh] to eliminate bottom gap */}
+              <div className="akaru-image-wrap relative w-full h-[68vh] sm:h-[70vh] lg:h-[72vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -415,23 +415,23 @@ export function HorizontalProjectSlider() {
                 />
               </div>
 
-              {/* Bottom Info Container with Larger Font Sizes Right Below Image */}
-              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-start gap-2 sm:gap-4 flex-1 relative gpu-layer">
-                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
-                  <span className="opacity-95">{project.category}</span>
-                  <span className="text-xs opacity-75 hidden sm:inline-block">
+              {/* Bottom Info Container with Compact Spacing Right Below Image */}
+              <div className="akaru-title-block p-3 sm:p-5 lg:p-8 flex flex-col justify-start gap-1.5 sm:gap-4 flex-1 relative gpu-layer">
+                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs font-bold uppercase tracking-wider">
+                  <span className="opacity-90">{project.category}</span>
+                  <span className="text-[11px] opacity-70 hidden sm:inline-block">
                     {project.subCategory}
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
-                  <div className="lg:col-span-8 space-y-1.5 sm:space-y-2.5">
-                    <h2 className="akaru-project-title text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-1.5 sm:gap-4 items-start pt-0.5">
+                  <div className="lg:col-span-8 space-y-1 sm:space-y-2">
+                    <h2 className="akaru-project-title text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
                       {project.title}
                     </h2>
 
                     {/* Loomie Brand Story Narrative */}
-                    <p className="akaru-brand-story font-sans text-sm sm:text-base leading-relaxed max-w-2xl opacity-90 font-normal">
+                    <p className="akaru-brand-story font-sans text-xs sm:text-sm leading-relaxed max-w-2xl opacity-85 font-normal">
                       {project.brandStory}
                     </p>
                   </div>
