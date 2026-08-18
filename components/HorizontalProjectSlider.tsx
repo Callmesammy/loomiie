@@ -190,40 +190,49 @@ export function HorizontalProjectSlider() {
       className="relative w-full h-screen overflow-hidden transition-colors duration-500 font-sans select-none gpu-layer"
       style={{ backgroundColor: currentTheme.bg, color: currentTheme.text }}
     >
-      {/* Top Main Navigation Header */}
-      <div className="absolute top-0 left-0 right-0 z-30 px-4 sm:px-8 py-5 flex items-center justify-between pointer-events-auto">
-        <Link
-          href="/"
-          className="flex items-center gap-2 group transition-transform duration-300 active:scale-95"
-        >
-          <InteractiveEyeLogoMark
-            pillColor={isDarkText ? "fill-[#0E0E0E]" : "fill-white"}
-            socketColor={isDarkText ? "fill-white" : "fill-[#0C0C0F]"}
-            pupilColor={isDarkText ? "fill-[#0E0E0E]" : "fill-white"}
-            className="h-7 sm:h-9 w-auto transition-all duration-300 group-hover:scale-105"
-          />
-        </Link>
-
-        {/* Dynamic Section Indicator Pill */}
-        <div className="hidden md:flex items-center gap-3 px-4 py-1.5 rounded-full border border-current/20 bg-current/5 backdrop-blur-md font-mono text-xs font-bold tracking-widest uppercase transition-all duration-500">
-          <span className="w-2 h-2 rounded-full bg-current animate-ping" />
-          <span>{activeIndex === 0 ? "STUDIO SHOWCASE" : AKARU_PROJECTS[activeIndex - 1]?.title}</span>
-        </div>
-      </div>
-
       {/* Horizontal Track Container */}
       <div className="w-full h-full flex items-center">
         <div
           ref={containerRef}
           className="flex h-full items-center will-change-transform"
         >
-          {/* SLIDE 0: Hero Title & Studio Video Showcase */}
-          <div className="akaru-project-card flex-none w-[100vw] h-full bg-transparent border-r border-current/15 px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col justify-between py-16 sm:py-20 relative select-none">
-            {/* Top Spacer for Fixed Header */}
-            <div className="h-6 sm:h-10 shrink-0" />
+          {/* SLIDE 0: Hero Title & Studio Video Showcase (Expanded width for complete sub-nav header: lg:w-[68vw] xl:w-[66vw]) */}
+          <div className="flex-none w-[100vw] lg:w-[68vw] xl:w-[66vw] h-full bg-transparent border-r border-current/15 pt-3 sm:pt-4 lg:pt-5 px-3.5 sm:px-6 lg:px-8 pb-5 flex flex-col justify-between relative z-10 gpu-layer">
+            {/* Desktop Top Sub-Navigation Header Bar — Balanced left padding (pl-40 lg:pl-48 xl:pl-52) clear of LOOMIE pill logo */}
+            <div className="hidden lg:flex items-center justify-between w-full border-b border-current/15 pb-2.5 mb-1 z-20 pl-40 lg:pl-48 xl:pl-52">
+              <div className="flex items-center gap-6 lg:gap-8 xl:gap-10 font-mono text-xs font-bold tracking-widest">
+                <Link
+                  href="/story"
+                  className="px-3.5 py-1 border border-[#0E0E0E] text-[#0E0E0E] bg-transparent rounded-full flex items-center gap-2 hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 group shadow-xs"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0E0E0E] group-hover:bg-white transition-colors" />
+                  <span>Story</span>
+                </Link>
+                <Link href="/values" className="hover:opacity-60 transition-opacity">
+                  <span>Values</span>
+                </Link>
+                <Link href="/about-us" className="hover:opacity-60 transition-opacity">
+                  <span>About Us</span>
+                </Link>
+                <Link href="/who-we-build-for" className="hover:opacity-60 transition-opacity">
+                  <span>Who We Build For</span>
+                </Link>
+                <Link href="/contact" className="hover:opacity-60 transition-opacity">
+                  <span>Connect</span>
+                </Link>
+              </div>
+
+              <Link
+                href="/contact"
+                className="px-5 py-2 bg-[#0E0E0E] text-white font-bold text-xs sm:text-sm tracking-wider items-center gap-2 shadow-md hover:bg-[#222225] transition-all rounded-full flex shrink-0"
+              >
+                <span>Let's Talk</span>
+                <ArrowRight className="w-4 h-4 text-white" />
+              </Link>
+            </div>
 
             {/* Headline, Monumental Video Showcase & Intro Text */}
-            <div className="my-auto space-y-2.5 sm:space-y-4">
+            <div className="my-auto space-y-2 sm:space-y-3">
               <h1 className="text-6xl sm:text-[8.5rem] lg:text-[10rem] font-black tracking-tighter uppercase leading-[0.85] font-sans flex items-center gap-1 sm:gap-2">
                 <span>L</span>
                 <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
@@ -238,7 +247,15 @@ export function HorizontalProjectSlider() {
               </h1>
 
               {/* Video Showcase Player */}
-              <div className="relative w-full h-[46vh] sm:h-[50vh] lg:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 sm:my-2 group">
+              <div className="relative w-full h-[54vh] sm:h-[56vh] lg:h-[38vh] xl:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
+                {/* Desktop Video Overlays */}
+                <div className="hidden lg:block absolute top-3 left-4 z-10 px-3 py-1 bg-[#0E0E0E]/80 text-white backdrop-blur-md rounded-xs font-mono text-[10px] font-bold uppercase tracking-wider">
+                  01 // KINETIC REEL
+                </div>
+                <div className="hidden lg:block absolute bottom-3 right-4 z-10 px-3 py-1 bg-[#0E0E0E]/80 text-white backdrop-blur-md rounded-xs font-mono text-[10px] font-bold uppercase tracking-wider">
+                  LOOMIE STUDIO © 2026
+                </div>
+
                 <video
                   src="/make_a_video_with_those_please.mp4"
                   autoPlay
@@ -305,14 +322,14 @@ export function HorizontalProjectSlider() {
             </div>
           </div>
 
-          {/* SLIDES 1 TO 4: Studio Showcase Cards with Continuation Paragraphs */}
-          {AKARU_PROJECTS.map((project) => (
+          {/* SLIDES 1 TO 4: Studio Showcase Cards */}
+          {AKARU_PROJECTS.map((project, index) => (
             <div
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame — Increased height on mobile view only (h-[54vh]) */}
-              <div className="akaru-image-wrap relative w-full h-[54vh] sm:h-[56vh] lg:h-[66vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame (Increased desktop image height: lg:h-[64vh] xl:h-[66vh]) */}
+              <div className="akaru-image-wrap relative w-full h-[54vh] sm:h-[56vh] lg:h-[64vh] xl:h-[66vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -325,10 +342,20 @@ export function HorizontalProjectSlider() {
                 />
               </div>
 
-              {/* Bottom Info Container — Larger Font Sizes to Fill the Mobile Page Cleanly */}
-              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-between flex-1 relative gpu-layer pb-8">
-                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-sm font-extrabold uppercase tracking-wider">
-                  <span className="opacity-95">{project.category}</span>
+              {/* Floating Slide Index Badge on Desktop */}
+              <div className="hidden lg:flex absolute bottom-6 right-8 z-20 items-center gap-2 px-3.5 py-1.5 bg-[#0E0E0E] text-white font-mono text-xs font-bold rounded-full shadow-lg">
+                <span>SLIDE 0{index + 1} / 04</span>
+              </div>
+
+              {/* Bottom Info Container */}
+              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-between flex-1 relative gpu-layer pb-6 sm:pb-8">
+                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
+                  <div className="flex items-center gap-2">
+                    <span className="hidden sm:inline-block px-2.5 py-0.5 border border-current/20 rounded-full font-mono text-xs font-bold">
+                      00{index + 1}
+                    </span>
+                    <span className="opacity-95">{project.category}</span>
+                  </div>
                   <span className="text-xs opacity-75 hidden sm:inline-block">
                     {project.subCategory}
                   </span>
@@ -336,18 +363,18 @@ export function HorizontalProjectSlider() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
                   <div className="lg:col-span-11 space-y-2.5 sm:space-y-3">
-                    <h2 className="akaru-project-title text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight font-sans leading-tight text-current uppercase">
+                    <h2 className="akaru-project-title text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
                       {project.title}
                     </h2>
 
-                    {/* Loomie Brand Story Paragraph 1 — Scaled to text-sm sm:text-base */}
+                    {/* Loomie Brand Story Paragraph 1 */}
                     <p className="akaru-brand-story font-sans text-sm sm:text-base md:text-lg leading-relaxed opacity-95 font-medium">
                       {project.brandStory}
                     </p>
 
-                    {/* Loomie Brand Story Continuation Paragraph 2 — Scaled to text-sm sm:text-base */}
+                    {/* Loomie Brand Story Continuation Paragraph 2 (Mobile only to fill mobile space) */}
                     {project.brandStory2 && (
-                      <p className="akaru-brand-story-2 font-sans text-sm sm:text-base md:text-lg leading-relaxed opacity-90 font-medium pt-0.5">
+                      <p className="akaru-brand-story-2 sm:hidden font-sans text-sm leading-relaxed opacity-90 font-medium pt-0.5">
                         {project.brandStory2}
                       </p>
                     )}
