@@ -328,8 +328,8 @@ export function HorizontalProjectSlider() {
               key={project.id}
               className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
             >
-              {/* Media Showcase Frame (Increased desktop image height: lg:h-[64vh] xl:h-[66vh]) */}
-              <div className="akaru-image-wrap relative w-full h-[54vh] sm:h-[56vh] lg:h-[64vh] xl:h-[66vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
+              {/* Media Showcase Frame (Mobile: h-[58vh] | Desktop: lg:h-[64vh] xl:h-[66vh]) */}
+              <div className="akaru-image-wrap relative w-full h-[58vh] sm:h-[60vh] lg:h-[64vh] xl:h-[66vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -347,8 +347,8 @@ export function HorizontalProjectSlider() {
                 <span>SLIDE 0{index + 1} / 04</span>
               </div>
 
-              {/* Bottom Info Container */}
-              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-between flex-1 relative gpu-layer pb-6 sm:pb-8">
+              {/* Bottom Info Container — justify-start on mobile eliminates vertical gap before text */}
+              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-start gap-2 sm:gap-3 lg:justify-between flex-1 relative gpu-layer pb-4 sm:pb-8">
                 <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
                   <div className="flex items-center gap-2">
                     <span className="hidden sm:inline-block px-2.5 py-0.5 border border-current/20 rounded-full font-mono text-xs font-bold">
@@ -362,19 +362,19 @@ export function HorizontalProjectSlider() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
-                  <div className="lg:col-span-11 space-y-2.5 sm:space-y-3">
+                  <div className="lg:col-span-11 space-y-3.5 sm:space-y-4">
                     <h2 className="akaru-project-title text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
                       {project.title}
                     </h2>
 
-                    {/* Loomie Brand Story Paragraph 1 */}
-                    <p className="akaru-brand-story font-sans text-sm sm:text-base md:text-lg leading-relaxed opacity-95 font-medium">
+                    {/* Loomie Brand Story Paragraph 1 — text-[15px] & leading-[1.75] on mobile */}
+                    <p className="akaru-brand-story font-sans text-[15px] sm:text-base md:text-lg leading-[1.75] sm:leading-relaxed opacity-95 font-medium">
                       {project.brandStory}
                     </p>
 
-                    {/* Loomie Brand Story Continuation Paragraph 2 (Mobile only to fill mobile space) */}
+                    {/* Loomie Brand Story Continuation Paragraph 2 — text-[15px] & leading-[1.75] on mobile */}
                     {project.brandStory2 && (
-                      <p className="akaru-brand-story-2 sm:hidden font-sans text-sm leading-relaxed opacity-90 font-medium pt-0.5">
+                      <p className="akaru-brand-story-2 font-sans text-[15px] sm:text-base md:text-lg leading-[1.75] sm:leading-relaxed opacity-90 font-medium pt-1">
                         {project.brandStory2}
                       </p>
                     )}
