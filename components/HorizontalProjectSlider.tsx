@@ -246,8 +246,8 @@ export function HorizontalProjectSlider() {
                 <span>MIE</span>
               </h1>
 
-              {/* Video Showcase Player */}
-              <div className="relative w-full h-[54vh] sm:h-[56vh] lg:h-[38vh] xl:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
+              {/* Video Showcase Player — Reduced height on mobile view (h-[44vh]) */}
+              <div className="relative w-full h-[44vh] sm:h-[48vh] lg:h-[38vh] xl:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
                 {/* Desktop Video Overlays */}
                 <div className="hidden lg:block absolute top-3 left-4 z-10 px-3 py-1 bg-[#0E0E0E]/80 text-white backdrop-blur-md rounded-xs font-mono text-[10px] font-bold uppercase tracking-wider">
                   01 // KINETIC REEL
