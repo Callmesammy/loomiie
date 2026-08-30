@@ -4,6 +4,7 @@ import { SubpageHeroHeader } from "@/components/SubpageHeroHeader";
 import { WhoWeBuildForSection } from "@/components/WhoWeBuildForSection";
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
   title: "Who We Build For — LOOMIE Studio",
@@ -19,7 +20,7 @@ export default function WhoWeBuildForPage() {
         badge="[LOOMIE PARTNERSHIPS // AUDIENCE]"
         line1="AMBITIOUS FOUNDERS"
         line2="& DIGITAL BUILDERS"
-        bannerImage="/images/about/brand-architecture.jpg"
+        bannerImage={getCloudinaryUrl("/images/about/brand-architecture.jpg")}
         bannerAlt="Brand Systems Architecture"
       />
       <div>

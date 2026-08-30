@@ -93,9 +93,8 @@ export function FlyingGameLogoOverlay() {
     >
       <div
         ref={spriteRef}
-        className={`fixed top-0 left-0 transition-opacity duration-300 transform-gpu ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
+        className={`fixed top-0 left-0 transition-opacity duration-300 transform-gpu ${isVisible ? "opacity-100" : "opacity-0"
+          }`}
         style={{
           willChange: "transform, opacity",
           filter: isDark

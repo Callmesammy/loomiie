@@ -5,6 +5,7 @@ import { AboutUsSection } from "@/components/AboutUsSection";
 import { StorySection } from "@/components/StorySection";
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
   title: "About Us — LOOMIE Studio | Digital Marketing & Creative Direction",
@@ -20,7 +21,7 @@ export default function IdentityPage() {
         badge="[WHO WE ARE // ABOUT US]"
         line1="DIGITAL MARKETING &"
         line2="STUDIO ARCHITECTURE"
-        bannerImage="/images/manifesto/keyboard.jpg"
+        bannerImage={getCloudinaryUrl("/images/manifesto/keyboard.jpg")}
         bannerAlt="Studio Architecture & Design System"
       />
       <div>

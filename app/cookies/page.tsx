@@ -4,6 +4,7 @@ import { SubpageHeroHeader } from "@/components/SubpageHeroHeader";
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
 import { ShieldCheck, Cookie, Info } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
   title: "Cookie Policy & Privacy Preferences — LOOMIE Studio",
@@ -21,7 +22,7 @@ export default function CookiesPage() {
         badge="[LOOMIE STUDIO // LEGAL & PRIVACY]"
         line1="COOKIE POLICY &"
         line2="DATA PREFERENCES"
-        bannerImage="/images/manifesto/rose-bw.jpg"
+        bannerImage={getCloudinaryUrl("/images/manifesto/rose-bw.jpg")}
         bannerAlt="LOOMIE Cookie Policy and Privacy"
       />
 

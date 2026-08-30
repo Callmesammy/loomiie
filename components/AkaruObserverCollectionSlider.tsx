@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
 import { ArrowDown, Layers, Sparkles } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface CollectionSlide {
   id: string;
@@ -21,28 +22,28 @@ const COLLECTION_SLIDES: CollectionSlide[] = [
     num: "01",
     title: "VORTEX TITANIUM",
     category: "MATTE CHASSIS & HARDWARE UI",
-    image: "/images/project-minimal.jpg",
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
   },
   {
     id: "slide-02",
     num: "02",
     title: "LUMINO 3D KINETIC",
     category: "WEBGL SHADER ENGINE",
-    image: "/images/hero-3d-fluid.jpg",
+    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
   },
   {
     id: "slide-03",
     num: "03",
     title: "BRUTALIST SPATIAL",
     category: "SPATIAL ARCHITECTURE",
-    image: "/images/project-spatial.jpg",
+    image: getCloudinaryUrl("/images/project-spatial.jpg"),
   },
   {
     id: "slide-04",
     num: "04",
     title: "SAT CYBER HUD",
     category: "AUTONOMOUS AEROSPACE",
-    image: "/images/project-digital.jpg",
+    image: getCloudinaryUrl("/images/project-digital.jpg"),
   },
 ];
 

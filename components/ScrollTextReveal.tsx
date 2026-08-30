@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ArrowUpRight } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface DisciplineItem {
   id: string;
@@ -23,7 +24,7 @@ const STUDIO_DISCIPLINE_LIST: DisciplineItem[] = [
     title: "Spatial & Brand Identity",
     subtitle: "Systemic Logomarks, Visual Languages, & Type Architecture",
     tags: ["Brand Strategy", "Design Tokens", "Packaging Rituals", "Typography"],
-    image: "/images/manifesto/rose-bw.jpg",
+    image: getCloudinaryUrl("/images/manifesto/rose-bw.jpg"),
     alt: "Black and White Rose Studio Mark",
   },
   {
@@ -32,7 +33,7 @@ const STUDIO_DISCIPLINE_LIST: DisciplineItem[] = [
     title: "Creative WebGL & Motion",
     subtitle: "Fluid 3D Shaders, Kinetic Physics, & High-Speed Animations",
     tags: ["Three.js", "GSAP ScrollTrigger", "GLSL Shaders", "R3F Shader Art"],
-    image: "/images/manifesto/fluid-3d.jpg",
+    image: getCloudinaryUrl("/images/manifesto/fluid-3d.jpg"),
     alt: "Fluid 3D Motion Shader Art",
   },
   {
@@ -41,7 +42,7 @@ const STUDIO_DISCIPLINE_LIST: DisciplineItem[] = [
     title: "Full-Stack Digital Architecture",
     subtitle: "Next.js 15, Custom E-Commerce, & High-Scale Infrastructure",
     tags: ["Next.js 15", "Shopify Plus", "TypeScript", "Headless CMS"],
-    image: "/images/manifesto/code-dark.jpg",
+    image: getCloudinaryUrl("/images/manifesto/code-dark.jpg"),
     alt: "Dark IDE Code Engine",
   },
   {
@@ -50,7 +51,7 @@ const STUDIO_DISCIPLINE_LIST: DisciplineItem[] = [
     title: "Autonomous Telemetry & HUDs",
     subtitle: "Real-Time Data Dashboards & Tactical Interface Systems",
     tags: ["UI Architecture", "Canvas 2D/3D", "Telemetry Systems", "Dashboards"],
-    image: "/images/manifesto/cybernetic.jpg",
+    image: getCloudinaryUrl("/images/manifesto/cybernetic.jpg"),
     alt: "Cybernetic HUD Telemetry Interface",
   },
   {
@@ -59,59 +60,71 @@ const STUDIO_DISCIPLINE_LIST: DisciplineItem[] = [
     title: "Art Direction & Spatial Acoustics",
     subtitle: "Editorial Photography, Acoustic Soundscapes, & Sensory Media",
     tags: ["Art Direction", "Spatial Audio", "Editorial Photography", "Exhibition"],
-    image: "/images/manifesto/coastal.jpg",
+    image: getCloudinaryUrl("/images/manifesto/coastal.jpg"),
     alt: "Coastal Villa Architectural Art",
   },
 ];
 
 /**
  * Rebuilt Studio Discipline & Capabilities Text List Segment
- * Features:
- * - Clean Light Studio Substrate (#F5F3EF) with dark typography (#0E0E0E)
- * - Interactive Cursor-Following Photo Floating Preview on Hover
- * - Expandable Discipline Items with Deliverables Tags & Arrow Link Triggers
- * - Zero forced all-caps, zero AI boilerplate text
+ * High-Performance Optimization:
+ * - GSAP quickTo memory-reused cursor position tracking
+ * - Pre-rendered image stack for zero layout thrashing during scroll/hover
+ * - GPU hardware composite layer (transform-gpu)
  */
 export function ScrollTextReveal() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const cursorPreviewRef = useRef<HTMLDivElement>(null);
+  const xTo = useRef<((value: number) => void) | null>(null);
+  const yTo = useRef<((value: number) => void) | null>(null);
 
-  // Smooth Cursor Follower Effect for Hover Image Preview
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!cursorPreviewRef.current || hoveredIndex === null) return;
+    if (!cursorPreviewRef.current) return;
 
-      gsap.to(cursorPreviewRef.current, {
-        x: e.clientX - 160,
-        y: e.clientY - 100,
-        duration: 0.35,
-        ease: "power2.out",
-      });
+    // Use gsap.quickTo for hardware-fast cursor tracking with zero GC overhead
+    xTo.current = gsap.quickTo(cursorPreviewRef.current, "x", {
+      duration: 0.25,
+      ease: "power2.out",
+    });
+    yTo.current = gsap.quickTo(cursorPreviewRef.current, "y", {
+      duration: 0.25,
+      ease: "power2.out",
+    });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (xTo.current && yTo.current) {
+        xTo.current(e.clientX - 140);
+        yTo.current(e.clientY - 85);
+      }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [hoveredIndex]);
+  }, []);
 
   return (
     <section className="relative w-full bg-[#F5F3EF] text-[#0E0E0E] py-24 sm:py-32 px-6 sm:px-12 md:px-16 overflow-hidden select-none border-t border-b border-stone-300">
-      {/* Floating Hover Image Cursor Follower */}
+      {/* Floating Hover Image Cursor Follower (GPU Layer) */}
       <div
         ref={cursorPreviewRef}
-        className={`fixed top-0 left-0 z-50 pointer-events-none w-[280px] h-[170px] rounded-md border border-stone-400/40 shadow-2xl overflow-hidden bg-stone-900 transition-opacity duration-300 ${hoveredIndex !== null ? "opacity-100 scale-100" : "opacity-0 scale-90"
-          }`}
+        className={`fixed top-0 left-0 z-50 pointer-events-none w-[280px] h-[170px] rounded-md border border-stone-400/40 shadow-2xl overflow-hidden bg-stone-900 transform-gpu transition-opacity duration-200 ${
+          hoveredIndex !== null ? "opacity-100 scale-100" : "opacity-0 scale-90"
+        }`}
+        style={{ willChange: "transform" }}
       >
-        {hoveredIndex !== null && (
+        {STUDIO_DISCIPLINE_LIST.map((disc, index) => (
           <Image
-            src={STUDIO_DISCIPLINE_LIST[hoveredIndex].image}
-            alt={STUDIO_DISCIPLINE_LIST[hoveredIndex].alt}
+            key={disc.id}
+            src={disc.image}
+            alt={disc.alt}
             fill
-            priority
-            quality={92}
+            priority={index === 0}
             sizes="300px"
-            className="object-cover"
+            className={`object-cover transition-opacity duration-300 ${
+              hoveredIndex === index ? "opacity-100" : "opacity-0"
+            }`}
           />
-        )}
+        ))}
       </div>
 
       <div className="max-w-[1700px] mx-auto w-full space-y-12">

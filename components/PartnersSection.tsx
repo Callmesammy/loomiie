@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Sparkles, ShieldCheck, Layers, Cpu, Radio } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface PartnerItem {
   id: string;
@@ -24,7 +25,7 @@ const PARTNER_ITEMS: PartnerItem[] = [
     title: "Next.js 15 & Vercel Enterprise Engine",
     description:
       "Engineering ultra-fast edge server rendering, ISR hydration, and sub-100ms global latency for mission-critical web applications.",
-    image: "/images/partners/digital-engine.jpg",
+    image: getCloudinaryUrl("/images/partners/digital-engine.jpg"),
     tags: ["Next.js 15", "Edge Network", "Server Components"],
   },
   {
@@ -34,7 +35,7 @@ const PARTNER_ITEMS: PartnerItem[] = [
     title: "Three.js & Custom WebGL Shaders",
     description:
       "Crafting high frame-rate 3D spatial environments, custom GLSL shader physics, and fluid mathematical interactive canvases.",
-    image: "/images/partners/tech-alliance.jpg",
+    image: getCloudinaryUrl("/images/partners/tech-alliance.jpg"),
     tags: ["Three.js", "GLSL Shaders", "60 FPS Motion"],
   },
   {
@@ -44,7 +45,7 @@ const PARTNER_ITEMS: PartnerItem[] = [
     title: "Spatial Acoustic Telemetry",
     description:
       "Harmonizing tactile visual design with multi-channel ambient spatial audio and dynamic sound feedback for digital touchpoints.",
-    image: "/images/partners/spatial-audio.jpg",
+    image: getCloudinaryUrl("/images/partners/spatial-audio.jpg"),
     tags: ["Spatial Sound", "Sonic Identity", "Acoustic Telemetry"],
   },
   {
@@ -54,7 +55,7 @@ const PARTNER_ITEMS: PartnerItem[] = [
     title: "Cinematic Film & Photography",
     description:
       "Capturing raw, high-contrast monochrome studio photography and editorial film reels engineered for luxury brand campaigns.",
-    image: "/images/partners/film-production.jpg",
+    image: getCloudinaryUrl("/images/partners/film-production.jpg"),
     tags: ["Art Direction", "Film Production", "Editorial Photo"],
   },
 ];
@@ -147,7 +148,7 @@ export function PartnersSection() {
             className="lg:col-span-7 relative h-[340px] sm:h-[440px] md:h-[520px] w-full overflow-hidden rounded-md border border-stone-400/40 shadow-2xl bg-stone-900 group"
           >
             <Image
-              src="/images/partners/film-production.jpg"
+              src={getCloudinaryUrl("/images/partners/film-production.jpg")}
               alt="LOOMIE Strategic Production Alliances"
               fill
               priority

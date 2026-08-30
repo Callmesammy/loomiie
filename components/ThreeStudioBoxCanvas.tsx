@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface ThreeStudioBoxCanvasProps {
   images?: string[];
@@ -9,12 +10,12 @@ interface ThreeStudioBoxCanvasProps {
 }
 
 const DEFAULT_CUBE_IMAGES = [
-  "/images/about/team-1.jpg",
-  "/images/about/team-3.jpg",
-  "/images/about/team-5.jpg",
-  "/images/about/team-umar.jpg",
-  "/images/about/team-6.jpg",
-  "/images/about/team-8.jpg",
+  getCloudinaryUrl("/images/about/team-1.jpg"),
+  getCloudinaryUrl("/images/about/team-3.jpg"),
+  getCloudinaryUrl("/images/about/team-5.jpg"),
+  getCloudinaryUrl("/images/about/team-umar.jpg"),
+  getCloudinaryUrl("/images/about/team-6.jpg"),
+  getCloudinaryUrl("/images/about/team-8.jpg"),
 ];
 
 /**

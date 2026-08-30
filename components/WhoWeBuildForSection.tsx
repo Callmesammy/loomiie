@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface AudiencePillar {
   number: string;
@@ -118,7 +119,7 @@ export function WhoWeBuildForSection() {
               {/* Clean Widescreen Photography */}
               <div className="relative w-full h-[260px] sm:h-[300px] rounded-xs overflow-hidden bg-stone-100 border border-stone-200">
                 <Image
-                  src={pillar.image}
+                  src={getCloudinaryUrl(pillar.image)}
                   alt={pillar.alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 30vw"

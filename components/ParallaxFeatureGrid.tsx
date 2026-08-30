@@ -6,6 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Compass, ShieldCheck, Zap } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface FeatureCard {
   id: string;
@@ -27,7 +28,7 @@ const FEATURE_ITEMS: FeatureCard[] = [
     category: "WebGL Shaders & Physics",
     description:
       "High-frame-rate kinetic animation systems engineered with GSAP, ScrollTrigger, and GPU-accelerated smooth inertia physics.",
-    image: "/images/hero-3d-fluid.jpg",
+    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
     slug: "lumino-3d-kinetic",
     speed: -45,
     icon: <Zap className="w-5 h-5 text-white" />,
@@ -39,7 +40,7 @@ const FEATURE_ITEMS: FeatureCard[] = [
     category: "Brutalist Industrial Systems",
     description:
       "Monolithic titanium dashboard modules and physical acoustics designed for high-stakes aerospace & spatial telemetry control.",
-    image: "/images/project-minimal.jpg",
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
     slug: "vortex-matte-titanium",
     speed: 35,
     icon: <ShieldCheck className="w-5 h-5 text-white" />,
@@ -51,7 +52,7 @@ const FEATURE_ITEMS: FeatureCard[] = [
     category: "Spatial Grid Architecture",
     description:
       "Zero-waste architectural identity frameworks built to maintain crystalline visual clarity from 16px favicons to 100ft outdoor billboards.",
-    image: "/images/project-spatial.jpg",
+    image: getCloudinaryUrl("/images/project-spatial.jpg"),
     slug: "brutalist-spatial-pavilion",
     speed: -35,
     icon: <Compass className="w-5 h-5 text-white" />,

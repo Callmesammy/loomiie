@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Plus, X, ArrowUpRight, Globe, Layers, ShieldCheck } from "lucide-react";
 import { ThreeStudioBoxCanvas } from "@/components/ThreeStudioBoxCanvas";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface TeamMember {
   id: string;
@@ -24,7 +25,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "mohamed-ragab",
     name: "Mohamed Ragab",
     role: "Growth Strategy & Brand Building",
-    image: "/images/about/team-5.jpg",
+    image: getCloudinaryUrl("/images/about/team-5.jpg"),
     alt: "Mohamed Ragab — Growth Strategy & Brand Building",
     bio: "I work on growth strategy and brand-building, with a background in psychology/coaching and hands-on execution. Excited to be here.",
     tags: ["Growth Strategy", "Brand Building", "Execution"],
@@ -33,7 +34,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "yaya",
     name: "Yaya",
     role: "UX Design Intern",
-    image: "/images/about/team-3.jpg",
+    image: getCloudinaryUrl("/images/about/team-3.jpg"),
     alt: "Yaya — UX Design Intern",
     bio: "I'm a UX design intern, with a background in photography and digital marketing. I'm passionate about solving problems through design and creating user experiences.",
     tags: ["UX Design", "Photography", "Digital Marketing"],
@@ -44,7 +45,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "samson-imoh",
     name: "Samson Imoh",
     role: "Full Stack Software Engineer",
-    image: "/images/about/team-7.jpg",
+    image: getCloudinaryUrl("/images/about/team-7.jpg"),
     alt: "Samson Imoh — Full Stack Software Engineer",
     bio: "Full Stack Software Engineer focused on building scalable web applications and modern software solutions using C#, ASP.NET Core, React, Next.js, and Azure.",
     tags: ["Full Stack", "C# / ASP.NET", "Next.js & Azure"],
@@ -53,7 +54,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "nebiyu-elias",
     name: "Nebiyu Elias",
     role: "Full Stack & Software Engineer",
-    image: "/images/about/team-2.jpg",
+    image: getCloudinaryUrl("/images/about/team-2.jpg"),
     alt: "Nebiyu Elias — Full Stack & Software Engineer",
     bio: "Full Stack and Software Engineer focused on building web applications and custom software solutions using React, Next.js, and Python, with a background in Computer Science.",
     tags: ["Software Engineering", "React & Next.js", "Python"],
@@ -64,7 +65,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "sarah-mahmoud",
     name: "Sarah Mahmoud",
     role: "Digital Marketing & Content Strategy",
-    image: "/images/about/team-1.jpg",
+    image: getCloudinaryUrl("/images/about/team-1.jpg"),
     alt: "Sarah Mahmoud — Digital Marketing & Content Strategy",
     bio: "I'm a pharmacist with a strong interest in digital marketing, specializing in content strategy, Meta ads, audience targeting, and marketing analytics to drive brand growth.",
     tags: ["Digital Marketing", "Meta Ads", "Audience Targeting"],
@@ -73,7 +74,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "mohammed-umar",
     name: "Mohammed Umar",
     role: "Data Science & Machine Learning",
-    image: "/images/about/team-umar.jpg",
+    image: getCloudinaryUrl("/images/about/team-umar.jpg"),
     alt: "Mohammed Umar — Data Science & Machine Learning",
     bio: "I'm passionate about data science and machine learning, exploring innovative technology solutions, social media marketing, and branding.",
     tags: ["Data Science", "Machine Learning", "Social Media"],
@@ -84,7 +85,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "jenine-jaradat",
     name: "Jenine Jaradat",
     role: "Computer Science & Economics",
-    image: "/images/about/team-6.jpg",
+    image: getCloudinaryUrl("/images/about/team-6.jpg"),
     alt: "Jenine Jaradat — Computer Science & Economics",
     bio: "I'm a final year university student studying Computer Science and Economics with experience in several fields such as marketing and data analytics.",
     tags: ["Computer Science", "Economics", "Data Analytics"],
@@ -93,7 +94,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     id: "yahya-azez",
     name: "Yahya Azez",
     role: "Graphic Designer & Visual Identities",
-    image: "/images/about/team-8.jpg",
+    image: getCloudinaryUrl("/images/about/team-8.jpg"),
     alt: "Yahya Azez — Graphic Designer & Visual Identities",
     bio: "Graphic Designer & Freelancer specialized in creating professional visual identities, branding solutions, and creative design experiences.",
     tags: ["Graphic Design", "Visual Identity", "Branding"],

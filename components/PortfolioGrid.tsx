@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Plus, ArrowUpRight, ChevronDown } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface CaseStudy {
   id: string;
@@ -25,7 +26,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "VORTEX Matte Titanium Module",
     category: "Spatial Hardware & Industrial Design",
     categoryCode: "industrial",
-    image: "/images/project-minimal.jpg",
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
     aspect: "aspect-[4/3]",
     span: "col-span-12 md:col-span-7",
     logoOverlay: "VORTEX",
@@ -36,7 +37,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "OUTFINDR Mountain Dynamics",
     category: "Outdoor & Spatial Exploration",
     categoryCode: "spatial",
-    image: "/images/project-spatial.jpg",
+    image: getCloudinaryUrl("/images/project-spatial.jpg"),
     aspect: "aspect-[1/1]",
     span: "col-span-12 md:col-span-5",
     logoOverlay: "OUTFINDR",
@@ -47,7 +48,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "SAT Cybernetic System HUD",
     category: "Autonomous WebGL Interface",
     categoryCode: "tech",
-    image: "/images/project-digital.jpg",
+    image: getCloudinaryUrl("/images/project-digital.jpg"),
     aspect: "aspect-[16/10]",
     span: "col-span-12 md:col-span-6",
     logoOverlay: "SAT",
@@ -58,7 +59,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "LUMINO 3D Kinetic Realm",
     category: "Motion Shaders & WebGL",
     categoryCode: "tech",
-    image: "/images/hero-3d-fluid.jpg",
+    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
     aspect: "aspect-[16/10]",
     span: "col-span-12 md:col-span-6",
     logoOverlay: "LUMINO",
@@ -69,7 +70,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "Brutalist Spatial Pavilion",
     category: "Architecture & Acoustics",
     categoryCode: "spatial",
-    image: "/images/project-spatial.jpg",
+    image: getCloudinaryUrl("/images/project-spatial.jpg"),
     aspect: "aspect-[16/10]",
     span: "col-span-12 md:col-span-7",
     logoOverlay: "AURA",
@@ -80,7 +81,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "Monochrome Editorial N°5",
     category: "Editorial & Grid Typography",
     categoryCode: "entertainment",
-    image: "/images/project-editorial.jpg",
+    image: getCloudinaryUrl("/images/project-editorial.jpg"),
     aspect: "aspect-[1/1]",
     span: "col-span-12 md:col-span-5",
     logoOverlay: "EDITORIAL",
@@ -91,7 +92,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "JEA Architectural Interior",
     category: "Spatial Living & Craft",
     categoryCode: "spatial",
-    image: "/images/hero-3d-fluid.jpg",
+    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
     aspect: "aspect-[16/9]",
     span: "col-span-12 md:col-span-6",
     logoOverlay: "JEA",
@@ -102,7 +103,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "LAUR High-Fashion Identity",
     category: "Luxury Identity & Craft",
     categoryCode: "ecommerce",
-    image: "/images/project-editorial.jpg",
+    image: getCloudinaryUrl("/images/project-editorial.jpg"),
     aspect: "aspect-[16/9]",
     span: "col-span-12 md:col-span-6",
     logoOverlay: "LAUR",

@@ -4,6 +4,7 @@ import { SubpageHeroHeader } from "@/components/SubpageHeroHeader";
 import { StorySection } from "@/components/StorySection";
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
   title: "Our Story — LOOMIE Studio Chronicle",
@@ -19,7 +20,7 @@ export default function StoryPage() {
         badge="[LOOMIE CHRONICLE // EST. 2026]"
         line1="BUILDING WHAT'S NEXT"
         line2="TOGETHER"
-        bannerImage="/images/partners/film-production.jpg"
+        bannerImage={getCloudinaryUrl("/images/partners/film-production.jpg")}
         bannerAlt="LOOMIE Strategic Production Alliances"
       />
       <div>

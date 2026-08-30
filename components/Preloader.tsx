@@ -272,21 +272,6 @@ export function Preloader({
         style={{ background: getGlowStyle() }}
       />
 
-      {/* Top Bar: Subpage / Studio Tag */}
-      <div className="flex items-center justify-between w-full max-w-[1800px] mx-auto font-mono text-xs text-[#0E0E0E]/70 border-b border-[#0E0E0E]/15 pb-4 relative z-10">
-        <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#0E0E0E] animate-pulse" />
-          <span className="font-bold text-[#0E0E0E] tracking-widest uppercase">
-            LOOMIE CREATIVE DIRECTIVE
-          </span>
-        </div>
-
-        <div className="flex items-center gap-4 font-bold uppercase tracking-widest text-[#0E0E0E]">
-          <span>CONNECTED BRAND SYSTEMS</span>
-          <span>•</span>
-          <span>EST. 2026</span>
-        </div>
-      </div>
 
       {/* Center Stage: Giant LOOMIE 3D Kinetic Logo + Flashing Studio Keywords */}
       <div className="flex flex-col items-center justify-center max-w-[1800px] w-full mx-auto my-auto py-8 relative z-10 text-center space-y-6">

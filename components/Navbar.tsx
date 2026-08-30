@@ -8,6 +8,7 @@ import { X } from "lucide-react";
 import { gsap } from "gsap";
 import { LoomieLogoMark } from "./LoomieLogoMark";
 import { Preloader } from "./Preloader";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface MenuNavItem {
   label: string;
@@ -22,49 +23,49 @@ const MENU_ITEMS: MenuNavItem[] = [
     label: "Home",
     href: "/",
     number: "01",
-    image: "/images/projects/hero-project-1.jpg",
+    image: getCloudinaryUrl("/images/projects/hero-project-1.jpg"),
     alt: "LOOMIE Kinetic Web & Design Studio",
   },
   {
     label: "Work",
     href: "/work",
     number: "02",
-    image: "/images/projects/hero-project-2.jpg",
+    image: getCloudinaryUrl("/images/projects/hero-project-2.jpg"),
     alt: "LOOMIE Work & Portfolio Showcase",
   },
   {
     label: "Expertise",
     href: "/expertise",
     number: "03",
-    image: "/images/services/service-sketch.jpg",
+    image: getCloudinaryUrl("/images/services/service-sketch.jpg"),
     alt: "LOOMIE Studio Capabilities & Core Disciplines",
   },
   {
     label: "About Us",
     href: "/about-us",
     number: "04",
-    image: "/images/about/brand-architecture.jpg",
+    image: getCloudinaryUrl("/images/about/brand-architecture.jpg"),
     alt: "LOOMIE Team & 3D Rolling Cube Canvas",
   },
   {
     label: "Story",
     href: "/story",
     number: "05",
-    image: "/images/services/service-color.jpg",
+    image: getCloudinaryUrl("/images/services/service-color.jpg"),
     alt: "LOOMIE Studio Chronicle & Genesis",
   },
   {
     label: "Values",
     href: "/values",
     number: "06",
-    image: "/images/services/service-uiux.jpg",
+    image: getCloudinaryUrl("/images/services/service-uiux.jpg"),
     alt: "LOOMIE Core Discipline Values",
   },
   {
     label: "Connect",
     href: "/contact",
     number: "07",
-    image: "/images/services/service-desktop.jpg",
+    image: getCloudinaryUrl("/images/services/service-desktop.jpg"),
     alt: "LOOMIE Studio Booking & Collaboration",
   },
 ];
@@ -118,7 +119,8 @@ export function Navbar() {
       if (!isHomePage || window.innerWidth < 1024) {
         setShowNavbar(true);
       } else {
-        setShowNavbar(window.scrollY > 120);
+        const shouldShow = window.scrollY > 120;
+        setShowNavbar((prev) => (prev !== shouldShow ? shouldShow : prev));
       }
     };
 

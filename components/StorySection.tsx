@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 const STORY_SEGMENTS = [
   {
@@ -12,7 +13,7 @@ const STORY_SEGMENTS = [
     tagline: "SELF TAUGHT EXPLORATION",
     headline: "Loomie began with curiosity, a blank screen, basic tools, and the drive to create.",
     body: "What started as self-taught exploration grew into a studio dedicated to design that actually connects people to brands. Every lesson came from building, breaking, and rebuilding, creating a deep commitment to practical, detail-driven quality.",
-    image: "/images/story/story-segment-1.jpg",
+    image: getCloudinaryUrl("/images/story/story-segment-1.jpg"),
     alt: "Self-Taught Exploration & Creative Workspace",
     tags: ["Blank Screen", "Self Taught", "Brand Craft"],
     layoutReversed: false,
@@ -23,7 +24,7 @@ const STORY_SEGMENTS = [
     tagline: "INTUITIVE DIGITAL SYSTEMS",
     headline: "Today, Loomie designs for ambitious startups and builders.",
     body: "From logos that work as avatars to identities that scale to tactile packaging and web applications that feel intuitive. We combine strategic visual storytelling with high-performance digital engineering.",
-    image: "/images/story/story-segment-2.jpg",
+    image: getCloudinaryUrl("/images/story/story-segment-2.jpg"),
     alt: "Startups & Intuitive Digital Systems",
     tags: ["Avatars & Logos", "Packaging Identity", "Intuitive Web"],
     layoutReversed: true,
@@ -34,7 +35,7 @@ const STORY_SEGMENTS = [
     tagline: "ONE RIGOROUS PROCESS",
     headline: "Every project follows one process: strategic thinking, clean execution, and endless refinement.",
     body: "The result: brands people get, remember, and trust from first glance. We avoid unnecessary complexity in favor of thoughtful strategy, clean aesthetic rhythm, and durable digital architecture.",
-    image: "/images/story/story-segment-3.jpg",
+    image: getCloudinaryUrl("/images/story/story-segment-3.jpg"),
     alt: "LOOMIE Kinetic Design System & Spatial Refinement",
     tags: ["Strategic Thinking", "Clean Execution", "Endless Refinement"],
     layoutReversed: false,

@@ -8,6 +8,7 @@ import { SubpageHeroHeader } from "@/components/SubpageHeroHeader";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { ArrowUpRight, CheckCircle2, Layers, Sparkles, ShieldCheck, Cpu } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface ExpertiseDetail {
   id: string;
@@ -28,7 +29,7 @@ const EXPERTISE_ITEMS: ExpertiseDetail[] = [
     number: "01",
     title: "Logos & Visual Marks",
     tagline: "Crafting iconic, memorable symbols and brandmarks that anchor instant brand recognition.",
-    image: "/images/services/service-sketch.jpg",
+    image: getCloudinaryUrl("/images/services/service-sketch.jpg"),
     alt: "Logos and Visual Marks Architectural Sketch",
     description:
       "Our logomark craft merges geometric precision with brand positioning strategy. We design vector symbols, custom typographic logotypes, and flexible identity tokens engineered to scale from micro-favicons to spatial building signage.",
@@ -47,7 +48,7 @@ const EXPERTISE_ITEMS: ExpertiseDetail[] = [
     number: "02",
     title: "Brand Identities & Systems",
     tagline: "Building comprehensive, unified brand architecture ecosystems across print, digital, and spatial touchpoints.",
-    image: "/images/services/service-color.jpg",
+    image: getCloudinaryUrl("/images/services/service-color.jpg"),
     alt: "Brand Identity Substrates and Palette Tokens",
     description:
       "A brand identity is a connected system. We define full visual identities — including custom color substrates, typography hierarchies, spatial signage guidelines, tactile packaging rituals, and digital design token libraries.",
@@ -66,7 +67,7 @@ const EXPERTISE_ITEMS: ExpertiseDetail[] = [
     number: "03",
     title: "UI/UX Product Architecture",
     tagline: "Designing intuitive, high conversion digital product interfaces backed by user research and interactive prototyping.",
-    image: "/images/services/service-uiux.jpg",
+    image: getCloudinaryUrl("/images/services/service-uiux.jpg"),
     alt: "UI/UX Interactive Wireframe Prototyping",
     description:
       "We design digital product architectures focused on user clarity, smooth interaction flows, and conversion rate optimization. From complex SaaS dashboards to high-conversion e-commerce applications, every interaction is friction-free.",
@@ -85,7 +86,7 @@ const EXPERTISE_ITEMS: ExpertiseDetail[] = [
     number: "04",
     title: "Websites & Web Development",
     tagline: "Engineering high-speed, kinetic web applications with Next.js 15, Cloudflare Edge infrastructure, and WebGL 3D shaders.",
-    image: "/images/services/service-desktop.jpg",
+    image: getCloudinaryUrl("/images/services/service-desktop.jpg"),
     alt: "Responsive High-Performance Web Development",
     description:
       "We develop production-grade web applications utilizing Next.js 15, React, TypeScript, Cloudflare Workers D1 edge databases, GSAP motion timelines, and Three.js 3D WebGL graphics for uncompromised load speed and visual brilliance.",
@@ -113,7 +114,7 @@ export default function ExpertisePage() {
         badge="[LOOMIE STUDIO // CAPABILITIES & EXPERTISE]"
         line1="STUDIO EXPERTISE &"
         line2="CORE CAPABILITIES"
-        bannerImage="/images/services/service-desktop.jpg"
+        bannerImage={getCloudinaryUrl("/images/services/service-desktop.jpg")}
         bannerAlt="LOOMIE Studio Expertise and Capabilities"
       />
 

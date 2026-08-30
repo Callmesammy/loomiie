@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface SubpageHeroHeaderProps {
   badge?: string;
@@ -23,9 +24,9 @@ export function SubpageHeroHeader({
   badge = "[LOOMIE STUDIO]",
   line1 = "DIGITAL MARKETING &",
   line2 = "STUDIO DISCIPLINES",
-  bannerImage = "/images/about/brand-architecture.jpg",
+  bannerImage = getCloudinaryUrl("/images/about/brand-architecture.jpg"),
   bannerAlt = "Studio Banner",
-  secondaryImage = "/images/about/marketing-strategy.jpg",
+  secondaryImage = getCloudinaryUrl("/images/about/marketing-strategy.jpg"),
 }: SubpageHeroHeaderProps) {
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -51,7 +52,7 @@ export function SubpageHeroHeader({
         {/* 1. Sleek Narrow Horizontal Banner Strip (~60px-80px tall) */}
         <div className="relative w-full h-14 sm:h-16 md:h-20 overflow-hidden rounded-md border border-stone-300 bg-stone-900 group cursor-pointer">
           <Image
-            src={banners[currentBannerIndex]}
+            src={getCloudinaryUrl(banners[currentBannerIndex])}
             alt={bannerAlt}
             fill
             priority

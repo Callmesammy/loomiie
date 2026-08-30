@@ -4,6 +4,7 @@ import { AkaruCinematicExpandingImage } from "@/components/AkaruCinematicExpandi
 import { AboutUsSection } from "@/components/AboutUsSection";
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
   title: "About Us — Studio Disciplines & Capabilities | LOOMIE Studio",
@@ -19,7 +20,7 @@ export default function AboutUsPage() {
         badge="LOOMIE STUDIO // ABOUT US"
         title="RESULT DRIVEN KINETIC DESIGN & SYSTEMS"
         subtitle="SCROLL TO EXPAND DISCOVERY"
-        image="/images/about/brand-architecture.jpg"
+        image={getCloudinaryUrl("/images/about/brand-architecture.jpg")}
         alt="LOOMIE Studio Brand & Systems Architecture"
       />
       <div>

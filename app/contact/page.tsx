@@ -4,6 +4,7 @@ import { SubpageHeroHeader } from "@/components/SubpageHeroHeader";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
   title: "Contact Us & Book a Call — LOOMIE Studio",
@@ -19,7 +20,7 @@ export default function ContactPage() {
         badge="[LOOMIE STUDIO // CONTACT]"
         line1="START A PROJECT"
         line2="& BUILD TOGETHER"
-        bannerImage="/images/contact/contact-hero.jpg"
+        bannerImage={getCloudinaryUrl("/images/contact/contact-hero.jpg")}
         bannerAlt="LOOMIE Contact & Strategy Workspace"
       />
       <div>

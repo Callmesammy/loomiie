@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Plus, Minus, Check, Copy, Calendar as CalendarIcon, ArrowUpRight } from "lucide-react";
 import { Preloader } from "@/components/Preloader";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface FAQItem {
   id: string;
@@ -145,7 +146,7 @@ export function ContactSection({
             {/* Studio Workspace Photo Card */}
             <div className="relative w-full h-[260px] sm:h-[320px] rounded-lg overflow-hidden border border-stone-300 shadow-xs group">
               <Image
-                src="/images/contact/contact-hero.jpg"
+                src={getCloudinaryUrl("/images/contact/contact-hero.jpg")}
                 alt="LOOMIE Studio Contact Workspace"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"

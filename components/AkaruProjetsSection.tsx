@@ -6,6 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Compass } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface AkaruExpertise {
   id: string;
@@ -30,7 +31,7 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     textColor: "#0E0E0E",
     tagline: "Crafting iconic, memorable symbols and brandmarks that anchor instant brand recognition.",
     deliverables: ["VECTOR MARKS", "ICON SYSTEMS", "TYPE ARCHITECTURES", "SYMBOLIC STRATEGY"],
-    image: "/images/services/service-sketch.jpg",
+    image: getCloudinaryUrl("/images/services/service-sketch.jpg"),
     href: "/contact",
   },
   {
@@ -42,7 +43,7 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     textColor: "#0E0E0E",
     tagline: "Building cohesive spatial & digital design systems that link every brand touchpoint seamlessly.",
     deliverables: ["VISUAL IDENTITY", "COLOR PALETTE", "GRAPHIC CHARTER", "BRAND GUIDELINES"],
-    image: "/images/services/service-color.jpg",
+    image: getCloudinaryUrl("/images/services/service-color.jpg"),
     href: "/contact",
   },
   {
@@ -54,7 +55,7 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     textColor: "#0E0E0E",
     tagline: "Structuring intuitive user experiences and high-performance digital products for high conversion.",
     deliverables: ["USER JOURNEYS", "WIRE FRAMES", "INTERACTIVE PROTOTYPES", "DESIGN SYSTEMS"],
-    image: "/images/services/service-uiux.jpg",
+    image: getCloudinaryUrl("/images/services/service-uiux.jpg"),
     href: "/contact",
   },
   {
@@ -66,7 +67,7 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     textColor: "#0E0E0E",
     tagline: "Engineering kinetic 3D WebGL motion websites built for speed, responsiveness, and conversion.",
     deliverables: ["NEXT.JS 15", "SHOPIFY CUSTOM", "THREE.JS SHADERS", "CUSTOM FRONT-END"],
-    image: "/images/services/service-desktop.jpg",
+    image: getCloudinaryUrl("/images/services/service-desktop.jpg"),
     href: "/contact",
   },
 ];
@@ -107,6 +108,8 @@ export function AkaruProjetsSection() {
         }
       });
 
+      let lastIndex = -1;
+
       // Master Outer Section Pinned Timeline (Mobile & Desktop)
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -115,24 +118,28 @@ export function AkaruProjetsSection() {
           end: `+=${AKARU_EXPERTISES.length * 130}%`,
           pin: true,
           pinSpacing: true,
-          scrub: 0.8,
+          scrub: 1.0,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const idx = Math.min(
               AKARU_EXPERTISES.length - 1,
               Math.floor(self.progress * AKARU_EXPERTISES.length)
             );
-            setActiveIndex(idx);
 
-            // Morph background color seamlessly based on active expertise card
-            const currentTheme = AKARU_EXPERTISES[idx] || AKARU_EXPERTISES[0];
-            gsap.to(section, {
-              backgroundColor: currentTheme.bgColor,
-              color: currentTheme.textColor,
-              duration: 0.5,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
+            if (idx !== lastIndex) {
+              lastIndex = idx;
+              setActiveIndex(idx);
+
+              // Morph background color seamlessly based on active expertise card
+              const currentTheme = AKARU_EXPERTISES[idx] || AKARU_EXPERTISES[0];
+              gsap.to(section, {
+                backgroundColor: currentTheme.bgColor,
+                color: currentTheme.textColor,
+                duration: 0.6,
+                ease: "power2.out",
+                overwrite: "auto",
+              });
+            }
           },
         },
       });

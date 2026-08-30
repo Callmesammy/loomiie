@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import { LoomieLogoMark } from "./LoomieLogoMark";
 import { InteractiveEyeLogoMark } from "./InteractiveEyeLogoMark";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface AkaruProject {
   id: string;
@@ -35,7 +36,7 @@ const AKARU_PROJECTS: AkaruProject[] = [
     brandStory: "Modularity is at the heart of our craft. Like building blocks, we engineer fluid design systems that adapt, scale, and captivate across every touchpoint.",
     brandStory2: "By bridging spatial architecture with dynamic digital motion, we transform complex identity requirements into playful, intuitive visual narratives that invite deep user engagement.",
     year: "2026",
-    image: "/images/projects/hero-project-2.jpg",
+    image: getCloudinaryUrl("/images/projects/hero-project-2.jpg"),
     bgColor: "#0E4C92",
     textColor: "#F5F3EF",
   },
@@ -49,7 +50,7 @@ const AKARU_PROJECTS: AkaruProject[] = [
     brandStory: "Loomie turns abstract vision into clear, working digital realities. We design every brand element to link together seamlessly making brands instantly understandable.",
     brandStory2: "From strategic positioning to interactive web interfaces, our holistic execution ensures that every client message resonates with maximum clarity and measurable impact.",
     year: "2026",
-    image: "/images/projects/hero-project-1.jpg",
+    image: getCloudinaryUrl("/images/projects/hero-project-1.jpg"),
     bgColor: "#E6E3D8",
     textColor: "#0E0E0E",
   },
@@ -63,7 +64,7 @@ const AKARU_PROJECTS: AkaruProject[] = [
     brandStory: "Uncompromising precision and artistic discipline. We approach every canvas with meticulous craft to create lasting, iconic visual legacies.",
     brandStory2: "Rooted in bold design principles and refined technical execution, we construct memorable digital platforms engineered to command attention and endure across evolving trends.",
     year: "2026",
-    image: "/images/projects/hero-project-3.jpg",
+    image: getCloudinaryUrl("/images/projects/hero-project-3.jpg"),
     bgColor: "#F0ECE1",
     textColor: "#0E0E0E",
   },
@@ -77,7 +78,7 @@ const AKARU_PROJECTS: AkaruProject[] = [
     brandStory: "Design that connects emotionally. We craft sensory brand experiences that spark instant delight, clarity, and enduring client loyalty.",
     brandStory2: "Through thoughtful interaction design, vibrant typography, and micro-animations, we turn routine user journeys into unforgettable brand encounters.",
     year: "2026",
-    image: "/images/projects/hero-project-4.jpg",
+    image: getCloudinaryUrl("/images/projects/hero-project-4.jpg"),
     bgColor: "#1A1C23",
     textColor: "#F5F3EF",
   },
@@ -105,13 +106,16 @@ export function HorizontalProjectSlider() {
 
     const ctx = gsap.context(() => {
       const getScrollAmount = () => container.scrollWidth - window.innerWidth;
+      let lastIndex = -1;
+
+      // Master ScrollTween for smooth horizontal slide scrubbing
       const scrollTween = gsap.to(container, {
         x: () => -getScrollAmount(),
         ease: "none",
         scrollTrigger: {
           trigger: trigger,
           pin: true,
-          scrub: 0.5,
+          scrub: 0.8,
           start: "top top",
           end: () => `+=${getScrollAmount() * 0.75}`,
           invalidateOnRefresh: true,
@@ -119,17 +123,21 @@ export function HorizontalProjectSlider() {
             const totalItems = AKARU_PROJECTS.length + 1;
             const progress = self.progress;
             const idx = Math.min(totalItems - 1, Math.floor(progress * totalItems));
-            setActiveIndex(idx);
-            const targetColor = SLIDE_COLORS[idx] || SLIDE_COLORS[0];
-            setCurrentTheme(targetColor);
 
-            gsap.to(trigger, {
-              backgroundColor: targetColor.bg,
-              color: targetColor.text,
-              duration: 0.5,
-              ease: "power2.out",
-              overwrite: "auto",
-            });
+            if (idx !== lastIndex) {
+              lastIndex = idx;
+              setActiveIndex(idx);
+              const targetColor = SLIDE_COLORS[idx] || SLIDE_COLORS[0];
+              setCurrentTheme(targetColor);
+
+              gsap.to(trigger, {
+                backgroundColor: targetColor.bg,
+                color: targetColor.text,
+                duration: 0.6,
+                ease: "power2.out",
+                overwrite: "auto",
+              });
+            }
           },
         },
       });
@@ -257,7 +265,7 @@ export function HorizontalProjectSlider() {
                 </div>
 
                 <video
-                  src="/make_a_video_with_those_please.mp4"
+                  src={getCloudinaryUrl("/make_a_video_with_those_please.mp4", "video")}
                   autoPlay
                   loop
                   muted

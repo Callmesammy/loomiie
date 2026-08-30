@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface ValueCard {
   number: string;
@@ -193,7 +194,7 @@ export function ValuesSection() {
             {/* Right Image Frame Area (Pure Photography) */}
             <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] lg:min-h-full overflow-hidden bg-stone-900 border-t lg:border-t-0 lg:border-l border-current/15 group">
               <Image
-                src={card.image}
+                src={getCloudinaryUrl(card.image)}
                 alt={card.alt}
                 fill
                 priority={idx === 0}

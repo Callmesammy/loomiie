@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface SwappingImageItem {
   src: string;
@@ -14,53 +15,51 @@ interface InlineSwappingImageProps {
   className?: string;
 }
 
+/**
+ * Ultra-Smooth Stacked Crossfade Inline Swapping Image Component
+ * - Both images pre-rendered in memory for zero image swap decoding flash
+ * - Weightless 1000ms GPU-accelerated ease-in-out cross-dissolve
+ * - Fully GPU hardware composition (transform-gpu)
+ */
 function InlineSwappingImage({
   images,
-  intervalMs = 3500,
+  intervalMs = 5000,
   className = "",
 }: InlineSwappingImageProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
     if (images.length <= 1) return;
     const timer = setInterval(() => {
-      setIsFading(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
-        setIsFading(false);
-      }, 250);
+      setCurrentIndex((prev) => (prev + 1) % images.length);
     }, intervalMs);
 
     return () => clearInterval(timer);
-  }, [images, intervalMs]);
+  }, [images.length, intervalMs]);
 
   const handleSwap = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (images.length <= 1) return;
-    setIsFading(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-      setIsFading(false);
-    }, 200);
+    setCurrentIndex((prev) => (prev + 1) % images.length);
   };
-
-  const current = images[currentIndex];
 
   return (
     <span
       onClick={handleSwap}
-      className={`group relative inline-block align-middle mx-2 my-1 w-16 sm:w-22 md:w-28 lg:w-32 h-9 sm:h-12 md:h-14 lg:h-16 overflow-hidden rounded-md border border-stone-800/20 shadow-md bg-stone-200 cursor-pointer select-none transition-all duration-500 hover:scale-125 hover:-rotate-1 hover:shadow-2xl hover:z-50 hover:border-black ${className}`}
+      className={`group relative inline-block align-middle mx-2 my-1 w-16 sm:w-22 md:w-28 lg:w-32 h-9 sm:h-12 md:h-14 lg:h-16 overflow-hidden rounded-md border border-stone-800/20 shadow-md bg-stone-200 cursor-pointer select-none transition-transform duration-500 hover:scale-125 hover:-rotate-1 hover:shadow-2xl hover:z-50 hover:border-black transform-gpu ${className}`}
     >
-      <Image
-        src={current.src}
-        alt={current.alt}
-        fill
-        sizes="(max-width: 768px) 100px, 140px"
-        className={`object-cover transition-all duration-500 ease-out group-hover:scale-110 ${
-          isFading ? "opacity-0 scale-90 blur-xs" : "opacity-100 scale-100 blur-none"
-        }`}
-      />
+      {images.map((img, index) => (
+        <Image
+          key={img.src}
+          src={getCloudinaryUrl(img.src)}
+          alt={img.alt}
+          fill
+          sizes="(max-width: 768px) 100px, 140px"
+          className={`object-cover transition-opacity duration-1000 ease-in-out transform-gpu group-hover:scale-110 ${
+            index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
+        />
+      ))}
     </span>
   );
 }
@@ -83,58 +82,58 @@ export function RoshanServicesInlineSection() {
             LOGOS & VISUAL MARKS,
             <InlineSwappingImage
               images={[
-                { src: "/images/services/service-sketch.jpg", alt: "Logo Sketching" },
-                { src: "/images/projects/hero-project-1.jpg", alt: "Ideas Into Reality" },
+                { src: getCloudinaryUrl("/images/services/service-sketch.jpg"), alt: "Logo Sketching" },
+                { src: getCloudinaryUrl("/images/projects/hero-project-1.jpg"), alt: "Ideas Into Reality" },
               ]}
-              intervalMs={3200}
+              intervalMs={4800}
             />
             BRAND IDENTITIES,
             <InlineSwappingImage
               images={[
-                { src: "/images/services/service-color.jpg", alt: "Color Swatches" },
-                { src: "/images/manifesto/rose-bw.jpg", alt: "Monochrome Rose" },
+                { src: getCloudinaryUrl("/images/services/service-color.jpg"), alt: "Color Swatches" },
+                { src: getCloudinaryUrl("/images/manifesto/rose-bw.jpg"), alt: "Monochrome Rose" },
               ]}
-              intervalMs={4100}
+              intervalMs={5800}
             />
             UI/UX ARCHITECTURE, PACKAGING & TACTILE CRAFT,
             <InlineSwappingImage
               images={[
-                { src: "/images/services/service-uiux.jpg", alt: "UI/UX Wireframes" },
-                { src: "/images/manifesto/packaging-hd.jpg", alt: "Tactile Packaging" },
+                { src: getCloudinaryUrl("/images/services/service-uiux.jpg"), alt: "UI/UX Wireframes" },
+                { src: getCloudinaryUrl("/images/manifesto/packaging-hd.jpg"), alt: "Tactile Packaging" },
               ]}
-              intervalMs={3600}
+              intervalMs={5200}
             />
             WEBSITES & WEB DEVELOPMENT,
             <InlineSwappingImage
               images={[
-                { src: "/images/services/service-desktop.jpg", alt: "Responsive Web Development" },
-                { src: "/images/projects/hero-project-2.jpg", alt: "Kinetic Play System" },
+                { src: getCloudinaryUrl("/images/services/service-desktop.jpg"), alt: "Responsive Web Development" },
+                { src: getCloudinaryUrl("/images/projects/hero-project-2.jpg"), alt: "Kinetic Play System" },
               ]}
-              intervalMs={2800}
+              intervalMs={4200}
             />
             NEXT.JS 15, SPATIAL BRAND SYSTEMS,
             <InlineSwappingImage
               images={[
-                { src: "/images/manifesto/architecture.jpg", alt: "Spatial Architecture" },
-                { src: "/images/manifesto/code-dark.jpg", alt: "Next.js IDE Code" },
+                { src: getCloudinaryUrl("/images/manifesto/architecture.jpg"), alt: "Spatial Architecture" },
+                { src: getCloudinaryUrl("/images/manifesto/code-dark.jpg"), alt: "Next.js IDE Code" },
               ]}
-              intervalMs={4500}
+              intervalMs={6200}
             />
             KINETIC ANIMATION (GSAP),
             <InlineSwappingImage
               images={[
-                { src: "/images/manifesto/fluid-3d.jpg", alt: "3D Motion Shader" },
-                { src: "/images/projects/hero-project-3.jpg", alt: "Creative Art Direction" },
+                { src: getCloudinaryUrl("/images/manifesto/fluid-3d.jpg"), alt: "3D Motion Shader" },
+                { src: getCloudinaryUrl("/images/projects/hero-project-3.jpg"), alt: "Creative Art Direction" },
               ]}
-              intervalMs={3400}
+              intervalMs={5000}
             />
             3D WEBGL SHADERS (THREE.JS),
             <InlineSwappingImage
               images={[
-                { src: "/images/projects/hero-project-4.jpg", alt: "Sensory Brand Experience" },
-                { src: "/images/manifesto/abstract-render.jpg", alt: "3D Abstract Render" },
+                { src: getCloudinaryUrl("/images/projects/hero-project-4.jpg"), alt: "Sensory Brand Experience" },
+                { src: getCloudinaryUrl("/images/manifesto/abstract-render.jpg"), alt: "3D Abstract Render" },
               ]}
-              intervalMs={3900}
+              intervalMs={5600}
             />
             HIGH CONVERSION DIGITAL PRODUCTS.
           </h2>

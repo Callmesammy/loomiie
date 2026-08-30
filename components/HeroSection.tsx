@@ -6,6 +6,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface HeroSlide {
   id: string;
@@ -20,35 +21,35 @@ const HERO_SLIDES: HeroSlide[] = [
     id: "slide-1",
     num: "01",
     title: "Kinetic Design Systems",
-    image: "/images/hero-3d-fluid.jpg",
+    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
     href: "/work/lumino-3d-kinetic",
   },
   {
     id: "slide-2",
     num: "02",
     title: "Titanium Spatial Hardware",
-    image: "/images/project-minimal.jpg",
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
     href: "/work/vortex-matte-titanium",
   },
   {
     id: "slide-3",
     num: "03",
     title: "Brutalist Spatial Pavilion",
-    image: "/images/project-spatial.jpg",
+    image: getCloudinaryUrl("/images/project-spatial.jpg"),
     href: "/work/brutalist-spatial-pavilion",
   },
   {
     id: "slide-4",
     num: "04",
     title: "Cybernetic System HUD",
-    image: "/images/project-digital.jpg",
+    image: getCloudinaryUrl("/images/project-digital.jpg"),
     href: "/work/sat-cybernetic-hud",
   },
   {
     id: "slide-5",
     num: "05",
     title: "Editorial Brand Identity",
-    image: "/images/project-editorial.jpg",
+    image: getCloudinaryUrl("/images/project-editorial.jpg"),
     href: "/work/lumino-3d-kinetic",
   },
 ];

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface Project {
   id: string;
@@ -30,7 +31,7 @@ const PROJECTS: Project[] = [
       "A monolithic concrete pavilion exploring spatial acoustics, geometric shadows, and interactive brutalism in high-density urban environments.",
     tags: ["Spatial Design", "Acoustics", "Concrete Art"],
     year: "2026",
-    image: "/images/project-spatial.jpg",
+    image: getCloudinaryUrl("/images/project-spatial.jpg"),
     aspect: "aspect-[4/5]",
   },
   {
@@ -43,7 +44,7 @@ const PROJECTS: Project[] = [
       "Minimalist, zero-plastic matte packaging identity engineered for sensory consumer rituals and sustainable luxury products.",
     tags: ["Packaging", "Tactile Identity", "Eco Luxury"],
     year: "2025",
-    image: "/images/project-packaging.jpg",
+    image: getCloudinaryUrl("/images/project-packaging.jpg"),
     aspect: "aspect-[4/3]",
   },
   {
@@ -56,7 +57,7 @@ const PROJECTS: Project[] = [
       "A futuristic hardware dashboard and interactive design system engineered for autonomous drone control centers.",
     tags: ["Interface Design", "WebGL 3D", "Autonomous UI"],
     year: "2026",
-    image: "/images/project-digital.jpg",
+    image: getCloudinaryUrl("/images/project-digital.jpg"),
     aspect: "aspect-[1/1]",
   },
   {
@@ -69,7 +70,7 @@ const PROJECTS: Project[] = [
       "Monochrome magazine publication system featuring variable kinetic type dynamics, modular grid layouts, and archival typography.",
     tags: ["Editorial", "Variable Type", "Print Grid"],
     year: "2025",
-    image: "/images/project-editorial.jpg",
+    image: getCloudinaryUrl("/images/project-editorial.jpg"),
     aspect: "aspect-[16/10]",
   },
 ];
