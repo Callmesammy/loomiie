@@ -26,11 +26,11 @@ const BRAND_ITEMS: BrandItem[] = [
   },
   {
     id: "b-02",
-    title: "Banana Health",
-    subtitle: "Wellness & Telehealth",
-    description: "Modern wellness identity, cheerful color palette, iconic symbolic mark, and design tokens.",
-    image: "/cloud-architecture/card1-architecture.jpg",
-    alt: "Banana Health Labs",
+    title: "Logo Design",
+    subtitle: "Brand Identity & Tokens",
+    description: "Bespoke logomark geometry, visual brand tokens, color palettes, and comprehensive identity systems.",
+    image: getCloudinaryUrl("service-color.jpg"),
+    alt: "LOOMIE Logo Design",
   },
   {
     id: "b-03",
