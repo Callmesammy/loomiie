@@ -14,7 +14,7 @@ const PUBLIC_DIR = path.join(ROOT_DIR, "public");
  * Set environment variables in .env.local:
  * CLOUDINARY_URL=cloudinary://API_KEY:API_SECRET@CLOUD_NAME
  * OR
- * NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
+ * NEXT_CLOUD_NAME=your_cloud_name
  * CLOUDINARY_API_KEY=your_api_key
  * CLOUDINARY_API_SECRET=your_api_secret
  * 
