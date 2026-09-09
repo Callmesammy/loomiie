@@ -35,14 +35,14 @@ const ALL_WORK_PROJECTS: WorkProject[] = [
   },
   {
     id: "banana-health",
-    title: "Banana Health",
-    client: "Banana Health Labs",
-    category: "Logo & Branding",
+    title: "Logo Design",
+    client: "LOOMIE Studio",
+    category: "Logo & Brand Identity",
     year: "2026",
-    image: "/cloud-architecture/card1-architecture.jpg",
-    alt: "Banana Health Brand Identity and Color Palette",
+    image: getCloudinaryUrl("service-color.jpg"),
+    alt: "LOOMIE Logo Design and Brand Architecture Showcase",
     summary:
-      "Modern wellness identity, iconic symbolic mark, and design tokens for a fast-growing digital health platform.",
+      "Bespoke logomark geometry, visual brand tokens, color palettes, and comprehensive identity systems.",
   },
   {
     id: "apple-drink",
@@ -149,10 +149,32 @@ export default function WorkPage() {
           start: "top top",
           end: `+=${totalSteps * 240}%`,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const rawIdx = Math.floor(self.progress * totalSteps);
-            const idx = Math.max(0, Math.min(totalSteps - 1, rawIdx));
-            setActiveCardIndex(idx);
+          onUpdate: () => {
+            let bestIdx = 0;
+            let minDistance = Infinity;
+
+            cards.forEach((card, idx) => {
+              const scale = Number(gsap.getProperty(card, "scale")) || 1.0;
+              const opacity = Number(gsap.getProperty(card, "opacity")) || 0;
+
+              if (opacity > 0.4) {
+                const dist = Math.abs(1.0 - scale);
+                if (dist < minDistance) {
+                  minDistance = dist;
+                  bestIdx = idx;
+                }
+              }
+            });
+
+            cards.forEach((card, idx) => {
+              if (idx === bestIdx) {
+                gsap.set(card, { zIndex: 100, pointerEvents: "auto" });
+              } else {
+                gsap.set(card, { zIndex: 10 + idx, pointerEvents: "none" });
+              }
+            });
+
+            setActiveCardIndex(bestIdx);
           },
         },
       });
@@ -289,15 +311,19 @@ export default function WorkPage() {
 
         {/* Central Stage Container */}
         <div className="relative w-full max-w-[1200px] h-[78vh] sm:h-[82vh] flex items-center justify-center px-4">
-          {ALL_WORK_PROJECTS.map((proj, idx) => (
-            <Link
-              key={proj.id}
-              href={`/work/${proj.id}`}
-              ref={(el) => {
-                cardRefs.current[idx] = el as unknown as HTMLDivElement;
-              }}
-              className="absolute w-[88vw] sm:w-[500px] md:w-[600px] lg:w-[660px] aspect-[16/11] rounded-none overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.18)] border border-stone-300 bg-white group cursor-pointer gpu-layer transform-gpu"
-            >
+          {ALL_WORK_PROJECTS.map((proj, idx) => {
+            const isActive = idx === activeCardIndex;
+            return (
+              <Link
+                key={proj.id}
+                href={`/work/${proj.id}`}
+                ref={(el) => {
+                  cardRefs.current[idx] = el as unknown as HTMLDivElement;
+                }}
+                className={`absolute w-[88vw] sm:w-[500px] md:w-[600px] lg:w-[660px] aspect-[16/11] rounded-none overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.18)] border border-stone-300 bg-white group cursor-pointer gpu-layer transform-gpu transition-[pointer-events,z-index] duration-300 ${
+                  isActive ? "pointer-events-auto z-50" : "pointer-events-none z-10"
+                }`}
+              >
               {/* Media Card Container */}
               <div className="relative w-full h-[73%] overflow-hidden bg-stone-200">
                 {proj.image.endsWith(".mp4") || proj.image.includes(".mp4") ? (
@@ -347,7 +373,8 @@ export default function WorkPage() {
                 </div>
               </div>
             </Link>
-          ))}
+          );
+        })}
         </div>
 
         {/* FLOATING BOTTOM-RIGHT ALL WORK PILL BAR */}
