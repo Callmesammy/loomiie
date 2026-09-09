@@ -165,7 +165,6 @@ export function PartnersSection() {
               </div>
             </div>
           </div>
-        </div>
 
         {/* 3. PARTNER ALLIANCES MATRIX GRID */}
         <div className="space-y-10">
@@ -199,7 +198,7 @@ export function PartnersSection() {
                     className="object-cover transition-transform duration-700 group-hover:scale-108"
                   />
                   <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/85 text-white font-mono text-[10px] font-bold uppercase tracking-widest backdrop-blur-sm border border-white/20">
-                    {item.number} // {item.category}
+                    {`${item.number} // ${item.category}`}
                   </div>
                 </div>
 

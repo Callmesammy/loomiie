@@ -41,28 +41,28 @@ export function CapsulesStickyColsSection() {
 
   // Text Data
   const card1Data = {
-    title: "Cloud Architecture & Strategy",
-    body: "Well-Architected reviews, cost optimization, and scalable infrastructure design tailored to your growth stage.",
+    title: "Brand Architecture & Visual Systems",
+    body: "Crafting logomark geometry, bespoke typography tokens, and unified brand architectures built for high recall.",
   };
 
   const card2Data = {
-    title: "AWS Migration Services",
-    body: "End-to-end migration planning and execution — minimal downtime, validated rollback plans, and post-migration support.",
+    title: "3D WebGL & Motion Engineering",
+    body: "Interactive WebGL canvas animations, GSAP physics, and real-time GPU-rendered motion tailored for modern web apps.",
   };
 
   const card3Data = {
-    title: "Serverless & AI-Powered Development",
-    body: "Custom builds using Lambda, API Gateway, DynamoDB, S3, Cognito, CloudFront, and Amplify — including AI-driven applications powered by Amazon Bedrock.",
+    title: "Tactile Packaging & Surface Graphics",
+    body: "Structural packaging finishes, 3D product visualizers, and spatial graphics that command attention on shelves and screens.",
   };
 
   const card4Data = {
-    title: "Cloud Alliance & Partnership Advisory",
-    body: "Guidance for businesses navigating the AWS partner ecosystem, from certification pathways to co-sell strategy.",
+    title: "High-Speed Edge Web Applications",
+    body: "Next.js digital storefronts and reactive web apps built on edge pipelines for instantaneous loading and conversion.",
   };
 
   const card5Data = {
-    title: "Managed Cloud Support",
-    body: "Ongoing monitoring, security hardening, and optimization to keep your AWS environment efficient and secure.",
+    title: "Strategic Digital Campaigns & Identity",
+    body: "Harmonizing visual storytelling, performance analytics, and social identity systems that turn visitors into loyal advocates.",
   };
 
   const whyWorkWithUsBullets = [
@@ -347,7 +347,7 @@ export function CapsulesStickyColsSection() {
           ref={introHeadingRef}
           className="barlow-font text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center uppercase tracking-tight max-w-5xl leading-[0.92] text-[#f1f1f1] flex flex-wrap justify-center gap-x-[0.25em] gap-y-1"
         >
-          {"ENGINEERING SCALABLE CLOUD & AI ARCHITECTURE THAT MAKES PEOPLE LOOK TWICE.".split(" ").map((word, wIdx) => (
+          {"CRAFTING ICONIC BRAND & DIGITAL EXPERIENCES THAT MAKE PEOPLE LOOK TWICE.".split(" ").map((word, wIdx) => (
             <span key={wIdx} className="inline-block overflow-hidden pb-1">
               <span className="inline-block stagger-word transform-gpu">{word}</span>
             </span>
@@ -378,7 +378,7 @@ export function CapsulesStickyColsSection() {
               </div>
 
               <div className="font-mono text-xs text-[#a1a1a1] uppercase tracking-widest pt-4 border-t border-white/10">
-                LOOMIE CLOUD ARCHITECTURE
+                LOOMIE BRAND ARCHITECTURE
               </div>
             </div>
           </div>
@@ -394,7 +394,7 @@ export function CapsulesStickyColsSection() {
                 <Image
                   ref={colImg1Ref}
                   src="/cloud-architecture/card1-architecture.jpg"
-                  alt="Cloud Architecture & Strategy Showcase"
+                  alt="Brand Architecture & Visual Systems Showcase"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -410,7 +410,7 @@ export function CapsulesStickyColsSection() {
                 <Image
                   ref={colImg2Ref}
                   src="/cloud-architecture/card2-migration.jpg"
-                  alt="AWS Migration Services Showcase"
+                  alt="3D WebGL & Motion Engineering Showcase"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -427,7 +427,7 @@ export function CapsulesStickyColsSection() {
           >
             <div className="relative w-full h-full bg-[#282828] border border-white/15 rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl flex flex-col justify-between">
               
-              {/* Text Wrapper 1 (Image 2 Pair: AWS Migration Services) */}
+              {/* Text Wrapper 1 (Image 2 Pair: 3D WebGL & Motion Engineering) */}
               <div className="relative w-full my-auto space-y-4 z-10">
                 <div className="overflow-hidden">
                   <span
@@ -597,7 +597,7 @@ export function CapsulesStickyColsSection() {
                 <Image
                   ref={colImg3Ref}
                   src="/cloud-architecture/card3-serverless-ai.jpg"
-                  alt="Serverless & AI-Powered Development Showcase"
+                  alt="Tactile Packaging & Surface Graphics Showcase"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -613,7 +613,7 @@ export function CapsulesStickyColsSection() {
                 <Image
                   ref={colImg4Ref}
                   src="/cloud-architecture/card4-partnership.jpg"
-                  alt="Cloud Alliance & Partnership Advisory Showcase"
+                  alt="High-Speed Edge Web Applications Showcase"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -629,7 +629,7 @@ export function CapsulesStickyColsSection() {
                 <Image
                   ref={colImg5Ref}
                   src="/cloud-architecture/card5-managed-support.jpg"
-                  alt="Managed Cloud Support Showcase"
+                  alt="Strategic Digital Campaigns Showcase"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"

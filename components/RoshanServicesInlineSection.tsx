@@ -95,7 +95,7 @@ export function RoshanServicesInlineSection() {
             <InlineSwappingImage
               images={[
                 { src: "/Ping/Screenshot (962).png", alt: "Web Apps" },
-                { src: "/cloud-architecture/card6-why-us.jpg", alt: "Cloud Systems" },
+                { src: "/cloud-architecture/card6-why-us.jpg", alt: "LOOMIE Systems" },
               ]}
               intervalMs={4200}
             />

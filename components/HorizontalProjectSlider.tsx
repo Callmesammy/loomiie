@@ -346,7 +346,7 @@ export function HorizontalProjectSlider() {
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
                         
                         <div className="absolute top-4 left-4 font-mono text-xs font-bold px-3 py-1 bg-black/80 text-white backdrop-blur-md rounded-xs">
-                          {project.number} // {project.year}
+                          {`${project.number} // ${project.year}`}
                         </div>
                       </div>
                     </Link>
