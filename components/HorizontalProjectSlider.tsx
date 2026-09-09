@@ -7,7 +7,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import { LoomieLogoMark } from "./LoomieLogoMark";
-import { InteractiveEyeLogoMark } from "./InteractiveEyeLogoMark";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface AkaruProject {
@@ -27,69 +26,83 @@ interface AkaruProject {
 
 const AKARU_PROJECTS: AkaruProject[] = [
   {
-    id: "proj-1",
+    id: "proj-crunchy",
     number: "01",
-    slug: "kinetic-play-system",
-    title: "Kinetic Play",
-    category: "2026 • SPATIAL PLAY",
-    subCategory: "KINETIC MODULARITY",
-    brandStory: "Modularity is at the heart of our craft. Like building blocks, we engineer fluid design systems that adapt, scale, and captivate across every touchpoint.",
-    brandStory2: "By bridging spatial architecture with dynamic digital motion, we transform complex identity requirements into playful, intuitive visual narratives that invite deep user engagement.",
+    slug: "crunchy-brand",
+    title: "Crunchy",
+    category: "2026 • PACKAGING & BRANDING",
+    subCategory: "TACTILE BRAND IDENTITY",
+    brandStory: "High-contrast tactile snack packaging, brand design tokens, and interactive digital storefront.",
+    brandStory2: "Crafted custom 3D packaging renders, tactile label finishes, and an interactive store that boosted customer engagement.",
     year: "2026",
-    image: getCloudinaryUrl("/images/projects/hero-project-2.jpg"),
-    bgColor: "#0E4C92",
-    textColor: "#F5F3EF",
-  },
-  {
-    id: "proj-2",
-    number: "02",
-    slug: "turn-ideas-into-reality",
-    title: "Ideas Into Reality",
-    category: "2026 • BRAND SYSTEMS",
-    subCategory: "CREATIVE REALIZATION",
-    brandStory: "Loomie turns abstract vision into clear, working digital realities. We design every brand element to link together seamlessly making brands instantly understandable.",
-    brandStory2: "From strategic positioning to interactive web interfaces, our holistic execution ensures that every client message resonates with maximum clarity and measurable impact.",
-    year: "2026",
-    image: getCloudinaryUrl("/images/projects/hero-project-1.jpg"),
+    image: getCloudinaryUrl("crunchy-1.jpg"),
     bgColor: "#E6E3D8",
     textColor: "#0E0E0E",
   },
   {
-    id: "proj-3",
-    number: "03",
-    slug: "creative-stormtrooper",
-    title: "Stormtrooper Craft",
-    category: "2026 • VISUAL CRAFT",
-    subCategory: "ART DIRECTION & DESIGN",
-    brandStory: "Uncompromising precision and artistic discipline. We approach every canvas with meticulous craft to create lasting, iconic visual legacies.",
-    brandStory2: "Rooted in bold design principles and refined technical execution, we construct memorable digital platforms engineered to command attention and endure across evolving trends.",
+    id: "proj-banana",
+    number: "02",
+    slug: "banana-health",
+    title: "Banana Health",
+    category: "2026 • LOGO & BRANDING",
+    subCategory: "TELEHEALTH DESIGN TOKENS",
+    brandStory: "Modern wellness identity, iconic symbolic mark, and design tokens for telehealth platform.",
+    brandStory2: "Created a warm, cheerful color palette, custom type tokens, and a versatile symbolic logo mark.",
     year: "2026",
-    image: getCloudinaryUrl("/images/projects/hero-project-3.jpg"),
-    bgColor: "#F0ECE1",
+    image: "/cloud-architecture/card1-architecture.jpg",
+    bgColor: "#F5F3EF",
     textColor: "#0E0E0E",
   },
   {
-    id: "proj-4",
-    number: "04",
-    slug: "joyful-brand-experience",
-    title: "Joyful Experience",
-    category: "2026 • DIGITAL EXPERIENCE",
-    subCategory: "SENSORY EXPRESSION",
-    brandStory: "Design that connects emotionally. We craft sensory brand experiences that spark instant delight, clarity, and enduring client loyalty.",
-    brandStory2: "Through thoughtful interaction design, vibrant typography, and micro-animations, we turn routine user journeys into unforgettable brand encounters.",
+    id: "proj-apple-drink",
+    number: "03",
+    slug: "apple-drink",
+    title: "Apple Drink",
+    category: "2026 • MOTION & VISUAL IDENTITY",
+    subCategory: "3D MOTION & PACKAGING",
+    brandStory: "Refreshing visual identity and 3D kinetic video motion animation engineered for a global beverage launch.",
+    brandStory2: "Vibrant tactile packaging renders and dynamic digital campaign assets engineered for over 14.2M video impressions.",
     year: "2026",
-    image: getCloudinaryUrl("/images/projects/hero-project-4.jpg"),
-    bgColor: "#1A1C23",
+    image: "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo.jpg",
+    bgColor: "#0E4C92",
+    textColor: "#F5F3EF",
+  },
+  {
+    id: "proj-ping",
+    number: "04",
+    slug: "ping",
+    title: "Ping Social",
+    category: "2026 • UI/UX ARCHITECTURE",
+    subCategory: "SOCIAL APP DESIGN SYSTEM",
+    brandStory: "Ultra-responsive social interaction platform designed with elegant dark mode aesthetic and real-time connectivity.",
+    brandStory2: "Engineered high-fidelity dark theme design tokens and fluid user journey maps built for over 1M+ daily user interactions.",
+    year: "2026",
+    image: "/Ping/Screenshot (949).png",
+    bgColor: "#111827",
+    textColor: "#F5F3EF",
+  },
+  {
+    id: "proj-luxury-hotel",
+    number: "05",
+    slug: "luxury-hotel",
+    title: "Vine Luxury Hotel",
+    category: "2026 • LUXURY HOSPITALITY",
+    subCategory: "SPATIAL & BRAND ARCHITECTURE",
+    brandStory: "Ultra-luxury boutique hotel visual identity and immersive spatial web experience for high-net-worth global travelers.",
+    brandStory2: "Custom typography tokens, tactile reservation journeys, and elegant dark aesthetics built for maximum conversion.",
+    year: "2026",
+    image: "/cloud-architecture/card6-why-us.jpg",
+    bgColor: "#18181B",
     textColor: "#F5F3EF",
   },
 ];
 
 const SLIDE_COLORS = [
+  { bg: "#E6E3D8", text: "#0E0E0E" },
   { bg: "#F5F3EF", text: "#0E0E0E" },
   { bg: "#0E4C92", text: "#F5F3EF" },
-  { bg: "#E6E3D8", text: "#0E0E0E" },
-  { bg: "#F0ECE1", text: "#0E0E0E" },
-  { bg: "#1A1C23", text: "#F5F3EF" },
+  { bg: "#111827", text: "#F5F3EF" },
+  { bg: "#18181B", text: "#F5F3EF" },
 ];
 
 export function HorizontalProjectSlider() {
@@ -108,19 +121,17 @@ export function HorizontalProjectSlider() {
       const getScrollAmount = () => container.scrollWidth - window.innerWidth;
       let lastIndex = -1;
 
-      // Master ScrollTween for smooth horizontal slide scrubbing
-      const scrollTween = gsap.to(container, {
-        x: () => -getScrollAmount(),
-        ease: "none",
+      // Master Scroll Timeline for smooth horizontal slide scrubbing
+      const scrollTween = gsap.timeline({
         scrollTrigger: {
           trigger: trigger,
           pin: true,
-          scrub: 0.8,
+          scrub: 1.0,
           start: "top top",
-          end: () => `+=${getScrollAmount() * 0.75}`,
+          end: () => `+=${getScrollAmount() * 1.1}`,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const totalItems = AKARU_PROJECTS.length + 1;
+            const totalItems = AKARU_PROJECTS.length;
             const progress = self.progress;
             const idx = Math.min(totalItems - 1, Math.floor(progress * totalItems));
 
@@ -133,8 +144,8 @@ export function HorizontalProjectSlider() {
               gsap.to(trigger, {
                 backgroundColor: targetColor.bg,
                 color: targetColor.text,
-                duration: 0.6,
-                ease: "power2.out",
+                duration: 0.8,
+                ease: "power2.inOut",
                 overwrite: "auto",
               });
             }
@@ -142,23 +153,38 @@ export function HorizontalProjectSlider() {
         },
       });
 
+      // Sequential Slide Movement
+      const totalProjects = AKARU_PROJECTS.length;
+      for (let i = 1; i < totalProjects; i++) {
+        const targetProgress = i / (totalProjects - 1);
+
+        scrollTween.to(container, {
+          x: () => -getScrollAmount() * targetProgress,
+          ease: "power2.inOut",
+          duration: 1.2,
+        });
+
+        scrollTween.to({}, { duration: 0.6, ease: "power2.inOut" });
+      }
+
       const projectCards = gsap.utils.toArray<HTMLElement>(".akaru-project-card");
       projectCards.forEach((card) => {
         const imageWrap = card.querySelector(".akaru-image-wrap");
-        const titleBlock = card.querySelector(".akaru-title-block");
+        const innerImg = card.querySelector("img, video");
 
-        if (imageWrap) {
+        if (imageWrap && innerImg) {
           gsap.fromTo(
-            imageWrap,
-            { scale: 0.94, opacity: 0.8 },
+            innerImg,
+            { scale: 1.2, rotate: -2 },
             {
               scale: 1,
-              opacity: 1,
+              rotate: 0,
+              duration: 1.2,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
                 containerAnimation: scrollTween,
-                start: "left right-=20%",
+                start: "left right",
                 end: "center center",
                 scrub: true,
               },
@@ -166,20 +192,63 @@ export function HorizontalProjectSlider() {
           );
         }
 
-        if (titleBlock) {
+        const projectNum = card.querySelector(".akaru-project-num");
+        const projectTitle = card.querySelector(".akaru-project-title");
+        const projectDesc = card.querySelector(".akaru-project-desc");
+
+        if (projectNum) {
           gsap.fromTo(
-            titleBlock,
+            projectNum,
             { y: 30, opacity: 0 },
             {
               y: 0,
               opacity: 1,
               duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: scrollTween,
+                start: "left center+=30%",
+                toggleActions: "play reverse play reverse",
+              },
+            }
+          );
+        }
+
+        if (projectTitle) {
+          gsap.fromTo(
+            projectTitle,
+            { y: 50, opacity: 0, scale: 0.95 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: card,
                 containerAnimation: scrollTween,
+                start: "left center+=25%",
+                toggleActions: "play reverse play reverse",
+              },
+            }
+          );
+        }
+
+        if (projectDesc) {
+          gsap.fromTo(
+            projectDesc,
+            { y: 40, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: scrollTween,
                 start: "left center+=20%",
-                toggleActions: "play none none reverse",
+                toggleActions: "play reverse play reverse",
               },
             }
           );
@@ -189,8 +258,6 @@ export function HorizontalProjectSlider() {
 
     return () => ctx.revert();
   }, []);
-
-  const isDarkText = currentTheme.text === "#0E0E0E";
 
   return (
     <section
@@ -204,193 +271,102 @@ export function HorizontalProjectSlider() {
           ref={containerRef}
           className="flex h-full items-center will-change-transform"
         >
-          {/* SLIDE 0: Hero Title & Studio Video Showcase (Expanded width for complete sub-nav header: lg:w-[68vw] xl:w-[66vw]) */}
-          <div className="flex-none w-[100vw] lg:w-[68vw] xl:w-[66vw] h-full bg-transparent border-r border-current/15 pt-3 sm:pt-4 lg:pt-5 px-3.5 sm:px-6 lg:px-8 pb-5 flex flex-col justify-between relative z-10 gpu-layer">
-            {/* Desktop Top Sub-Navigation Header Bar — Balanced left padding (pl-40 lg:pl-48 xl:pl-52) clear of LOOMIE pill logo */}
-            <div className="hidden lg:flex items-center justify-between w-full border-b border-current/15 pb-2.5 mb-1 z-20 pl-40 lg:pl-48 xl:pl-52">
-              <div className="flex items-center gap-6 lg:gap-8 xl:gap-10 font-mono text-xs font-bold tracking-widest">
-                <Link
-                  href="/story"
-                  className="px-3.5 py-1 border border-[#0E0E0E] text-[#0E0E0E] bg-transparent rounded-full flex items-center gap-2 hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 group shadow-xs"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#0E0E0E] group-hover:bg-white transition-colors" />
-                  <span>Story</span>
-                </Link>
-                <Link href="/values" className="hover:opacity-60 transition-opacity">
-                  <span>Values</span>
-                </Link>
-                <Link href="/about-us" className="hover:opacity-60 transition-opacity">
-                  <span>About Us</span>
-                </Link>
-                <Link href="/who-we-build-for" className="hover:opacity-60 transition-opacity">
-                  <span>Who We Build For</span>
-                </Link>
-                <Link href="/contact" className="hover:opacity-60 transition-opacity">
-                  <span>Connect</span>
-                </Link>
-              </div>
-
-              <Link
-                href="/contact"
-                className="px-5 py-2 bg-[#0E0E0E] text-white font-bold text-xs sm:text-sm tracking-wider items-center gap-2 shadow-md hover:bg-[#222225] transition-all rounded-full flex shrink-0"
+          {/* SLIDES: Studio Showcase Cards */}
+          {AKARU_PROJECTS.map((project, index) => {
+            const isActive = activeIndex === index;
+            return (
+              <div
+                key={project.id}
+                className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[74vw] h-full border-r border-current/15 pt-6 sm:pt-10 px-4 sm:px-10 lg:px-14 pb-8 flex flex-col justify-between relative z-10 gpu-layer"
               >
-                <span>Let's Talk</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
-            </div>
-
-            {/* Headline, Monumental Video Showcase & Intro Text */}
-            <div className="my-auto space-y-2 sm:space-y-3">
-              <h1 className="text-6xl sm:text-[8.5rem] lg:text-[10rem] font-black tracking-tighter uppercase leading-[0.85] font-sans flex items-center gap-1 sm:gap-2">
-                <span>L</span>
-                <span className="inline-flex items-center justify-center px-0.5 sm:px-1">
-                  <InteractiveEyeLogoMark
-                    pillColor={isDarkText ? "fill-[#0E0E0E]" : "fill-white"}
-                    socketColor={isDarkText ? "fill-white" : "fill-[#0C0C0F]"}
-                    pupilColor={isDarkText ? "fill-[#0E0E0E]" : "fill-white"}
-                    className="h-[0.68em] w-auto inline-block"
-                  />
-                </span>
-                <span>MIE</span>
-              </h1>
-
-              {/* Video Showcase Player — Reduced height on mobile view (h-[44vh]) */}
-              <div className="relative w-full h-[44vh] sm:h-[48vh] lg:h-[38vh] xl:h-[40vh] overflow-hidden border border-current/20 shadow-2xl my-1 group">
-                {/* Desktop Video Overlays */}
-                <div className="hidden lg:block absolute top-3 left-4 z-10 px-3 py-1 bg-[#0E0E0E]/80 text-white backdrop-blur-md rounded-xs font-mono text-[10px] font-bold uppercase tracking-wider">
-                  01 // KINETIC REEL
-                </div>
-                <div className="hidden lg:block absolute bottom-3 right-4 z-10 px-3 py-1 bg-[#0E0E0E]/80 text-white backdrop-blur-md rounded-xs font-mono text-[10px] font-bold uppercase tracking-wider">
-                  LOOMIE STUDIO © 2026
-                </div>
-
-                <video
-                  src={getCloudinaryUrl("/make_a_video_with_those_please.mp4", "video")}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover scale-[1.08] transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-              </div>
-
-              <p className="font-sans text-xs sm:text-sm md:text-base leading-relaxed font-normal max-w-xl opacity-90">
-                We are a kinetic web & design agency. Clear. Connected. Complete. Engineering bold spatial concepts and high-converting visual systems.
-              </p>
-
-              {/* Social Links Row */}
-              <div className="pt-2 sm:pt-3 border-t border-current/15 flex flex-wrap items-center justify-between gap-3 sm:gap-4 font-mono text-xs font-bold tracking-widest shrink-0">
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://www.instagram.com/byloomie/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
-                  >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/loomieofficial/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                    className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
-                  >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://x.com/Loomieofficial"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="X"
-                    className="p-2 border border-current/20 rounded-full hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-xs flex items-center justify-center"
-                  >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="hidden sm:flex items-center gap-2 text-[10px] opacity-60">
-                    <span>SCROLL HORIZONTALLY</span>
-                    <ArrowRight className="w-4 h-4 animate-pulse" />
-                  </div>
-                  <div className="flex items-center gap-2 pl-4 border-l border-current/20">
-                    <LoomieLogoMark className="h-6 w-auto text-current" />
-                    <span className="font-sans font-bold text-sm tracking-tight">LOOMIE</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* SLIDES 1 TO 4: Studio Showcase Cards */}
-          {AKARU_PROJECTS.map((project, index) => (
-            <div
-              key={project.id}
-              className="akaru-project-card flex-none w-[100vw] lg:w-[78vw] xl:w-[76vw] h-full bg-transparent border-r border-current/15 flex flex-col justify-start relative overflow-hidden group select-none transition-colors duration-500 gpu-layer"
-            >
-              {/* Media Showcase Frame (Mobile: h-[58vh] | Desktop: lg:h-[64vh] xl:h-[66vh]) */}
-              <div className="akaru-image-wrap relative w-full h-[58vh] sm:h-[60vh] lg:h-[64vh] xl:h-[66vh] mt-0 overflow-hidden border-b border-current/15 origin-top shadow-2xl">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  quality={100}
-                  priority
-                  unoptimized
-                  sizes="100vw"
-                  className="akaru-image object-cover rounded-none transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                />
-              </div>
-
-              {/* Floating Slide Index Badge on Desktop */}
-              <div className="hidden lg:flex absolute bottom-6 right-8 z-20 items-center gap-2 px-3.5 py-1.5 bg-[#0E0E0E] text-white font-mono text-xs font-bold rounded-full shadow-lg">
-                <span>SLIDE 0{index + 1} / 04</span>
-              </div>
-
-              {/* Bottom Info Container — justify-start on mobile eliminates vertical gap before text */}
-              <div className="akaru-title-block p-4 sm:p-6 lg:p-8 flex flex-col justify-start gap-2 sm:gap-3 lg:justify-between flex-1 relative gpu-layer pb-4 sm:pb-8">
-                <div className="akaru-category-badge flex flex-wrap items-center justify-between gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider">
-                  <div className="flex items-center gap-2">
-                    <span className="hidden sm:inline-block px-2.5 py-0.5 border border-current/20 rounded-full font-mono text-xs font-bold">
-                      00{index + 1}
+                {/* Project Header Meta Bar */}
+                <div className="flex items-center justify-between font-mono border-b border-current/15 pb-4">
+                  <div className="flex items-center gap-3">
+                    <span className="akaru-project-num text-xs sm:text-sm font-bold px-3 py-1 border border-current/30 rounded-full">
+                      {project.number}
                     </span>
-                    <span className="opacity-95">{project.category}</span>
+                    <span className="text-xs sm:text-sm font-bold tracking-widest uppercase">
+                      {project.category}
+                    </span>
                   </div>
-                  <span className="text-xs opacity-75 hidden sm:inline-block">
-                    {project.subCategory}
+                  <span className="text-xs font-bold tracking-widest opacity-60 uppercase hidden sm:inline">
+                    LOOMIE CASE STUDY
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 items-start pt-1">
-                  <div className="lg:col-span-11 space-y-3.5 sm:space-y-4">
-                    <h2 className="akaru-project-title text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight font-sans leading-tight text-current uppercase">
-                      {project.title}
-                    </h2>
+                {/* Main Card Content */}
+                <div className="my-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center py-4">
+                  {/* Left Column: Case Study Info */}
+                  <div className="lg:col-span-5 space-y-4 sm:space-y-6">
+                    <div className="space-y-2">
+                      <span className="font-mono text-xs font-bold text-current/60 uppercase tracking-widest">
+                        {project.subCategory}
+                      </span>
+                      <h2 className="akaru-project-title text-4xl sm:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9] font-sans">
+                        {project.title}
+                      </h2>
+                    </div>
 
-                    {/* Loomie Brand Story Paragraph 1 — text-[15px] & leading-[1.75] on mobile */}
-                    <p className="akaru-brand-story font-sans text-[15px] sm:text-base md:text-lg leading-[1.75] sm:leading-relaxed opacity-95 font-medium">
+                    <p className="akaru-project-desc font-sans text-sm sm:text-base lg:text-lg leading-relaxed opacity-85">
                       {project.brandStory}
                     </p>
 
-                    {/* Loomie Brand Story Continuation Paragraph 2 — text-[15px] & leading-[1.75] on mobile */}
                     {project.brandStory2 && (
-                      <p className="akaru-brand-story-2 font-sans text-[15px] sm:text-base md:text-lg leading-[1.75] sm:leading-relaxed opacity-90 font-medium pt-1">
+                      <p className="font-sans text-xs sm:text-sm leading-relaxed opacity-70 hidden sm:block">
                         {project.brandStory2}
                       </p>
                     )}
+
+                    <div className="pt-2">
+                      <Link
+                        href={`/work/${project.slug}`}
+                        className="inline-flex items-center gap-3 px-6 py-3 border border-current rounded-full font-mono text-xs font-bold uppercase tracking-wider hover:bg-current hover:text-white transition-all duration-300 group cursor-pointer shadow-md"
+                        style={{
+                          color: isActive ? project.textColor : "inherit",
+                        }}
+                      >
+                        <span>EXPLORE CASE STUDY</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Right Column: High Impact Image Frame */}
+                  <div className="lg:col-span-7">
+                    <Link href={`/work/${project.slug}`} className="block group cursor-pointer">
+                      <div className="akaru-image-wrap relative w-full h-[280px] sm:h-[380px] lg:h-[460px] rounded-2xl overflow-hidden border border-current/20 shadow-2xl bg-stone-900">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          priority={index === 0}
+                          sizes="(max-width: 1024px) 100vw, 55vw"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
+                        
+                        <div className="absolute top-4 left-4 font-mono text-xs font-bold px-3 py-1 bg-black/80 text-white backdrop-blur-md rounded-xs">
+                          {project.number} // {project.year}
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Bottom Footer Telemetry */}
+                <div className="border-t border-current/15 pt-4 flex items-center justify-between font-mono text-xs opacity-70">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
+                    <span>PROJECT {index + 1} OF {AKARU_PROJECTS.length}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <LoomieLogoMark className="h-4 w-auto text-current" />
+                    <span>LOOMIE 2026</span>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

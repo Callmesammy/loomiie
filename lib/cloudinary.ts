@@ -12,7 +12,18 @@ export function getCloudinaryUrl(
     return path;
   }
 
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dxmy6yy5";
+  // Local folder assets in public directory
+  if (
+    path.startsWith("/Apple Drink/") ||
+    path.startsWith("/Ping/") ||
+    path.startsWith("/luxury-hotel/") ||
+    path.startsWith("/files/") ||
+    path.startsWith("/logo/")
+  ) {
+    return path;
+  }
+
+  const cloudName = process.env.NEXT_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dxmy6yy5";
   const baseUrl = `https://res.cloudinary.com/${cloudName}`;
 
   // Extract filename since media assets were uploaded to Cloudinary's root folder

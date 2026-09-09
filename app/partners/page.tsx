@@ -7,17 +7,17 @@ import { Metadata } from "next";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
-  title: "Official Partners & Alliances | LOOMIE Studio",
+  title: "Official Partners & Alliances | LOOMIE",
   description:
     "Explore LOOMIE's official technology partners, WebGL graphics pipeline, spatial acoustic telemetry, and film production alliances.",
 };
 
 export default function PartnersPage() {
   return (
-    <main className="relative min-h-screen bg-[#F5F3EF] text-[#0E0E0E] overflow-hidden">
+    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
       <Navbar />
       <SubpageHeroHeader
-        badge="[LOOMIE ALLIANCES // EST. 2026]"
+        badge="[LOOMIE ALLIANCES - EST. 2026]"
         line1="BUILDING WHAT'S NEXT"
         line2="TOGETHER"
         bannerImage={getCloudinaryUrl("/images/partners/film-production.jpg")}

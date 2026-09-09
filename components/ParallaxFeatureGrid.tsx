@@ -28,7 +28,7 @@ const FEATURE_ITEMS: FeatureCard[] = [
     category: "WebGL Shaders & Physics",
     description:
       "High-frame-rate kinetic animation systems engineered with GSAP, ScrollTrigger, and GPU-accelerated smooth inertia physics.",
-    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
+    image: getCloudinaryUrl("/images/project-digital.jpg"),
     slug: "lumino-3d-kinetic",
     speed: -45,
     icon: <Zap className="w-5 h-5 text-white" />,
@@ -104,7 +104,7 @@ export function ParallaxFeatureGrid() {
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1 bg-white/10 border border-slate-700/60 text-white font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest">
             <span className="w-2 h-2 bg-white rounded-none animate-pulse" />
-            <span>03 — SYSTEM ARCHITECTURE & CORE CAPABILITIES</span>
+            <span>SYSTEM ARCHITECTURE & CORE CAPABILITIES</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight uppercase text-foreground">
@@ -118,19 +118,20 @@ export function ParallaxFeatureGrid() {
       </div>
 
       {/* 3-Column Parallax Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 pt-4 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-4 items-start">
         {FEATURE_ITEMS.map((item, idx) => (
-          <div
+          <Link
             key={item.id}
+            href={`/work/${item.slug}`}
             ref={(el) => {
               cardsRef.current[idx] = el;
             }}
-            className="group relative rounded-none overflow-hidden bg-surface-card/90 backdrop-blur-xl border border-slate-800 p-8 shadow-2xl transition-all duration-500 hover:border-slate-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] cursor-pointer flex flex-col justify-between h-full space-y-8"
+            className="feature-parallax-card group relative p-8 bg-surface-card border border-slate-800/80 hover:border-white/40 transition-colors duration-500 flex flex-col justify-between shadow-2xl space-y-8 h-full"
           >
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                 <span className="font-mono text-xs font-bold text-white px-3 py-1 bg-white/10 border border-slate-700">
-                  SYS {item.number}
+                  LOOMIE CORE
                 </span>
                 <div className="p-2 rounded-none bg-background border border-slate-800">
                   {item.icon}

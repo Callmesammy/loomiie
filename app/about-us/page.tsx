@@ -7,21 +7,21 @@ import { Metadata } from "next";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
-  title: "About Us — Studio Disciplines & Capabilities | LOOMIE Studio",
+  title: "About Us — Studio Disciplines & Capabilities | LOOMIE",
   description:
     "LOOMIE is a kinetic web & design studio. Clear. Connected. Complete. Digital marketing, SEO architecture, brand strategy, and WebGL motion engineering.",
 };
 
 export default function AboutUsPage() {
   return (
-    <main className="relative min-h-screen bg-[#F5F3EF] text-[#0E0E0E] overflow-hidden">
+    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
       <Navbar />
       <AkaruCinematicExpandingImage
-        badge="LOOMIE STUDIO // ABOUT US"
+        badge="LOOMIE - ABOUT US"
         title="RESULT DRIVEN KINETIC DESIGN & SYSTEMS"
         subtitle="SCROLL TO EXPAND DISCOVERY"
         image={getCloudinaryUrl("/images/about/brand-architecture.jpg")}
-        alt="LOOMIE Studio Brand & Systems Architecture"
+        alt="LOOMIE Brand & Systems Architecture"
       />
       <div>
         <AboutUsSection />

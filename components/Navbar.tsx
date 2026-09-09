@@ -23,8 +23,8 @@ const MENU_ITEMS: MenuNavItem[] = [
     label: "Home",
     href: "/",
     number: "01",
-    image: getCloudinaryUrl("/images/projects/hero-project-1.jpg"),
-    alt: "LOOMIE Kinetic Web & Design Studio",
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
+    alt: "LOOMIE Home & Motion Canvas",
   },
   {
     label: "Work",
@@ -34,39 +34,32 @@ const MENU_ITEMS: MenuNavItem[] = [
     alt: "LOOMIE Work & Portfolio Showcase",
   },
   {
-    label: "Expertise",
-    href: "/expertise",
-    number: "03",
-    image: getCloudinaryUrl("/images/services/service-sketch.jpg"),
-    alt: "LOOMIE Studio Capabilities & Core Disciplines",
-  },
-  {
     label: "About Us",
     href: "/about-us",
-    number: "04",
+    number: "03",
     image: getCloudinaryUrl("/images/about/brand-architecture.jpg"),
     alt: "LOOMIE Team & 3D Rolling Cube Canvas",
   },
   {
     label: "Story",
     href: "/story",
-    number: "05",
-    image: getCloudinaryUrl("/images/services/service-color.jpg"),
-    alt: "LOOMIE Studio Chronicle & Genesis",
+    number: "04",
+    image: "/cloud-architecture/card1-architecture.jpg",
+    alt: "LOOMIE Chronicle & Genesis",
   },
   {
     label: "Values",
     href: "/values",
-    number: "06",
+    number: "05",
     image: getCloudinaryUrl("/images/services/service-uiux.jpg"),
     alt: "LOOMIE Core Discipline Values",
   },
   {
     label: "Connect",
     href: "/contact",
-    number: "07",
+    number: "06",
     image: getCloudinaryUrl("/images/services/service-desktop.jpg"),
-    alt: "LOOMIE Studio Booking & Collaboration",
+    alt: "LOOMIE Booking & Collaboration",
   },
 ];
 
@@ -82,7 +75,7 @@ export function Navbar() {
 
   // Preloader Navigation State for Submenu Clicks
   const [isNavigating, setIsNavigating] = useState(false);
-  const [navigatingTitle, setNavigatingTitle] = useState("LOOMIE KINETIC STUDIO");
+  const [navigatingTitle, setNavigatingTitle] = useState("LOOMIE");
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const menuLinksRef = useRef<HTMLDivElement>(null);
@@ -262,13 +255,13 @@ export function Navbar() {
     }, 200);
   };
 
-  const currentMedia = MENU_ITEMS[activeImageIndex];
+  const currentMedia = MENU_ITEMS[activeImageIndex] || MENU_ITEMS[0];
 
   return (
     <>
       {/* Submenu Click Navigation Loading Preloader Overlay */}
       {isNavigating && (
-        <div className="fixed inset-0 z-[9999] bg-[#F5F3EF] flex items-center justify-center animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-[9999] bg-[#050505] text-white flex items-center justify-center animate-in fade-in duration-200">
           <Preloader variant="brief" pageTitle={navigatingTitle} />
         </div>
       )}
@@ -279,7 +272,11 @@ export function Navbar() {
         <a
           href="/"
           onClick={handleLogoClick}
-          className="pointer-events-auto group flex items-center gap-1 font-bold text-sm sm:text-2xl tracking-tighter uppercase px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#0E0E0E] text-white border border-white/20 shadow-2xl transition-all duration-300 hover:scale-105 select-none font-sans cursor-pointer backdrop-blur-md"
+          className={`pointer-events-auto group flex items-center gap-1 font-bold text-sm sm:text-2xl tracking-tighter uppercase px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#0E0E0E] text-white border border-white/20 transition-all duration-500 hover:scale-105 select-none font-sans cursor-pointer backdrop-blur-md ${
+            !isHomePage || showNavbar
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-4 pointer-events-none"
+          }`}
           aria-label="LOOMIE Home"
         >
           <span>L</span>
@@ -292,7 +289,7 @@ export function Navbar() {
         {/* Top Right: MENU • Button */}
         <button
           onClick={toggleMenu}
-          className={`pointer-events-auto px-4 py-1.5 sm:px-7 sm:py-3 bg-[#0E0E0E] text-white rounded-full font-mono text-[11px] sm:text-sm font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase flex items-center gap-2 sm:gap-3 shadow-2xl transition-all duration-500 border border-white/15 group ${
+          className={`pointer-events-auto px-4 py-1.5 sm:px-7 sm:py-3 bg-[#0E0E0E] text-white rounded-full font-mono text-[11px] sm:text-sm font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase flex items-center gap-2 sm:gap-3 transition-all duration-500 border border-white/15 group ${
             !isHomePage || showNavbar
               ? "opacity-100 translate-y-0 hover:bg-[#222225] hover:scale-105 active:scale-95"
               : "opacity-0 -translate-y-4 pointer-events-none"
@@ -307,26 +304,26 @@ export function Navbar() {
       {/* FULL-SCREEN OVERLAY MENU */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[9990] bg-[#F5F3EF] text-[#0E0E0E] hidden flex-col justify-between p-6 sm:p-12 lg:p-16 select-none overflow-hidden"
+        className="fixed inset-0 z-[9990] bg-[#050505] text-white hidden flex-col justify-between p-6 sm:p-12 lg:p-16 select-none overflow-hidden"
         style={{ display: "none" }}
       >
         {/* Menu Top Header Bar */}
-        <div className="flex items-center justify-between max-w-[1800px] w-full mx-auto pb-4 border-b border-stone-300 shrink-0">
+        <div className="flex items-center justify-between max-w-[1800px] w-full mx-auto pb-4 border-b border-white/15 shrink-0">
           <a
             href="/"
             onClick={handleLogoClick}
-            className="flex items-center gap-1 font-bold text-2xl tracking-tighter uppercase text-[#0E0E0E]"
+            className="flex items-center gap-1 font-bold text-2xl tracking-tighter uppercase text-white"
           >
             <span>L</span>
             <span className="inline-flex items-center justify-center px-0.5">
-              <LoomieLogoMark className="h-[0.75em] w-auto inline-block align-middle text-[#0E0E0E]" />
+              <LoomieLogoMark className="h-[0.75em] w-auto inline-block align-middle text-white" />
             </span>
             <span>MIE</span>
           </a>
 
           <button
             onClick={toggleMenu}
-            className="p-3 rounded-full bg-stone-200 hover:bg-[#0E0E0E] hover:text-white transition-colors duration-300 cursor-pointer"
+            className="p-3 rounded-full bg-white/10 text-white hover:bg-[#f75828] transition-colors duration-300 cursor-pointer border border-white/20"
             aria-label="Close Menu"
           >
             <X className="w-6 h-6" />
@@ -338,7 +335,7 @@ export function Navbar() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* LEFT COLUMN: Dynamic Hover Photo Preview Box */}
             <div className="lg:col-span-8 hidden lg:block">
-              <div className="relative w-full h-[360px] xl:h-[460px] rounded-2xl overflow-hidden border border-stone-300 bg-stone-900 shadow-2xl">
+              <div className="relative w-full h-[360px] xl:h-[460px] rounded-2xl overflow-hidden border border-white/20 bg-stone-900 shadow-2xl">
                 <Image
                   src={currentMedia.image}
                   alt={currentMedia.alt}
@@ -349,13 +346,13 @@ export function Navbar() {
                     isFading ? "opacity-0 scale-95 blur-xs" : "opacity-100 scale-100 blur-none"
                   }`}
                 />
-                <div className="absolute top-4 left-4 font-mono text-xs font-bold px-3 py-1 bg-black/80 text-white backdrop-blur-md rounded-xs">
-                  {currentMedia.number} // {currentMedia.label.toUpperCase()}
+                <div className="absolute top-4 left-4 font-mono text-xs font-bold px-3 py-1 bg-black/80 text-white backdrop-blur-md rounded-xs border border-white/15">
+                  {currentMedia.label.toUpperCase()}
                 </div>
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Navigation Links List shifted rightwards on mobile */}
+            {/* RIGHT COLUMN: Navigation Links List */}
             <div
               ref={menuLinksRef}
               className="lg:col-span-4 flex flex-col items-start lg:items-end gap-3 sm:gap-4 font-sans tracking-tight text-3xl sm:text-4xl xl:text-5xl font-light pl-8 sm:pl-16 lg:pl-0"
@@ -370,8 +367,8 @@ export function Navbar() {
                     onClick={(e) => handleSubmenuClick(e, item.href, item.label.toUpperCase())}
                     className={`group cursor-pointer transition-all duration-300 py-1 ${
                       isActive
-                        ? "text-[#0E0E0E] font-normal translate-x-0 lg:-translate-x-2"
-                        : "text-stone-400 hover:text-[#0E0E0E]"
+                        ? "text-[#f75828] font-normal translate-x-0 lg:-translate-x-2"
+                        : "text-stone-300 hover:text-white"
                     }`}
                   >
                     <span>{item.label}</span>
@@ -383,14 +380,14 @@ export function Navbar() {
         </div>
 
         {/* Menu Bottom Footer */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] sm:text-xs text-stone-500 uppercase tracking-widest max-w-[1800px] w-full mx-auto border-t border-stone-300 pt-4 shrink-0">
-          <span className="text-[#0E0E0E] font-bold">LOOMIE STUDIO</span>
-          <div className="flex items-center gap-4 text-[#0E0E0E] font-bold">
-            <a href="https://www.instagram.com/byloomie/" target="_blank" rel="noopener noreferrer" className="hover:underline">INSTAGRAM</a>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] sm:text-xs text-stone-400 uppercase tracking-widest max-w-[1800px] w-full mx-auto border-t border-white/15 pt-4 shrink-0">
+          <span className="text-white font-bold">LOOMIE</span>
+          <div className="flex items-center gap-4 text-white font-bold">
+            <a href="https://www.instagram.com/byloomie/" target="_blank" rel="noopener noreferrer" className="hover:text-[#f75828] transition-colors">INSTAGRAM</a>
             <span>•</span>
-            <a href="https://www.linkedin.com/company/loomieofficial/" target="_blank" rel="noopener noreferrer" className="hover:underline">LINKEDIN</a>
+            <a href="https://www.linkedin.com/company/loomieofficial/" target="_blank" rel="noopener noreferrer" className="hover:text-[#f75828] transition-colors">LINKEDIN</a>
             <span>•</span>
-            <a href="https://x.com/Loomieofficial" target="_blank" rel="noopener noreferrer" className="hover:underline">X</a>
+            <a href="https://x.com/Loomieofficial" target="_blank" rel="noopener noreferrer" className="hover:text-[#f75828] transition-colors">X</a>
           </div>
         </div>
       </div>

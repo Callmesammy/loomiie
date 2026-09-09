@@ -123,18 +123,15 @@ export function ContactSection({
     <section
       id="contact"
       ref={containerRef}
-      className="w-full bg-[#F5F3EF] text-[#0E0E0E] py-16 lg:py-28 select-none"
+      className="w-full bg-[#050505] text-white py-16 lg:py-28 select-none"
     >
       <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-14 space-y-20 lg:space-y-28">
         
         {/* 1. SECTION TITLE HEADING */}
-        <div className="space-y-4 border-b border-stone-300 pb-10">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter uppercase font-sans text-[#0E0E0E] leading-[0.9]">
+        <div className="space-y-4 border-b border-white/10 pb-10">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter uppercase font-sans text-white leading-[0.9]">
             GET IN TOUCH
           </h1>
-          <p className="font-mono text-xs sm:text-sm font-bold text-stone-600 uppercase tracking-widest">
-            CLEAR. CONNECTED. COMPLETE.
-          </p>
         </div>
 
         {/* 2. HIGH-FASHION EDITORIAL GRID (LEFT INQUIRIES & IMAGE / RIGHT CALENDLY) */}
@@ -147,23 +144,23 @@ export function ContactSection({
             <div className="relative w-full h-[260px] sm:h-[320px] rounded-lg overflow-hidden border border-stone-300 shadow-xs group">
               <Image
                 src={getCloudinaryUrl("/images/contact/contact-hero.jpg")}
-                alt="LOOMIE Studio Contact Workspace"
+                alt="LOOMIE Contact Workspace"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
                 <span className="font-mono text-xs font-bold text-white uppercase tracking-widest">
-                  STUDIO WORKSPACE // STRATEGY & DIRECT INQUIRIES
+                  STUDIO WORKSPACE - STRATEGY & DIRECT INQUIRIES
                 </span>
               </div>
             </div>
 
             <div className="space-y-3 pt-2">
-              <h2 className="text-3xl sm:text-4xl font-light font-sans tracking-tight text-[#0E0E0E] leading-[1.05]">
+              <h2 className="text-3xl sm:text-4xl font-light font-sans tracking-tight text-white leading-[1.05]">
                 Let us build together.
               </h2>
-              <p className="font-sans text-stone-700 text-base font-normal leading-relaxed">
+              <p className="font-sans text-stone-300 text-base font-normal leading-relaxed">
                 Whether you are ready to launch a new brand identity, engineer a WebGL experience, or build a digital product, we are here to collaborate.
               </p>
             </div>
@@ -266,7 +263,7 @@ export function ContactSection({
               
               {/* Studio Preloader Overlay while Calendly loads */}
               {isCalendlyLoading && (
-                <div className="absolute inset-0 z-20 bg-[#F5F3EF] flex items-center justify-center transition-opacity duration-700">
+                <div className="absolute inset-0 z-20 bg-[#050505] flex items-center justify-center transition-opacity duration-700">
                   <div className="scale-90 transform">
                     <Preloader variant="brief" pageTitle="SCHEDULE A STRATEGY CALL" />
                   </div>
@@ -285,11 +282,11 @@ export function ContactSection({
 
         {/* 3. FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION) */}
         <div className="contact-anim-block space-y-10 pt-10 border-t border-stone-300">
-          <div className="space-y-2 border-b border-stone-300 pb-6">
-            <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block">
+          <div className="space-y-2 border-b border-white/15 pb-6">
+            <span className="font-mono text-xs font-bold text-[#f75828] uppercase tracking-widest block">
               FREQUENTLY ASKED QUESTIONS
             </span>
-            <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-[#0E0E0E]">
+            <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-white">
               Everything you need to know.
             </h2>
           </div>

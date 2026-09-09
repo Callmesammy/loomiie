@@ -9,91 +9,68 @@ import { getCloudinaryUrl } from "@/lib/cloudinary";
 interface ValueCard {
   number: string;
   title: string;
-  subtitle: string;
   description: string;
   image: string;
   alt: string;
   bgColor: string;
   textColor: string;
-  medium: string;
-  tags: string[];
 }
 
 const VALUE_CARDS: ValueCard[] = [
   {
     number: "01",
     title: "CONNECTED DESIGN",
-    subtitle: "LOGO TO UI AS ONE UNIFIED SYSTEM",
     description:
-      "We construct brand identity systems where the original geometry of a logomark reverberates seamlessly into typography, spatial signage, and kinetic digital interfaces.",
-    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1600&q=80",
+      "Constructing brand identity systems where logomark geometry flows seamlessly into typography and kinetic digital interfaces.",
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
     alt: "Connected Design Systems",
     bgColor: "bg-[#0E0E0E]",
     textColor: "text-white",
-    medium: "SYSTEM ARCHITECTURE",
-    tags: ["Unified Tokens", "Cross Medium Cohesion", "Kinetic Logic"],
   },
   {
     number: "02",
     title: "PROVEN IN USE",
-    subtitle: "TESTED LIVE ACROSS PLATFORMS",
     description:
-      "We subject every visual system to rigorous production stress tests: rendering high frame-rate WebGL shaders, verifying OLED contrast, and ensuring tactile print fidelity.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+      "Subjecting visual systems to production stress tests: rendering high frame-rate WebGL shaders and verifying OLED & tactile contrast.",
+    image: "/luxury-hotel/Screenshot (965).png",
     alt: "Tested Live Across Platforms",
-    bgColor: "bg-[#1A1A1E]",
+    bgColor: "bg-[#141417]",
     textColor: "text-white",
-    medium: "PRODUCTION TESTING",
-    tags: ["60 FPS WebGL", "Multi Screen Scale", "Print Fidelity"],
   },
   {
     number: "03",
     title: "ALWAYS ITERATING",
-    subtitle: "FEEDBACK DRIVEN, TREND PROOF",
     description:
-      "Guided by empirical feedback and spatial physics, we iteratively polish our systems so they evolve alongside culture without needing total redesigns.",
-    image: "https://images.unsplash.com/photo-1614036417651-efe5912149d8?auto=format&fit=crop&w=1600&q=80",
+      "Guided by empirical feedback and motion physics, our systems continuously evolve alongside culture without requiring total redesigns.",
+    image: "/Ping/Screenshot (962).png",
     alt: "Feedback Driven & Trend Proof",
-    bgColor: "bg-[#F5F3EF]",
-    textColor: "text-[#0E0E0E]",
-    medium: "EVOLUTIONARY LOGIC",
-    tags: ["Continuous Refinement", "Trend Proof", "Empirical Telemetry"],
+    bgColor: "bg-[#0c0c0e]",
+    textColor: "text-white",
   },
   {
     number: "04",
     title: "TOTAL CLARITY",
-    subtitle: "INSTANT RECOGNITION AT EVERY SCALE",
     description:
-      "By stripping away ornamental noise, we uncover the pure signal of your brand. Our typography and mark maintain crystalline legibility from 16px favicons to 100ft outdoor billboards.",
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80",
+      "Stripping away ornamental noise to uncover pure brand signal with legibility from 16px favicons to 100ft outdoor billboards.",
+    image: "/Apple Drink/Gemini_Generated_Image_yfv018yfv018yfv0.jpg",
     alt: "Instant Recognition At Every Scale",
-    bgColor: "bg-[#222226]",
+    bgColor: "bg-[#18181c]",
     textColor: "text-white",
-    medium: "TYPOGRAPHIC PRECISION",
-    tags: ["16px Favicon Precision", "100ft Billboard Clarity", "Zero Clutter"],
   },
   {
     number: "05",
     title: "STRATEGIC CRAFT",
-    subtitle: "THINKING FIRST, POLISH ALWAYS",
     description:
-      "Craft is intelligence made visible. Every typographic grid alignment, color palette pair, and micro-interaction is rooted in deep commercial strategy.",
-    image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1600&q=80",
-    alt: "Strategic Brutalist Commercial Craft",
+      "Craft is intelligence made visible. Every typographic grid alignment and color pairing is rooted in commercial strategy.",
+    image: getCloudinaryUrl("/images/project-editorial.jpg"),
+    alt: "Strategic Brutalist Craft",
     bgColor: "bg-[#0E0E0E]",
     textColor: "text-white",
-    medium: "COMMERCIAL CRAFT",
-    tags: ["Strategy Led", "Micro Interactions", "Commercial Impact"],
   },
 ];
 
 /**
- * Beetogreen Inspired Stacking / Climbing Cards Section for LOOMIE
- * Features:
- * - GSAP ScrollTrigger Pinned Container (`pin: true`)
- * - 5 Stacked Cards that climb up over each other sequentially as you scroll
- * - Concise, streamlined, high-contrast text layout
- * - Clean high-res Unsplash photography
+ * Clean Stacking Climbing Cards Section for LOOMIE Core Values
  */
 export function ValuesSection() {
   const pinSectionRef = useRef<HTMLDivElement>(null);
@@ -123,7 +100,7 @@ export function ValuesSection() {
             card,
             {
               yPercent: 100,
-              boxShadow: "0 -20px 50px rgba(0,0,0,0.3)",
+              boxShadow: "0 -20px 50px rgba(0,0,0,0.5)",
             },
             {
               yPercent: 0,
@@ -138,17 +115,24 @@ export function ValuesSection() {
   }, []);
 
   return (
-    <div ref={pinSectionRef} className="w-full h-screen relative bg-[#F5F3EF] overflow-hidden select-none">
-      
-      {/* Fixed Header Bar Inside Pin Section (Pushed Right So Zero Text Sits Behind Top-Left Logo) */}
-      <div className="absolute top-6 left-6 right-6 z-30 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-widest text-[#0E0E0E] pl-36 sm:pl-44">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-white border border-stone-300 rounded-full shadow-xs">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+    <div ref={pinSectionRef} className="w-full h-screen relative bg-[#050505] text-white overflow-hidden select-none">
+      {/* Official Brand Fonts */}
+      <style jsx global>{`
+        @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Instrument+Sans:wght@400;500;600;700&display=swap");
+        .barlow-font {
+          font-family: "Barlow Condensed", sans-serif;
+        }
+        .instrument-font {
+          font-family: "Instrument Sans", sans-serif;
+        }
+      `}</style>
+
+      {/* Fixed Header Bar Inside Pin Section */}
+      <div className="absolute top-6 left-6 right-6 z-30 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-widest text-white pl-36 sm:pl-44">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-black border border-white/20 rounded-full shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-[#f75828] animate-pulse" />
           <span>STUDIO VALUES</span>
         </div>
-        <span className="hidden sm:inline-block text-stone-500">
-          CLEAR. CONNECTED. COMPLETE.
-        </span>
       </div>
 
       {/* Stacked Cards Container */}
@@ -156,45 +140,26 @@ export function ValuesSection() {
         {VALUE_CARDS.map((card, idx) => (
           <div
             key={card.number}
-            className={`beetogreen-stacked-card absolute inset-4 sm:inset-8 lg:inset-12 top-16 sm:top-20 rounded-2xl overflow-hidden border border-stone-400/40 shadow-2xl flex flex-col lg:flex-row ${card.bgColor} ${card.textColor}`}
+            className={`beetogreen-stacked-card absolute inset-4 sm:inset-8 lg:inset-12 top-16 sm:top-20 rounded-2xl overflow-hidden border border-white/15 shadow-2xl flex flex-col lg:flex-row ${card.bgColor} ${card.textColor}`}
             style={{ zIndex: 10 + idx }}
           >
-            {/* Left Content Area (Concise, Clean & Spacious) */}
-            <div className="w-full lg:w-1/2 p-6 sm:p-10 lg:p-14 flex flex-col justify-between space-y-6 overflow-y-auto">
+            {/* Left Content Area (Ultra-Clean & Streamlined) */}
+            <div className="w-full lg:w-1/2 p-8 sm:p-12 lg:p-16 flex flex-col justify-center space-y-6">
               <div className="space-y-4">
-                <div className="flex items-center justify-between font-mono text-xs font-bold tracking-widest opacity-70">
-                  <span>VALUE {card.number} / 05</span>
-                  <span>{card.medium}</span>
-                </div>
-
-                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black font-sans tracking-tighter uppercase leading-[0.95]">
+                <h2 className="barlow-font text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.92] text-white tracking-tight">
                   {card.title}
                 </h2>
 
-                <p className="font-mono text-xs sm:text-sm font-bold opacity-80 uppercase tracking-widest border-b border-current/20 pb-4">
-                  {card.subtitle}
-                </p>
-
-                <p className="font-sans text-base sm:text-xl opacity-90 leading-relaxed font-light pt-2">
+                <p className="instrument-font text-base sm:text-xl lg:text-2xl text-stone-200 font-normal leading-relaxed max-w-xl pt-2">
                   {card.description}
                 </p>
-              </div>
-
-              <div className="pt-6 border-t border-current/15">
-                <div className="flex flex-wrap gap-2 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-                  {card.tags.map((tag, i) => (
-                    <span key={i} className="px-3.5 py-1.5 bg-current/10 border border-current/20 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
             </div>
 
             {/* Right Image Frame Area (Pure Photography) */}
-            <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] lg:min-h-full overflow-hidden bg-stone-900 border-t lg:border-t-0 lg:border-l border-current/15 group">
+            <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] lg:min-h-full overflow-hidden bg-black border-t lg:border-t-0 lg:border-l border-white/15 group">
               <Image
-                src={getCloudinaryUrl(card.image)}
+                src={card.image}
                 alt={card.alt}
                 fill
                 priority={idx === 0}

@@ -1,22 +1,20 @@
-import { Preloader } from "@/components/Preloader";
-import { HorizontalProjectSlider } from "@/components/HorizontalProjectSlider";
-import { ScrollTextReveal } from "@/components/ScrollTextReveal";
-import { AkaruProjetsSection } from "@/components/AkaruProjetsSection";
+import { LandingSampleClient } from "@/components/LandingSampleClient";
+import { CapsulesStickyColsSection } from "@/components/CapsulesStickyColsSection";
+import { TelescopeTextAnimationSection } from "@/components/TelescopeTextAnimationSection";
+import { TiltingSectionsScrollSection } from "@/components/TiltingSectionsScrollSection";
 import { RoshanServicesInlineSection } from "@/components/RoshanServicesInlineSection";
 import { FlyingGameLogoOverlay } from "@/components/FlyingGameLogoOverlay";
-import { Marquee } from "@/components/Marquee";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      <Preloader />
+      <LandingSampleClient />
       <FlyingGameLogoOverlay />
-      <HorizontalProjectSlider />
-      <ScrollTextReveal />
-      <Marquee />
-      <AkaruProjetsSection />
+      <CapsulesStickyColsSection />
+      <TelescopeTextAnimationSection />
       <RoshanServicesInlineSection />
+      <TiltingSectionsScrollSection />
       <Footer />
     </main>
   );

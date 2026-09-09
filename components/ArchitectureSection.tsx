@@ -10,7 +10,7 @@ export function ArchitectureSection() {
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-foreground/10 border border-foreground/20 text-foreground text-xs font-mono font-bold uppercase tracking-widest mb-3">
             <span className="w-2 h-2 bg-foreground rounded-none animate-pulse" />
-            <span>04 // SYSTEM DESIGN & PERFORMANCE</span>
+            <span>SYSTEM DESIGN & PERFORMANCE</span>
           </div>
           <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-foreground uppercase">
             TECHNICAL ARCHITECTURE.
@@ -29,7 +29,7 @@ export function ArchitectureSection() {
               <Zap className="w-6 h-6" />
             </div>
             <span className="text-xs font-mono font-bold text-foreground-secondary uppercase tracking-wider block mb-1">
-              LAYER 01 // SCROLL ENGINE
+              SCROLL ENGINE
             </span>
             <h3 className="text-xl sm:text-2xl font-black uppercase text-foreground mb-3">
               Lenis Smooth Scroll & GSAP RAF Sync
@@ -51,7 +51,7 @@ export function ArchitectureSection() {
               <Eye className="w-6 h-6" />
             </div>
             <span className="text-xs font-mono font-bold text-foreground-secondary uppercase tracking-wider block mb-1">
-              LAYER 02 // ROUTE ENGINE
+              ROUTE ENGINE
             </span>
             <h3 className="text-xl sm:text-2xl font-black uppercase text-foreground mb-3">
               Scroll-To-Top Instant Route Controller
@@ -73,7 +73,7 @@ export function ArchitectureSection() {
               <Layers className="w-6 h-6" />
             </div>
             <span className="text-xs font-mono font-bold text-foreground-secondary uppercase tracking-wider block mb-1">
-              LAYER 03 // GPU COMPOSITOR
+              GPU COMPOSITOR
             </span>
             <h3 className="text-xl sm:text-2xl font-black uppercase text-foreground mb-3">
               Strict GPU-Accelerated Layout Rules

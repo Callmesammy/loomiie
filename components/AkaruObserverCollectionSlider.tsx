@@ -29,7 +29,7 @@ const COLLECTION_SLIDES: CollectionSlide[] = [
     num: "02",
     title: "LUMINO 3D KINETIC",
     category: "WEBGL SHADER ENGINE",
-    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
+    image: getCloudinaryUrl("/images/project-packaging.jpg"),
   },
   {
     id: "slide-03",
@@ -185,7 +185,7 @@ export function AkaruObserverCollectionSlider() {
         <div className="flex items-center justify-between">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1 bg-white/10 border border-white/20 rounded-full font-mono text-xs font-bold uppercase tracking-widest text-white">
             <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
-            <span>LOOMIE COLLECTION DISCOVERY // 2026</span>
+            <span>LOOMIE COLLECTION DISCOVERY - 2026</span>
           </div>
 
           <span className="font-mono text-xs font-bold uppercase tracking-widest opacity-60">
@@ -238,7 +238,7 @@ export function AkaruObserverCollectionSlider() {
             {/* Top Telemetry Row */}
             <div className="flex items-center justify-between font-mono text-xs font-bold uppercase tracking-widest">
               <div className="px-3.5 py-1 bg-black/80 backdrop-blur-md rounded-full border border-white/20">
-                <span>SLIDE {currentSlide.num} / 0{COLLECTION_SLIDES.length}</span>
+                <span>COLLECTION</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-white animate-ping" />

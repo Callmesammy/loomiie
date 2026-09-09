@@ -46,7 +46,7 @@ function InlineSwappingImage({
   return (
     <span
       onClick={handleSwap}
-      className={`group relative inline-block align-middle mx-2 my-1 w-16 sm:w-22 md:w-28 lg:w-32 h-9 sm:h-12 md:h-14 lg:h-16 overflow-hidden rounded-md border border-stone-800/20 shadow-md bg-stone-200 cursor-pointer select-none transition-transform duration-500 hover:scale-125 hover:-rotate-1 hover:shadow-2xl hover:z-50 hover:border-black transform-gpu ${className}`}
+      className={`group relative inline-block align-middle mx-2 my-1.5 w-20 sm:w-24 md:w-28 lg:w-32 h-11 sm:h-13 md:h-14 lg:h-15 overflow-hidden rounded-md border border-stone-800/20 shadow-md bg-stone-200 cursor-pointer select-none transition-transform duration-500 hover:scale-125 hover:-rotate-1 hover:shadow-2xl hover:z-50 hover:border-black transform-gpu ${className}`}
     >
       {images.map((img, index) => (
         <Image
@@ -54,7 +54,7 @@ function InlineSwappingImage({
           src={getCloudinaryUrl(img.src)}
           alt={img.alt}
           fill
-          sizes="(max-width: 768px) 100px, 140px"
+          sizes="(max-width: 768px) 140px, 160px"
           className={`object-cover transition-opacity duration-1000 ease-in-out transform-gpu group-hover:scale-110 ${
             index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
@@ -66,83 +66,54 @@ function InlineSwappingImage({
 
 /**
  * LOOMIE Kinetic Agency Services & Capabilities Section
- * Features inline swapping photos curated with LOOMIE studio branding & core disciplines:
- * LOGOS & VISUAL MARKS, BRAND IDENTITIES, UI/UX ARCHITECTURE, PACKAGING & TACTILE CRAFT,
- * WEBSITES & WEB DEVELOPMENT, NEXT.JS 15, SPATIAL BRAND SYSTEMS, KINETIC ANIMATION (GSAP),
- * 3D WEBGL SHADERS (THREE.JS), HIGH CONVERSION DIGITAL PRODUCTS.
  */
 export function RoshanServicesInlineSection() {
   return (
-    <section className="relative w-full bg-[#F5F3EF] text-[#0E0E0E] py-24 px-6 sm:px-12 md:px-16 overflow-hidden select-none border-t border-b border-stone-300">
-      <div className="max-w-[1700px] mx-auto w-full space-y-8">
+    <section className="relative w-full bg-[#050505] text-white py-20 sm:py-28 px-6 sm:px-12 md:px-16 overflow-hidden select-none border-t border-b border-white/10 flex flex-col justify-between">
+      <div className="max-w-[1600px] mx-auto w-full my-auto space-y-10">
 
-        {/* Monumental Typography with LOOMIE Brand Inline Swapping Photos */}
-        <div className="pt-4">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-light uppercase tracking-tight leading-[1.3] text-[#0E0E0E] font-sans">
-            LOGOS & VISUAL MARKS,
+        {/* Streamlined High-Impact Typography with Verified Inline Swapping Photos */}
+        <div className="py-2">
+          <h2 className="barlow-font text-[2.1rem] xs:text-4xl sm:text-5xl md:text-[3.2rem] lg:text-[3.6rem] xl:text-[4.0rem] font-medium uppercase tracking-wide leading-[1.38] text-stone-100">
+            LOGOS & BRAND IDENTITIES,
             <InlineSwappingImage
               images={[
-                { src: getCloudinaryUrl("/images/services/service-sketch.jpg"), alt: "Logo Sketching" },
-                { src: getCloudinaryUrl("/images/projects/hero-project-1.jpg"), alt: "Ideas Into Reality" },
+                { src: "/cloud-architecture/card1-architecture.jpg", alt: "Brand Systems" },
+                { src: getCloudinaryUrl("/images/project-minimal.jpg"), alt: "Hardware Design" },
               ]}
               intervalMs={4800}
             />
-            BRAND IDENTITIES,
+            UI/UX ARCHITECTURE & PACKAGING,
             <InlineSwappingImage
               images={[
-                { src: getCloudinaryUrl("/images/services/service-color.jpg"), alt: "Color Swatches" },
-                { src: getCloudinaryUrl("/images/manifesto/rose-bw.jpg"), alt: "Monochrome Rose" },
-              ]}
-              intervalMs={5800}
-            />
-            UI/UX ARCHITECTURE, PACKAGING & TACTILE CRAFT,
-            <InlineSwappingImage
-              images={[
-                { src: getCloudinaryUrl("/images/services/service-uiux.jpg"), alt: "UI/UX Wireframes" },
-                { src: getCloudinaryUrl("/images/manifesto/packaging-hd.jpg"), alt: "Tactile Packaging" },
+                { src: "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo.jpg", alt: "Product Packaging" },
+                { src: "/luxury-hotel/Screenshot (965).png", alt: "Spatial Interface" },
               ]}
               intervalMs={5200}
             />
-            WEBSITES & WEB DEVELOPMENT,
+            WEBSITES & NEXT.JS DEVELOPMENT,
             <InlineSwappingImage
               images={[
-                { src: getCloudinaryUrl("/images/services/service-desktop.jpg"), alt: "Responsive Web Development" },
-                { src: getCloudinaryUrl("/images/projects/hero-project-2.jpg"), alt: "Kinetic Play System" },
+                { src: "/Ping/Screenshot (962).png", alt: "Web Apps" },
+                { src: "/cloud-architecture/card6-why-us.jpg", alt: "Cloud Systems" },
               ]}
               intervalMs={4200}
             />
-            NEXT.JS 15, SPATIAL BRAND SYSTEMS,
+            KINETIC ANIMATION & 3D WEBGL SHADERS.
             <InlineSwappingImage
               images={[
-                { src: getCloudinaryUrl("/images/manifesto/architecture.jpg"), alt: "Spatial Architecture" },
-                { src: getCloudinaryUrl("/images/manifesto/code-dark.jpg"), alt: "Next.js IDE Code" },
-              ]}
-              intervalMs={6200}
-            />
-            KINETIC ANIMATION (GSAP),
-            <InlineSwappingImage
-              images={[
-                { src: getCloudinaryUrl("/images/manifesto/fluid-3d.jpg"), alt: "3D Motion Shader" },
-                { src: getCloudinaryUrl("/images/projects/hero-project-3.jpg"), alt: "Creative Art Direction" },
+                { src: getCloudinaryUrl("/images/project-digital.jpg"), alt: "Interactive Motion" },
+                { src: getCloudinaryUrl("/images/project-editorial.jpg"), alt: "Editorial Layout" },
               ]}
               intervalMs={5000}
             />
-            3D WEBGL SHADERS (THREE.JS),
-            <InlineSwappingImage
-              images={[
-                { src: getCloudinaryUrl("/images/projects/hero-project-4.jpg"), alt: "Sensory Brand Experience" },
-                { src: getCloudinaryUrl("/images/manifesto/abstract-render.jpg"), alt: "3D Abstract Render" },
-              ]}
-              intervalMs={5600}
-            />
-            HIGH CONVERSION DIGITAL PRODUCTS.
           </h2>
         </div>
 
         {/* Section Telemetry Footer */}
-        <div className="pt-8 border-t border-stone-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-stone-600 font-bold uppercase tracking-widest">
-          <span>CAPABILITIES // STACK MATRIX</span>
-          <span>CLEAR. CONNECTED. COMPLETE.</span>
+        <div className="pt-6 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-stone-400 font-semibold uppercase tracking-widest">
+          <span>CAPABILITIES - STACK MATRIX</span>
+          <span>STUDIO CAPABILITIES</span>
         </div>
       </div>
     </section>

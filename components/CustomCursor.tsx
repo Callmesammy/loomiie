@@ -149,7 +149,7 @@ export function CustomCursor() {
           </div>
 
           <div className="flex items-center justify-between max-w-7xl w-full mx-auto border-t border-[#a58725]/30 pt-4 font-mono text-xs text-white/70 uppercase tracking-widest">
-            <span>LOOMIE KINETIC STUDIO © 2026</span>
+            <span>LOOMIE © 2026</span>
             <a
               id="penlink"
               href={modalSrc}

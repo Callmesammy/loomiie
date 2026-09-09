@@ -21,7 +21,7 @@ const HERO_SLIDES: HeroSlide[] = [
     id: "slide-1",
     num: "01",
     title: "Kinetic Design Systems",
-    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
     href: "/work/lumino-3d-kinetic",
   },
   {
@@ -41,9 +41,9 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: "slide-4",
     num: "04",
-    title: "Cybernetic System HUD",
-    image: getCloudinaryUrl("/images/project-digital.jpg"),
-    href: "/work/sat-cybernetic-hud",
+    title: "Ping Social Messaging",
+    image: "/Ping/Screenshot (949).png",
+    href: "/work/ping",
   },
   {
     id: "slide-5",
@@ -170,7 +170,7 @@ export function HeroSection() {
   return (
     <div
       ref={pinContainerRef}
-      className="relative w-full h-screen overflow-hidden bg-[#F5F3EF] text-[#0E0E0E] select-none"
+      className="relative w-full h-screen overflow-hidden bg-[#050505] text-white select-none"
     >
       {/* 1. SLIDE SECTIONS STACK */}
       {HERO_SLIDES.map((slide, slideIdx) => (

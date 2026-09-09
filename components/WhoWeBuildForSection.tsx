@@ -83,13 +83,13 @@ export function WhoWeBuildForSection() {
   return (
     <section
       ref={containerRef}
-      className="w-full bg-[#F5F3EF] text-[#0E0E0E] py-16 lg:py-24 select-none"
+      className="w-full bg-[#050505] text-white py-16 lg:py-24 select-none"
     >
       <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-14 space-y-16">
         
         {/* 1. CLEAN TITLE HEADER */}
-        <div className="border-b border-stone-300 pb-8">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter uppercase font-sans text-[#0E0E0E] leading-[0.9]">
+        <div className="border-b border-white/10 pb-8">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter uppercase font-sans text-white leading-[0.9]">
             WHO WE BUILD FOR
           </h1>
         </div>
@@ -98,15 +98,11 @@ export function WhoWeBuildForSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {AUDIENCE_PILLARS.map((pillar) => (
             <div
-              key={pillar.number}
+              key={pillar.title}
               className="minimal-audience-card bg-white border border-stone-300 rounded-md overflow-hidden p-8 flex flex-col justify-between space-y-6 shadow-xs hover:shadow-xl transition-all duration-500 group"
             >
-              {/* Card Header: Number & Title */}
+              {/* Card Header: Title & Headline */}
               <div className="space-y-3">
-                <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block">
-                  {pillar.number}
-                </span>
-
                 <h2 className="text-2xl sm:text-3xl font-light font-sans tracking-tight text-[#0E0E0E]">
                   {pillar.title}
                 </h2>

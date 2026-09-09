@@ -121,73 +121,46 @@ export function PartnersSection() {
   return (
     <section
       ref={containerRef}
-      className="w-full bg-[#F5F3EF] text-[#0E0E0E] py-16 lg:py-28 select-none border-t border-stone-300"
+      className="w-full bg-[#050505] text-white py-16 lg:py-28 select-none border-t border-white/10"
     >
       <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-14 space-y-20">
         
         {/* 1. MONUMENTAL EDITORIAL PARTNERS HEADING */}
-        <div className="space-y-4 border-b border-stone-300 pb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0E0E0E] text-white font-mono text-xs font-bold uppercase tracking-widest">
+        <div className="space-y-4 border-b border-white/15 pb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-white border border-white/20 font-mono text-xs font-bold uppercase tracking-widest">
             <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-            <span>LOOMIE ALLIANCES // EST. 2026</span>
+            <span>LOOMIE ALLIANCES - EST. 2026</span>
           </div>
 
-          <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-[7rem] font-black tracking-tighter uppercase font-sans text-[#0E0E0E] leading-[0.9] pt-2">
+          <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-[7rem] font-black tracking-tighter uppercase font-sans text-white leading-[0.9] pt-2">
             OFFICIAL PARTNERS
           </h1>
-          <p className="font-mono text-xs sm:text-sm font-bold text-stone-500 uppercase tracking-widest">
+          <p className="font-mono text-xs sm:text-sm font-bold text-[#f75828] uppercase tracking-widest">
             GLOBAL TECHNOLOGY • SPATIAL GRAPHICS • CINEMATIC ART DIRECTION
           </p>
         </div>
 
-        {/* 2. CADILLAC F1 INSPIRED HERO SPLIT SHOWCASE */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center border-b border-stone-300 pb-16">
-          {/* Left: High-Contrast Widescreen Production Showcase */}
-          <div
-            ref={heroImageRef}
-            className="lg:col-span-7 relative h-[340px] sm:h-[440px] md:h-[520px] w-full overflow-hidden rounded-md border border-stone-400/40 shadow-2xl bg-stone-900 group"
-          >
-            <Image
-              src={getCloudinaryUrl("/images/partners/film-production.jpg")}
-              alt="LOOMIE Strategic Production Alliances"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale contrast-125"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
-
-            <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between font-mono text-xs text-white font-bold uppercase tracking-widest z-10">
-              <span className="px-3.5 py-2 bg-black/85 backdrop-blur-md border border-white/20">
-                01 // PRODUCTION ALLIANCES
-              </span>
-              <span className="px-3.5 py-2 bg-black/85 backdrop-blur-md border border-white/20 hidden sm:inline-block">
-                MONOCHROME FILM & ART DIRECTION
-              </span>
-            </div>
-          </div>
-
           {/* Right: Editorial Narrative Content */}
           <div className="lg:col-span-5 space-y-6 lg:pl-6">
-            <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block">
+            <span className="font-mono text-xs font-bold text-[#f75828] uppercase tracking-widest block">
               BUILDING WHAT'S NEXT TOGETHER
             </span>
 
-            <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-[#0E0E0E] leading-tight">
+            <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-white leading-tight">
               A studio built on shared values of excellence & precision.
             </h2>
 
-            <p className="font-sans text-stone-700 text-base sm:text-lg leading-relaxed font-normal">
+            <p className="font-sans text-stone-300 text-base sm:text-lg leading-relaxed font-normal">
               Our strategic partners play a vital role at every stage — from high-performance Next.js server infrastructure and WebGL GLSL shaders to spatial acoustic soundscapes and editorial photography. Together, we shape digital experiences that redefine industry standards.
             </p>
 
-            <div className="pt-4 border-t border-stone-200 flex items-center gap-6 font-mono text-xs font-bold text-[#0E0E0E]">
+            <div className="pt-4 border-t border-white/15 flex items-center gap-6 font-mono text-xs font-bold text-white">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 <span>VERIFIED ALLIANCES</span>
               </div>
               <div className="flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-stone-700" />
+                <Cpu className="w-4 h-4 text-stone-300" />
                 <span>60 FPS PERFORMANCE</span>
               </div>
             </div>
@@ -196,16 +169,16 @@ export function PartnersSection() {
 
         {/* 3. PARTNER ALLIANCES MATRIX GRID */}
         <div className="space-y-10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-stone-300 pb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/15 pb-6">
             <div>
-              <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block mb-1">
+              <span className="font-mono text-xs font-bold text-[#f75828] uppercase tracking-widest block mb-1">
                 STRATEGIC CAPABILITIES MATRIX
               </span>
-              <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-[#0E0E0E]">
+              <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-white">
                 Our Partner Ecosystem
               </h2>
             </div>
-            <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest">
+            <span className="font-mono text-xs font-bold text-stone-300 uppercase tracking-widest">
               TECHNOLOGY • SOUND • GRAPHICS • FILM
             </span>
           </div>

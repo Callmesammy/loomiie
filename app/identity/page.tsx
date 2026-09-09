@@ -8,7 +8,7 @@ import { Metadata } from "next";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
-  title: "About Us — LOOMIE Studio | Digital Marketing & Creative Direction",
+  title: "About Us — LOOMIE | Digital Marketing & Creative Direction",
   description:
     "LOOMIE is a kinetic web & design studio led by Sarah Mahmoud (Head of Digital Marketing & Performance Lead). Clear. Connected. Complete.",
 };
@@ -18,7 +18,7 @@ export default function IdentityPage() {
     <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
       <Navbar />
       <SubpageHeroHeader
-        badge="[WHO WE ARE // ABOUT US]"
+        badge="[WHO WE ARE - ABOUT US]"
         line1="DIGITAL MARKETING &"
         line2="STUDIO ARCHITECTURE"
         bannerImage={getCloudinaryUrl("/images/manifesto/keyboard.jpg")}

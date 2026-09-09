@@ -23,7 +23,7 @@ export async function dispatchEmail({ to, subject, html }: DispatchEmailParams) 
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          from: "LOOMIE Studio <notifications@loomiestudio.com>",
+          from: "LOOMIE <notifications@loomiestudio.com>",
           to: [to],
           subject,
           html,
@@ -59,7 +59,7 @@ export function getAdminEmailTemplate(booking: {
           NEW STRATEGY CALL BOOKED
         </h2>
         <p style="font-size: 14px; color: #555555; margin-bottom: 24px;">
-          A new client has scheduled a 30-minute discovery call via the LOOMIE Studio website.
+          A new client has scheduled a 30-minute discovery call via the LOOMIE website.
         </p>
         <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 24px 0;" />
         <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
@@ -110,7 +110,7 @@ export function getClientEmailTemplate(booking: {
           STRATEGY CALL CONFIRMED
         </h2>
         <p style="font-size: 15px; color: #333333; line-height: 1.6;">
-          Hello ${booking.name || "there"}, thank you for booking a strategy call with <strong>LOOMIE Studio</strong>. Your discovery session is confirmed.
+          Hello ${booking.name || "there"}, thank you for booking a strategy call with <strong>LOOMIE</strong>. Your discovery session is confirmed.
         </p>
         <div style="background-color: #F5F3EF; padding: 20px; border-radius: 6px; margin: 24px 0;">
           <p style="margin: 4px 0; font-size: 14px; font-weight: bold;">📅 Date: ${booking.month} ${booking.day}</p>
@@ -122,7 +122,7 @@ export function getClientEmailTemplate(booking: {
         </p>
         <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 24px 0;" />
         <p style="font-size: 12px; color: #888888; font-family: monospace; text-transform: uppercase;">
-          LOOMIE STUDIO — CLEAR. CONNECTED. COMPLETE.
+          LOOMIE — CLEAR. CONNECTED. COMPLETE.
         </p>
       </div>
     </div>

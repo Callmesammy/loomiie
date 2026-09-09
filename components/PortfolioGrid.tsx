@@ -11,7 +11,7 @@ interface CaseStudy {
   slug: string;
   title: string;
   category: string;
-  categoryCode: "ecommerce" | "food" | "entertainment" | "tech" | "industrial" | "spatial";
+  categoryCode: "ecommerce" | "food" | "entertainment" | "tech" | "industrial" | "spatial" | "branding";
   image: string;
   aspect: string;
   span: string;
@@ -44,14 +44,14 @@ const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "cs3",
-    slug: "sat-cybernetic-hud",
-    title: "SAT Cybernetic System HUD",
-    category: "Autonomous WebGL Interface",
-    categoryCode: "tech",
-    image: getCloudinaryUrl("/images/project-digital.jpg"),
+    slug: "luxury-hotel",
+    title: "VINE Luxury Hotel",
+    category: "Hospitality & Architectural Design",
+    categoryCode: "branding",
+    image: "/cloud-architecture/card6-why-us.jpg",
     aspect: "aspect-[16/10]",
     span: "col-span-12 md:col-span-6",
-    logoOverlay: "SAT",
+    logoOverlay: "VINE",
   },
   {
     id: "cs4",
@@ -59,7 +59,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "LUMINO 3D Kinetic Realm",
     category: "Motion Shaders & WebGL",
     categoryCode: "tech",
-    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
+    image: getCloudinaryUrl("/images/project-minimal.jpg"),
     aspect: "aspect-[16/10]",
     span: "col-span-12 md:col-span-6",
     logoOverlay: "LUMINO",
@@ -92,7 +92,7 @@ const CASE_STUDIES: CaseStudy[] = [
     title: "JEA Architectural Interior",
     category: "Spatial Living & Craft",
     categoryCode: "spatial",
-    image: getCloudinaryUrl("/images/hero-3d-fluid.jpg"),
+    image: getCloudinaryUrl("/images/project-packaging.jpg"),
     aspect: "aspect-[16/9]",
     span: "col-span-12 md:col-span-6",
     logoOverlay: "JEA",
@@ -144,7 +144,7 @@ export function PortfolioGrid() {
       <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
         <div>
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-foreground-secondary mb-2 block">
-            02 / CREATIVE ARCHIVE
+            CREATIVE ARCHIVE
           </span>
           <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase text-foreground">
             EXPLORATION <span className="text-foreground border-b-4 border-foreground pb-1">GRID</span>

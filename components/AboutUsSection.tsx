@@ -167,18 +167,18 @@ export function AboutUsSection() {
   const pair4 = ALL_TEAM_MEMBERS.slice(6, 8); // Jenine & Yahya (Left)
 
   return (
-    <section ref={containerRef} className="w-full bg-[#F5F3EF] text-[#0E0E0E] py-12 sm:py-16 lg:py-24 select-none">
+    <section ref={containerRef} className="w-full bg-[#050505] text-white py-12 sm:py-16 lg:py-24 select-none">
       <div className="max-w-[1700px] mx-auto px-4 sm:px-10 lg:px-14 space-y-20 lg:space-y-28">
         
         {/* 1. 3D ROLLING CUBE CANVAS SHOWCASE */}
-        <div className="border-b border-stone-300 pb-10 space-y-6">
+        <div className="border-b border-white/15 pb-10 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
-              <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-[#0E0E0E]">
+              <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-white">
                 Kinetic 3D Studio Canvas
               </h2>
             </div>
-            <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest">
+            <span className="font-mono text-xs font-bold text-stone-400 uppercase tracking-widest">
               DRAG & ROTATE 3D CUBE
             </span>
           </div>
@@ -191,13 +191,13 @@ export function AboutUsSection() {
 
         {/* 2. BRANDAPPART ALTERNATING STAGGERED GRID WITH SCROLL PARALLAX EDITORIAL BLOCKS */}
         <div className="space-y-16 lg:space-y-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-stone-300 pb-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/15 pb-6">
             <div>
-              <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-[#0E0E0E]">
+              <h2 className="text-3xl sm:text-5xl font-light font-sans tracking-tight text-white">
                 Team & Specialists
               </h2>
             </div>
-            <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest">
+            <span className="font-mono text-xs font-bold text-stone-400 uppercase tracking-widest">
               8 CORE SPECIALISTS
             </span>
           </div>
@@ -209,7 +209,7 @@ export function AboutUsSection() {
               <div className="kinetic-scroll-block lg:col-span-2 p-8 sm:p-12 bg-white/80 border border-stone-300 rounded-2xl shadow-xs space-y-6" data-speed="20">
                 <div className="flex items-center justify-between border-b border-stone-200 pb-4">
                   <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block">
-                    01 // LOOMIE PHILOSOPHY
+                    LOOMIE PHILOSOPHY
                   </span>
                   <span className="font-mono text-xs text-stone-400 font-bold">EST. 2026</span>
                 </div>
@@ -223,8 +223,7 @@ export function AboutUsSection() {
                 </p>
 
                 <div className="pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between text-xs font-mono font-bold text-stone-700 uppercase">
-                  <span>08 CORE DISCIPLINARIES</span>
-                  <span>CLEAR. CONNECTED. COMPLETE.</span>
+                  <span>CORE DISCIPLINARIES</span>
                 </div>
               </div>
 
@@ -243,7 +242,7 @@ export function AboutUsSection() {
                 <div className="flex items-center justify-between border-b border-stone-800 pb-4">
                   <span className="font-mono text-xs font-bold text-stone-400 uppercase tracking-widest flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-white" />
-                    <span>02 // TECHNICAL LEADERSHIP</span>
+                    <span>TECHNICAL LEADERSHIP</span>
                   </span>
                   <span className="font-mono text-xs text-stone-500 uppercase">ENGINEERING</span>
                 </div>
@@ -271,7 +270,7 @@ export function AboutUsSection() {
                 <div className="flex items-center justify-between border-b border-stone-200 pb-4">
                   <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest flex items-center gap-2">
                     <Globe className="w-4 h-4 text-stone-700" />
-                    <span>03 // PERFORMANCE & GROWTH</span>
+                    <span>PERFORMANCE & GROWTH</span>
                   </span>
                   <span className="font-mono text-xs text-stone-400">DATA-BACKED</span>
                 </div>
@@ -305,7 +304,7 @@ export function AboutUsSection() {
                 <div className="flex items-center justify-between border-b border-stone-200 pb-4">
                   <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest flex items-center gap-2">
                     <Layers className="w-4 h-4 text-stone-700" />
-                    <span>04 // VISUAL & SPATIAL IDENTITY</span>
+                    <span>VISUAL & SPATIAL IDENTITY</span>
                   </span>
                   <span className="font-mono text-xs text-stone-400">TACTILE CRAFT</span>
                 </div>

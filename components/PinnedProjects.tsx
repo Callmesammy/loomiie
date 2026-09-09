@@ -118,7 +118,7 @@ export function PinnedProjects() {
         <div>
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-foreground-secondary mb-3">
             <span className="w-2 h-2 bg-foreground rounded-none animate-pulse" />
-            <span>01 / SELECTED CASE STUDIES</span>
+            <span>SELECTED CASE STUDIES</span>
           </div>
           <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase text-foreground">
             PINNED <span className="text-accent">STACK</span>
@@ -152,7 +152,7 @@ export function PinnedProjects() {
                 <div>
                   <div className="flex items-center justify-between mb-8">
                     <span className="text-sm font-mono font-black text-foreground px-4 py-1.5 rounded-none bg-foreground/10 border border-foreground/20">
-                      CASE {project.number}
+                      CASE STUDY
                     </span>
                     <div className="flex items-center gap-3 text-xs font-mono text-foreground-secondary">
                       <span>{project.client}</span>
@@ -211,11 +211,6 @@ export function PinnedProjects() {
                     style={{ transform: "translateZ(0)" }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-
-                  <div className="absolute top-6 right-6 px-4 py-2 rounded-none bg-black/60 backdrop-blur-md border border-white/15 text-white font-mono text-xs tracking-widest flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-none bg-white animate-pulse" />
-                    <span>{project.number} / 04</span>
-                  </div>
                 </div>
               </div>
             </div>

@@ -36,7 +36,7 @@ const STORY_SEGMENTS = [
     headline: "Every project follows one process: strategic thinking, clean execution, and endless refinement.",
     body: "The result: brands people get, remember, and trust from first glance. We avoid unnecessary complexity in favor of thoughtful strategy, clean aesthetic rhythm, and durable digital architecture.",
     image: getCloudinaryUrl("/images/story/story-segment-3.jpg"),
-    alt: "LOOMIE Kinetic Design System & Spatial Refinement",
+    alt: "LOOMIE Design System & Spatial Refinement",
     tags: ["Strategic Thinking", "Clean Execution", "Endless Refinement"],
     layoutReversed: false,
   },
@@ -106,27 +106,24 @@ export function StorySection() {
   return (
     <section
       ref={containerRef}
-      className="w-full bg-[#F5F3EF] text-[#0E0E0E] py-16 lg:py-28 select-none"
+      className="w-full bg-[#050505] text-white py-16 lg:py-28 select-none"
     >
       <div className="max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-14 space-y-24 lg:space-y-32">
         
         {/* 1. MONUMENTAL EDITORIAL STORY HEADING (NO SMALL TEXT ABOVE) */}
-        <div className="space-y-4 border-b border-stone-300 pb-10">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter uppercase font-sans text-[#0E0E0E] leading-[0.9]">
+        <div className="space-y-4 border-b border-white/10 pb-10">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black tracking-tighter uppercase font-sans text-white leading-[0.9]">
             OUR STORY
           </h1>
-          <p className="font-mono text-xs sm:text-sm font-bold text-stone-600 uppercase tracking-widest">
-            CLEAR. CONNECTED. COMPLETE.
-          </p>
         </div>
 
         {/* 2. FIRST FEATURE: PURE EDITORIAL HEADLINE & INTRO (NO SMALL TOP TITLE TEXT) */}
-        <div className="border-b border-stone-300 pb-20 space-y-6 max-w-5xl">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light font-sans tracking-tight text-[#0E0E0E] leading-tight">
+        <div className="border-b border-white/15 pb-20 space-y-6 max-w-5xl">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-light font-sans tracking-tight text-white leading-tight">
             Born from a blank screen and the drive to create.
           </h2>
 
-          <p className="font-sans text-stone-700 text-lg sm:text-2xl font-light leading-relaxed">
+          <p className="font-sans text-stone-300 text-lg sm:text-2xl font-light leading-relaxed">
             Loomie began with curiosity, a blank screen, basic tools, and the drive to create. What started as self-taught exploration grew into a studio dedicated to design that actually connects people to brands.
           </p>
         </div>
@@ -135,13 +132,13 @@ export function StorySection() {
         <div className="space-y-24 lg:space-y-32">
           {STORY_SEGMENTS.map((segment) => (
             <div
-              key={segment.number}
-              className="story-segment-block border-b border-stone-300 pb-20 lg:pb-28"
+              key={segment.title}
+              className="story-segment-block border-b border-white/15 pb-20 lg:pb-28"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 {/* Large Clean Unsplash Image */}
                 <div
-                  className={`story-segment-image relative h-[360px] sm:h-[460px] md:h-[540px] w-full overflow-hidden rounded-md border border-stone-300/60 shadow-xl bg-stone-200 group ${
+                  className={`story-segment-image relative h-[360px] sm:h-[460px] md:h-[540px] w-full overflow-hidden rounded-md border border-white/20 shadow-xl bg-stone-900 group ${
                     segment.layoutReversed ? "lg:col-span-7 lg:order-2" : "lg:col-span-7 lg:order-1"
                   }`}
                 >
@@ -160,21 +157,21 @@ export function StorySection() {
                     segment.layoutReversed ? "lg:col-span-5 lg:order-1 lg:pr-6" : "lg:col-span-5 lg:order-2 lg:pl-6"
                   }`}
                 >
-                  <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest block">
-                    {segment.number} / {segment.tagline}
+                  <span className="font-mono text-xs font-bold text-[#f75828] uppercase tracking-widest block">
+                    {segment.tagline}
                   </span>
 
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light font-sans tracking-tight text-[#0E0E0E] leading-tight">
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-light font-sans tracking-tight text-white leading-tight">
                     {segment.headline}
                   </h3>
 
-                  <p className="font-sans text-stone-700 text-base sm:text-lg leading-relaxed font-normal">
+                  <p className="font-sans text-stone-300 text-base sm:text-lg leading-relaxed font-normal">
                     {segment.body}
                   </p>
 
-                  <div className="pt-6 border-t border-stone-200 flex flex-wrap gap-2 font-mono text-xs text-stone-600 font-bold uppercase">
+                  <div className="pt-6 border-t border-white/15 flex flex-wrap gap-2 font-mono text-xs text-stone-300 font-bold uppercase">
                     {segment.tags.map((tag, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-white border border-stone-300 shadow-2xs">
+                      <span key={idx} className="px-3 py-1 bg-white/10 border border-white/20 text-white shadow-2xs">
                         {tag}
                       </span>
                     ))}

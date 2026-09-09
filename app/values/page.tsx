@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Core Values — Stacked Matrix | LOOMIE Studio",
+  title: "Core Values — Stacked Matrix | LOOMIE",
   description:
     "LOOMIE is a kinetic web & design studio. Clear. Connected. Complete. Five core principles guiding our strategy, craft, and digital engineering.",
 };
 
 export default function ValuesPage() {
   return (
-    <main className="relative min-h-screen bg-[#F5F3EF] text-[#0E0E0E] overflow-hidden">
+    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
       <Navbar />
       <div>
         <ValuesSection />

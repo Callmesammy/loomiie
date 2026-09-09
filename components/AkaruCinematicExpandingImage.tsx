@@ -23,11 +23,11 @@ interface AkaruCinematicExpandingImageProps {
  * - REVERSIBLE: 100% smooth scrub driven GSAP ScrollTrigger pinned timeline
  */
 export function AkaruCinematicExpandingImage({
-  badge = "LOOMIE STUDIO // ABOUT US",
+  badge = "LOOMIE - ABOUT US",
   title = "RESULT DRIVEN KINETIC DESIGN",
   subtitle = "SCROLL TO EXPAND DISCOVERY",
   image = "/images/about/brand-architecture.jpg",
-  alt = "LOOMIE Studio Brand & Systems Architecture",
+  alt = "LOOMIE Brand & Systems Architecture",
 }: AkaruCinematicExpandingImageProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardWrapperRef = useRef<HTMLDivElement>(null);
@@ -120,7 +120,7 @@ export function AkaruCinematicExpandingImage({
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen bg-[#F5F3EF] text-[#0E0E0E] flex items-center justify-center overflow-hidden select-none gpu-layer z-20"
+      className="relative w-full h-screen bg-[#050505] text-white flex items-center justify-center overflow-hidden select-none gpu-layer z-20"
     >
       {/* Main Cinematic Expanding Container */}
       <div
@@ -174,9 +174,9 @@ export function AkaruCinematicExpandingImage({
         >
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-white animate-ping" />
-            <span>LOOMIE STUDIO © 2026 // CONNECTED SYSTEMS</span>
+            <span>LOOMIE © 2026 - CONNECTED SYSTEMS</span>
           </div>
-          <span>STUDIO TEAM & THREE.JS 3D CANVAS ↓</span>
+          <span>TEAM & THREE.JS 3D CANVAS ↓</span>
         </div>
       </div>
     </section>

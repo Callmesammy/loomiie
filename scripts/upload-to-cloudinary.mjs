@@ -23,7 +23,7 @@ const PUBLIC_DIR = path.join(ROOT_DIR, "public");
  */
 
 async function main() {
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME;
+  const cloudName = process.env.NEXT_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
   const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
@@ -32,7 +32,7 @@ async function main() {
     console.log("Cloudinary Media Migration Helper Script");
     console.log("----------------------------------------------------------------");
     console.log("To run batch uploads to Cloudinary automatically, please set:");
-    console.log("  NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=<your-cloud-name>");
+    console.log("  NEXT_CLOUD_NAME=<your-cloud-name>");
     console.log("  CLOUDINARY_API_KEY=<your-api-key>");
     console.log("  CLOUDINARY_API_SECRET=<your-api-secret>");
     console.log("in your .env.local file.");

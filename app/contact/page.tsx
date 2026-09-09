@@ -7,17 +7,17 @@ import { Metadata } from "next";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 export const metadata: Metadata = {
-  title: "Contact Us & Book a Call — LOOMIE Studio",
+  title: "Contact Us & Book a Call — LOOMIE",
   description:
-    "Schedule a 30-minute discovery call with LOOMIE Studio or contact us directly. Clear. Connected. Complete.",
+    "Schedule a 30-minute discovery call with LOOMIE or contact us directly. Clear. Connected. Complete.",
 };
 
 export default function ContactPage() {
   return (
-    <main className="relative min-h-screen bg-[#F5F3EF] text-[#0E0E0E] overflow-hidden">
+    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
       <Navbar />
       <SubpageHeroHeader
-        badge="[LOOMIE STUDIO // CONTACT]"
+        badge="[LOOMIE - CONTACT]"
         line1="START A PROJECT"
         line2="& BUILD TOGETHER"
         bannerImage={getCloudinaryUrl("/images/contact/contact-hero.jpg")}

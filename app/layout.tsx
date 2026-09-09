@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Montserrat, Caveat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LenisScrollProvider } from "@/components/LenisScrollProvider";
@@ -17,6 +17,13 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   weight: ["300", "500", "700", "900"],
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -42,7 +49,7 @@ export const metadata: Metadata = {
     description:
       "LOOMIE is a premium design & technology studio. Clear. Connected. Complete.",
     url: "https://loomiestudio.com",
-    siteName: "LOOMIE Studio",
+    siteName: "LOOMIE",
     locale: "en_US",
     type: "website",
   },
@@ -55,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${montserrat.variable} font-sans antialiased bg-background text-foreground`}>
+      <body className={`${inter.variable} ${montserrat.variable} ${caveat.variable} font-sans antialiased bg-background text-foreground`}>
         <ThemeProvider>
           <LenisScrollProvider>
             <ScrollToTop />

@@ -2,189 +2,298 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { gsap } from "gsap";
-import { ArrowUpRight } from "lucide-react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
 
-interface DisciplineItem {
+interface BrandItem {
   id: string;
-  number: string;
   title: string;
   subtitle: string;
-  tags: string[];
+  description: string;
   image: string;
   alt: string;
 }
 
-const STUDIO_DISCIPLINE_LIST: DisciplineItem[] = [
+const BRAND_ITEMS: BrandItem[] = [
   {
-    id: "disc-1",
-    number: "01",
-    title: "Spatial & Brand Identity",
-    subtitle: "Systemic Logomarks, Visual Languages, & Type Architecture",
-    tags: ["Brand Strategy", "Design Tokens", "Packaging Rituals", "Typography"],
-    image: getCloudinaryUrl("/images/manifesto/rose-bw.jpg"),
-    alt: "Black and White Rose Studio Mark",
+    id: "b-01",
+    title: "Crunchy",
+    subtitle: "Snack Packaging & Brand",
+    description: "Tactile snack packaging, custom 3D renders, brand design tokens, and interactive digital storefront.",
+    image: getCloudinaryUrl("crunchy-1.jpg"),
+    alt: "Crunchy Foods",
   },
   {
-    id: "disc-2",
-    number: "02",
-    title: "Creative WebGL & Motion",
-    subtitle: "Fluid 3D Shaders, Kinetic Physics, & High-Speed Animations",
-    tags: ["Three.js", "GSAP ScrollTrigger", "GLSL Shaders", "R3F Shader Art"],
-    image: getCloudinaryUrl("/images/manifesto/fluid-3d.jpg"),
-    alt: "Fluid 3D Motion Shader Art",
+    id: "b-02",
+    title: "Banana Health",
+    subtitle: "Wellness & Telehealth",
+    description: "Modern wellness identity, cheerful color palette, iconic symbolic mark, and design tokens.",
+    image: "/cloud-architecture/card1-architecture.jpg",
+    alt: "Banana Health Labs",
   },
   {
-    id: "disc-3",
-    number: "03",
-    title: "Full-Stack Digital Architecture",
-    subtitle: "Next.js 15, Custom E-Commerce, & High-Scale Infrastructure",
-    tags: ["Next.js 15", "Shopify Plus", "TypeScript", "Headless CMS"],
-    image: getCloudinaryUrl("/images/manifesto/code-dark.jpg"),
-    alt: "Dark IDE Code Engine",
+    id: "b-03",
+    title: "Apple Drink",
+    subtitle: "3D Motion & Packaging",
+    description: "Refreshing 3D kinetic video animation, vibrant tactile packaging renders, and global launch campaign.",
+    image: "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo.jpg",
+    alt: "Apple Drink Co.",
   },
   {
-    id: "disc-4",
-    number: "04",
-    title: "Autonomous Telemetry & HUDs",
-    subtitle: "Real-Time Data Dashboards & Tactical Interface Systems",
-    tags: ["UI Architecture", "Canvas 2D/3D", "Telemetry Systems", "Dashboards"],
-    image: getCloudinaryUrl("/images/manifesto/cybernetic.jpg"),
-    alt: "Cybernetic HUD Telemetry Interface",
+    id: "b-04",
+    title: "Ping Social",
+    subtitle: "UI/UX & App Architecture",
+    description: "Ultra-responsive social interaction platform, real-time activity streams, and sleek dark mode design system.",
+    image: "/Ping/Screenshot (949).png",
+    alt: "Ping Technologies",
   },
   {
-    id: "disc-5",
-    number: "05",
-    title: "Art Direction & Spatial Acoustics",
-    subtitle: "Editorial Photography, Acoustic Soundscapes, & Sensory Media",
-    tags: ["Art Direction", "Spatial Audio", "Editorial Photography", "Exhibition"],
-    image: getCloudinaryUrl("/images/manifesto/coastal.jpg"),
-    alt: "Coastal Villa Architectural Art",
+    id: "b-05",
+    title: "Vine Hotel",
+    subtitle: "Luxury Hospitality & Web",
+    description: "Ultra-luxury boutique hotel visual identity, spatial web experience, and high-conversion reservation journeys.",
+    image: "/cloud-architecture/card6-why-us.jpg",
+    alt: "Vine Luxury Hotel",
   },
 ];
 
-/**
- * Rebuilt Studio Discipline & Capabilities Text List Segment
- * High-Performance Optimization:
- * - GSAP quickTo memory-reused cursor position tracking
- * - Pre-rendered image stack for zero layout thrashing during scroll/hover
- * - GPU hardware composite layer (transform-gpu)
- */
 export function ScrollTextReveal() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const cursorPreviewRef = useRef<HTMLDivElement>(null);
-  const xTo = useRef<((value: number) => void) | null>(null);
-  const yTo = useRef<((value: number) => void) | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  const ITEM_HEIGHT = 80; // px height per title item
 
   useEffect(() => {
-    if (!cursorPreviewRef.current) return;
+    gsap.registerPlugin(ScrollTrigger);
 
-    // Use gsap.quickTo for hardware-fast cursor tracking with zero GC overhead
-    xTo.current = gsap.quickTo(cursorPreviewRef.current, "x", {
-      duration: 0.25,
-      ease: "power2.out",
-    });
-    yTo.current = gsap.quickTo(cursorPreviewRef.current, "y", {
-      duration: 0.25,
-      ease: "power2.out",
-    });
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (xTo.current && yTo.current) {
-        xTo.current(e.clientX - 140);
-        yTo.current(e.clientY - 85);
-      }
-    };
+    const ctx = gsap.context(() => {
+      const total = BRAND_ITEMS.length;
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+      // 1. Initial State Setup for Titles and Image Frames
+      BRAND_ITEMS.forEach((_, i) => {
+        if (i === 0) {
+          if (imageRefs.current[i]) gsap.set(imageRefs.current[i], { opacity: 1, scale: 1.0 });
+          if (titleRefs.current[i]) gsap.set(titleRefs.current[i], { color: "#E62B00", opacity: 1, scale: 1.0 });
+        } else {
+          if (imageRefs.current[i]) gsap.set(imageRefs.current[i], { opacity: 0, scale: 1.06 });
+          if (titleRefs.current[i]) gsap.set(titleRefs.current[i], { color: "#0E0E0E", opacity: 0.35, scale: 0.92 });
+        }
+      });
+
+      let lastIndex = -1;
+
+      // 2. Master Pinned GSAP ScrollTrigger Timeline with Generous Scroll Delay Buffer
+      const masterTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          pinSpacing: true,
+          scrub: 1.0, // Smooth unhurried inertia scrub
+          start: "top top",
+          end: `+=${total * 220}%`, // Generous pinned scroll distance for unhurried stepping
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const rawIdx = Math.floor(self.progress * total);
+            const idx = Math.max(0, Math.min(total - 1, rawIdx));
+            if (idx !== lastIndex) {
+              lastIndex = idx;
+              setActiveIndex(idx);
+            }
+          },
+        },
+      });
+
+      // 3. Step-by-step Pinned Slide Transition with Symmetrical Animated Ease
+      BRAND_ITEMS.forEach((_, i) => {
+        if (i === 0) return;
+        const prevIdx = i - 1;
+        const stepLabel = `step-${i}`;
+
+        // Smooth track vertical translation to keep active title centered
+        masterTl.to(
+          track,
+          {
+            y: -i * ITEM_HEIGHT,
+            duration: 1.0,
+            ease: "power2.inOut",
+          },
+          stepLabel
+        );
+
+        // Previous item transition out (fade down text, scale up image out)
+        if (titleRefs.current[prevIdx]) {
+          masterTl.to(
+            titleRefs.current[prevIdx],
+            { color: "#0E0E0E", opacity: 0.35, scale: 0.92, duration: 0.8, ease: "power2.inOut" },
+            stepLabel
+          );
+        }
+        if (imageRefs.current[prevIdx]) {
+          masterTl.to(
+            imageRefs.current[prevIdx],
+            { opacity: 0, scale: 1.06, duration: 0.8, ease: "power2.inOut" },
+            stepLabel
+          );
+        }
+
+        // Current item transition in (highlight active title in bold red, crossfade image in)
+        if (titleRefs.current[i]) {
+          masterTl.to(
+            titleRefs.current[i],
+            { color: "#E62B00", opacity: 1.0, scale: 1.0, duration: 0.9, ease: "power2.out" },
+            `${stepLabel}+=0.1`
+          );
+        }
+        if (imageRefs.current[i]) {
+          masterTl.to(
+            imageRefs.current[i],
+            { opacity: 1.0, scale: 1.0, duration: 0.9, ease: "power2.out" },
+            `${stepLabel}+=0.1`
+          );
+        }
+
+        // Delay pause on each active brand item before proceeding
+        masterTl.to({}, { duration: 0.5 });
+      });
+
+      // End trailing delay buffer before unpinning
+      masterTl.to({}, { duration: 1.0 });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
-  return (
-    <section className="relative w-full bg-[#F5F3EF] text-[#0E0E0E] py-24 sm:py-32 px-6 sm:px-12 md:px-16 overflow-hidden select-none border-t border-b border-stone-300">
-      {/* Floating Hover Image Cursor Follower (GPU Layer) */}
-      <div
-        ref={cursorPreviewRef}
-        className={`fixed top-0 left-0 z-50 pointer-events-none w-[280px] h-[170px] rounded-md border border-stone-400/40 shadow-2xl overflow-hidden bg-stone-900 transform-gpu transition-opacity duration-200 ${
-          hoveredIndex !== null ? "opacity-100 scale-100" : "opacity-0 scale-90"
-        }`}
-        style={{ willChange: "transform" }}
-      >
-        {STUDIO_DISCIPLINE_LIST.map((disc, index) => (
-          <Image
-            key={disc.id}
-            src={disc.image}
-            alt={disc.alt}
-            fill
-            priority={index === 0}
-            sizes="300px"
-            className={`object-cover transition-opacity duration-300 ${
-              hoveredIndex === index ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
-      </div>
+  // Hover Handler for Direct Interactive Selection
+  const handleHoverItem = (idx: number) => {
+    setActiveIndex(idx);
 
-      <div className="max-w-[1700px] mx-auto w-full space-y-12">
-        {/* Section Editorial Title */}
-        <div className="space-y-3 max-w-4xl border-b border-stone-300 pb-8">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-light font-sans tracking-tight leading-[0.95] text-[#0E0E0E]">
-            Capabilities & Core Disciplines
-          </h2>
-          <p className="text-stone-600 font-sans text-base sm:text-lg leading-relaxed">
-            We bridge mathematical precision with artistic endurance — engineering bespoke web experiences, identity systems, and WebGL shaders.
-          </p>
+    BRAND_ITEMS.forEach((_, i) => {
+      const isTarget = i === idx;
+
+      if (imageRefs.current[i]) {
+        gsap.to(imageRefs.current[i], {
+          opacity: isTarget ? 1 : 0,
+          scale: isTarget ? 1 : 1.06,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
+
+      if (titleRefs.current[i]) {
+        gsap.to(titleRefs.current[i], {
+          color: isTarget ? "#E62B00" : "#0E0E0E",
+          opacity: isTarget ? 1 : 0.35,
+          scale: isTarget ? 1 : 0.92,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
+    });
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative w-full h-screen bg-white text-[#0E0E0E] overflow-hidden select-none border-t border-b border-stone-300 flex items-center justify-center py-6"
+    >
+      <div className="w-full max-w-[1650px] px-6 sm:px-12 md:px-16 flex items-center justify-between gap-8 sm:gap-12 h-full max-h-[85vh] my-auto">
+        {/* LEFT COLUMN: Section Label */}
+        <div className="w-[180px] sm:w-[220px] shrink-0 flex items-center">
+          <div className="space-y-2">
+            <span className="font-mono text-xs font-bold text-[#E62B00] uppercase tracking-widest block">
+              PARTNER SHOWCASE
+            </span>
+            <p className="text-xl sm:text-2xl font-bold font-sans text-stone-900 tracking-tight leading-snug">
+              The brands that bet on us
+            </p>
+          </div>
         </div>
 
-        {/* Interactive Discipline Text List Stack */}
-        <div className="divide-y divide-stone-300 border-t border-b border-stone-300">
-          {STUDIO_DISCIPLINE_LIST.map((disc, idx) => {
-            const isHovered = hoveredIndex === idx;
+        {/* MIDDLE COLUMN: Vertical Titles Stream */}
+        <div className="w-[360px] sm:w-[440px] lg:w-[500px] shrink-0 relative h-[380px] flex flex-col justify-center overflow-hidden border-l border-r border-stone-200 px-6 sm:px-8">
+          <div
+            ref={trackRef}
+            className="w-full flex flex-col space-y-4 pt-[150px] pb-[150px] will-change-transform"
+          >
+            {BRAND_ITEMS.map((item, idx) => (
+              <div
+                key={item.id}
+                onMouseEnter={() => handleHoverItem(idx)}
+                className="cursor-pointer group transition-all duration-300 w-full h-[64px] flex items-center shrink-0"
+              >
+                <h3
+                  ref={(el) => {
+                    titleRefs.current[idx] = el;
+                  }}
+                  className="text-4xl sm:text-5xl lg:text-[3.8rem] font-bold font-sans tracking-tight leading-none truncate origin-left gpu-layer"
+                >
+                  {item.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
 
-            return (
-              <Link
-                key={disc.id}
-                href="/work"
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`group py-8 sm:py-10 transition-all duration-300 cursor-pointer flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 block ${
-                  isHovered ? "pl-4 lg:pl-6 bg-stone-200/40" : "pl-0"
+        {/* RIGHT GROUP: Sharp Image Frame + Narrative Text */}
+        <div className="flex-1 flex items-center gap-6 sm:gap-8 justify-end min-w-0">
+          {/* Brutalist Sharp Rectangular Image Card (Zero Curved Edges) */}
+          <div className="relative w-[340px] sm:w-[420px] md:w-[520px] aspect-[16/11] rounded-none overflow-hidden shadow-2xl border border-stone-300 bg-stone-100 shrink-0 gpu-layer">
+            {BRAND_ITEMS.map((item, idx) => (
+              <div
+                key={item.id}
+                ref={(el) => {
+                  imageRefs.current[idx] = el;
+                }}
+                className={`absolute inset-0 w-full h-full pointer-events-none origin-center gpu-layer transition-all duration-500 ${
+                  idx === activeIndex ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-106"
                 }`}
               >
-                {/* Left Side: Title + Subtitle */}
-                <div className="flex items-start sm:items-center gap-6 sm:gap-10">
-                  <div className="space-y-1">
-                    <h3 className="text-3xl sm:text-5xl lg:text-6xl font-light font-sans tracking-tight text-[#0E0E0E] group-hover:font-normal transition-all">
-                      {disc.title}
-                    </h3>
-                    <p className="text-stone-500 font-sans text-sm sm:text-base">
-                      {disc.subtitle}
-                    </p>
-                  </div>
-                </div>
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  quality={95}
+                  priority={idx === 0}
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                  className="object-cover rounded-none"
+                />
+              </div>
+            ))}
+          </div>
 
-                {/* Right Side: Deliverable Tags + Arrow */}
-                <div className="flex flex-wrap items-center gap-3 self-end lg:self-center">
-                  <div className="hidden sm:flex flex-wrap gap-2">
-                    {disc.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="px-3 py-1 bg-stone-200 border border-stone-300 text-[11px] font-mono text-stone-700 tracking-wider"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="w-10 h-10 rounded-full border border-stone-400 flex items-center justify-center text-[#0E0E0E] group-hover:bg-[#0E0E0E] group-hover:text-white group-hover:border-[#0E0E0E] transition-all">
-                    <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
+          {/* Far-Right Narrative Paragraph */}
+          <div className="w-[190px] sm:w-[240px] shrink-0 relative min-h-[160px] flex items-center overflow-hidden">
+            {BRAND_ITEMS.map((item, idx) => {
+              const isActive = idx === activeIndex;
+              return (
+                <div
+                  key={item.id}
+                  className={`absolute inset-0 flex flex-col justify-center space-y-3 gpu-layer transition-all duration-500 ease-out ${
+                    isActive
+                      ? "opacity-100 translate-y-0 pointer-events-auto z-10 flex"
+                      : "opacity-0 translate-y-3 pointer-events-none z-0 hidden"
+                  }`}
+                >
+                  <span className="font-mono text-xs font-bold text-[#E62B00] uppercase tracking-wider">
+                    {item.subtitle}
+                  </span>
+                  <p className="text-sm sm:text-base font-normal font-sans text-stone-800 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-              </Link>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

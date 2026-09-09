@@ -16,7 +16,7 @@ export function IdentitySection() {
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
-  const [sampleText, setSampleText] = useState("CLEAR. CONNECTED. COMPLETE.");
+  const [sampleText, setSampleText] = useState("LOOMIE KINETIC DESIGN STUDIO");
   const [fontSize, setFontSize] = useState(42);
 
   const targetEyePos = useRef({ px1: 0, py1: 0, px2: 0, py2: 0 });
@@ -254,7 +254,7 @@ export function IdentitySection() {
       {/* 2. COLOR PALETTE SPECIFICATIONS (BLACK #000000 & WHITE #FFFFFF) */}
       <div className="mb-20">
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-border-custom font-mono text-xs font-bold uppercase tracking-widest text-foreground">
-          <span>SPECIFICATION 02 // BRAND COLOR SYSTEM</span>
+          <span>BRAND COLOR SYSTEM</span>
           <span>HIGH-CONTRAST MONOCHROME</span>
         </div>
 

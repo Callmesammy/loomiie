@@ -27,8 +27,8 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     number: "01",
     shortTitle: "Logos",
     title: "Logos & Visual Marks",
-    bgColor: "#E6E3D8", // Warm Studio Linen
-    textColor: "#0E0E0E",
+    bgColor: "#050505", // Shiny Obsidian Black
+    textColor: "#ffffff",
     tagline: "Crafting iconic, memorable symbols and brandmarks that anchor instant brand recognition.",
     deliverables: ["VECTOR MARKS", "ICON SYSTEMS", "TYPE ARCHITECTURES", "SYMBOLIC STRATEGY"],
     image: getCloudinaryUrl("/images/services/service-sketch.jpg"),
@@ -39,11 +39,11 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     number: "02",
     shortTitle: "Identities",
     title: "Brand Identities",
-    bgColor: "#D4DFE6", // Slate Mineral Azure
-    textColor: "#0E0E0E",
+    bgColor: "#080808", // Deep Onyx Shiny Black
+    textColor: "#ffffff",
     tagline: "Building cohesive spatial & digital design systems that link every brand touchpoint seamlessly.",
     deliverables: ["VISUAL IDENTITY", "COLOR PALETTE", "GRAPHIC CHARTER", "BRAND GUIDELINES"],
-    image: getCloudinaryUrl("/images/services/service-color.jpg"),
+    image: "/cloud-architecture/card1-architecture.jpg",
     href: "/contact",
   },
   {
@@ -51,8 +51,8 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     number: "03",
     shortTitle: "UI/UX",
     title: "UI/UX Architecture",
-    bgColor: "#E8DEC8", // Warm Champagne Terracotta
-    textColor: "#0E0E0E",
+    bgColor: "#0c0c0c", // Charcoal Shiny Black
+    textColor: "#ffffff",
     tagline: "Structuring intuitive user experiences and high-performance digital products for high conversion.",
     deliverables: ["USER JOURNEYS", "WIRE FRAMES", "INTERACTIVE PROTOTYPES", "DESIGN SYSTEMS"],
     image: getCloudinaryUrl("/images/services/service-uiux.jpg"),
@@ -63,8 +63,8 @@ const AKARU_EXPERTISES: AkaruExpertise[] = [
     number: "04",
     shortTitle: "Websites",
     title: "Websites & Web Dev",
-    bgColor: "#CFCFCF", // Pure Titanium Studio Grey
-    textColor: "#0E0E0E",
+    bgColor: "#050505", // Vantablack Shiny Black
+    textColor: "#ffffff",
     tagline: "Engineering kinetic 3D WebGL motion websites built for speed, responsiveness, and conversion.",
     deliverables: ["NEXT.JS 15", "SHOPIFY CUSTOM", "THREE.JS SHADERS", "CUSTOM FRONT-END"],
     image: getCloudinaryUrl("/images/services/service-desktop.jpg"),
@@ -115,10 +115,10 @@ export function AkaruProjetsSection() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: `+=${AKARU_EXPERTISES.length * 130}%`,
+          end: `+=${AKARU_EXPERTISES.length * 280}%`, // Extended scroll distance for generous downward scroll delay
           pin: true,
           pinSpacing: true,
-          scrub: 1.0,
+          scrub: 2.4, // Smooth unhurried inertia scrub delay
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const idx = Math.min(
@@ -135,8 +135,8 @@ export function AkaruProjetsSection() {
               gsap.to(section, {
                 backgroundColor: currentTheme.bgColor,
                 color: currentTheme.textColor,
-                duration: 0.6,
-                ease: "power2.out",
+                duration: 0.8,
+                ease: "power2.inOut",
                 overwrite: "auto",
               });
             }
@@ -157,25 +157,28 @@ export function AkaruProjetsSection() {
         const currentImg = images[i];
 
         // 1. Transition Out Previous Card
-        tl.to(prevCard, { autoAlpha: 0, yPercent: -15, duration: 0.6, ease: "power2.inOut" }, label);
+        tl.to(prevCard, { autoAlpha: 0, yPercent: -15, duration: 0.8, ease: "power2.inOut" }, label);
         if (prevImg) {
-          tl.to(prevImg, { scale: 1.25, duration: 0.6, ease: "power2.inOut" }, label);
+          tl.to(prevImg, { scale: 1.25, duration: 0.8, ease: "power2.inOut" }, label);
         }
-        tl.set(prevCard, { display: "none" }, `${label}+=0.6`);
+        tl.set(prevCard, { display: "none" }, `${label}+=0.8`);
 
         // 2. Transition In Current Card with Smooth Image Zoom Scale
         tl.set(currentCard, { display: "grid", autoAlpha: 0, yPercent: 15 }, label)
-          .to(currentCard, { autoAlpha: 1, yPercent: 0, duration: 0.8, ease: "power3.out" }, `${label}+=0.1`);
+          .to(currentCard, { autoAlpha: 1, yPercent: 0, duration: 1.0, ease: "power2.out" }, `${label}+=0.1`);
 
         if (currentImg) {
           tl.fromTo(
             currentImg,
             { scale: 1.3 },
-            { scale: 1.0, duration: 1.0, ease: "power3.out" },
+            { scale: 1.0, duration: 1.2, ease: "power2.out" },
             `${label}+=0.1`
           );
         }
       });
+
+      // 3. Trailing Exit Buffer Delay before unpinning section on downward scroll
+      tl.to({}, { duration: 1.5 });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -208,7 +211,7 @@ export function AkaruProjetsSection() {
         {/* Top Header Bar */}
         <div className="flex items-center justify-between border-b border-current/20 pb-2 sm:pb-3 font-mono text-xs font-bold tracking-widest uppercase">
           <div className="flex items-center gap-2 sm:gap-3">
-            <span className="w-2 h-2 rounded-full bg-current animate-pulse shrink-0" />
+            <span className="w-2 h-2 rounded-full bg-[#f75828] animate-pulse shrink-0" />
             <span className="flex items-center gap-2 truncate">
               <Compass className="w-3.5 h-3.5 shrink-0" />
               <span className="truncate text-[11px] sm:text-xs">SERVICES WE PROVIDE</span>
@@ -227,7 +230,7 @@ export function AkaruProjetsSection() {
 
         {/* Section Title: "Services We Provide" */}
         <div className="text-left lg:text-center pt-1 pb-1">
-          <h2 className="text-4xl sm:text-7xl lg:text-[7.5rem] font-light font-sans tracking-tight leading-none text-current uppercase">
+          <h2 className="text-4xl sm:text-7xl lg:text-[7.5rem] font-black font-sans tracking-tight leading-none text-current uppercase">
             Services We Provide
           </h2>
         </div>
@@ -237,6 +240,7 @@ export function AkaruProjetsSection() {
           {AKARU_EXPERTISES.map((exp, idx) => (
             <div
               key={exp.id}
+              style={{ display: idx === activeIndex ? "grid" : "none" }}
               className="akaru-exp-card absolute inset-0 w-full h-full grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center"
             >
               {/* LEFT COLUMN: Number + Title */}
@@ -247,7 +251,7 @@ export function AkaruProjetsSection() {
                   <span>SERVICE CAPABILITY</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-5xl lg:text-6xl font-light font-sans tracking-tight leading-[1.02] text-current">
+                <h3 className="text-2xl sm:text-5xl lg:text-6xl font-bold font-sans tracking-tight leading-[1.02] text-current">
                   {exp.title}
                 </h3>
 
@@ -268,7 +272,7 @@ export function AkaruProjetsSection() {
                   className="akaru-exp-image object-cover transform-gpu origin-center"
                 />
                 <div className="absolute top-3 left-3 font-mono text-[10px] font-bold px-2.5 py-1 bg-black/70 text-white backdrop-blur-md">
-                  0{exp.number} // LOOMIE STUDIO
+                  LOOMIE
                 </div>
               </div>
 
@@ -285,11 +289,11 @@ export function AkaruProjetsSection() {
 
                 <div className="pt-1 sm:pt-2">
                   <Link
-                    href="/expertise"
-                    className="group inline-flex items-center gap-3 px-5 sm:px-6 py-2.5 sm:py-3.5 border border-[#0E0E0E] text-[#0E0E0E] bg-transparent rounded-full font-mono text-[11px] sm:text-xs font-bold uppercase tracking-widest hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 shadow-lg cursor-pointer"
+                    href="/contact"
+                    className="group inline-flex items-center gap-3 px-5 sm:px-6 py-2.5 sm:py-3.5 border border-white text-white bg-transparent rounded-full font-mono text-[11px] sm:text-xs font-bold uppercase tracking-widest hover:bg-[#f75828] hover:border-[#f75828] transition-all duration-300 shadow-lg cursor-pointer"
                   >
-                    <span>SEE THE EXPERTISE</span>
-                    <span className="w-2 h-2 rounded-full bg-[#0E0E0E] group-hover:bg-white transition-colors" />
+                    <span>GET IN TOUCH</span>
+                    <span className="w-2 h-2 rounded-full bg-white group-hover:bg-white transition-colors" />
                   </Link>
                 </div>
               </div>
@@ -309,8 +313,8 @@ export function AkaruProjetsSection() {
                     onClick={() => handleNavClick(pIdx)}
                     className={`px-3 sm:px-4 py-1 sm:py-1.5 border font-mono text-xs transition-all duration-300 cursor-pointer rounded-full whitespace-nowrap ${
                       isActive
-                        ? "bg-[#0E0E0E] text-white border-[#0E0E0E] font-bold shadow-md"
-                        : "border-current/30 text-[#0E0E0E]/70 hover:border-current hover:text-[#0E0E0E]"
+                        ? "bg-[#f75828] text-white border-[#f75828] font-bold shadow-md"
+                        : "border-white/20 text-white/70 hover:border-white hover:text-white"
                     }`}
                   >
                     0{p.number} {p.shortTitle}

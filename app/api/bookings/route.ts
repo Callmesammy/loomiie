@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     const clientEmailHtml = getClientEmailTemplate(bookingPayload);
     await dispatchEmail({
       to: clientEmail,
-      subject: `Strategy Call Confirmed — LOOMIE Studio (${month} ${day})`,
+      subject: `Strategy Call Confirmed — LOOMIE (${month} ${day})`,
       html: clientEmailHtml,
     });
 

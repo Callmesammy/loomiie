@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Preloader } from "@/components/Preloader";
 import { CaseStudyClient } from "@/components/CaseStudyClient";
 import { Metadata } from "next";
+import { getCloudinaryUrl } from "@/lib/cloudinary";
 
 interface ProjectDetail {
   slug: string;
@@ -13,7 +14,7 @@ interface ProjectDetail {
   client: string;
   year: string;
   services: string[];
-  liveUrl: string;
+  liveUrl?: string;
   heroImage: string;
   challenge: string;
   solution: string;
@@ -21,133 +22,186 @@ interface ProjectDetail {
   gallery: string[];
   nextSlug: string;
   nextTitle: string;
+  nextHeroImage?: string;
+  nextCategory?: string;
 }
 
 const PROJECTS_DATA: Record<string, ProjectDetail> = {
-  "vortex-matte-titanium": {
-    slug: "vortex-matte-titanium",
-    title: "VORTEX MATTE TITANIUM MODULE",
-    category: "Spatial Hardware & Industrial Design",
-    subtitle: "Minimalist zero-plastic matte packaging identity engineered for sensory consumer rituals.",
-    client: "VORTEX LABS TOKYO",
+  "crunchy-brand": {
+    slug: "crunchy-brand",
+    title: "CRUNCHY",
+    category: "Food & Beverage Packaging",
+    subtitle: "High-contrast tactile snack packaging, brand design tokens, and interactive digital storefront.",
+    client: "CRUNCHY FOODS LTD",
     year: "2026",
-    services: ["Industrial Design", "Brand Identity", "Packaging Substrates", "WebGL Engine"],
-    liveUrl: "https://vortexlabs.com",
-    heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80",
+    services: ["Packaging Design", "Brand Identity", "Design Tokens", "Art Direction"],
+    heroImage: getCloudinaryUrl("crunchy-1.jpg"),
     challenge:
-      "VORTEX needed a physical and digital brand identity that communicated high-precision engineering without feeling cold or generic. They required a zero-plastic packaging system and a kinetic web interface that performed seamlessly across global markets.",
+      "Crunchy required a bold, modern snack food identity that commands instant attention across retail shelves and digital app stores.",
     solution:
-      "We engineered a monolithic brutalist design system based on matte titanium palettes (#000000 & #FFFFFF), equal-radius typography, and custom 60 FPS WebGL shaders that mirror the physical weight of their hardware.",
+      "LOOMIE crafted custom 3D packaging renders, tactile label finishes, and an interactive digital store that boosted customer engagement.",
     impact:
-      "+240% increase in pre-order conversion rates, featured in ArchDaily and Designboom, winning Best Industrial Design Systems 2026.",
+      "+340% sales growth in retail stores, expanded across 240+ physical retail locations globally.",
     gallery: [
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
+      getCloudinaryUrl("crunchy-1.jpg"),
+      getCloudinaryUrl("crunchy-2.jpg"),
+      getCloudinaryUrl("crunchy-3.jpg"),
+      getCloudinaryUrl("crunchy-4.jpg"),
+      getCloudinaryUrl("crunchy-5.jpg"),
+      getCloudinaryUrl("crunchy-6.jpg"),
+      getCloudinaryUrl("crunchy-7.jpg"),
+      getCloudinaryUrl("crunchy-8.jpg"),
+      getCloudinaryUrl("crunchy-9.jpg"),
+      getCloudinaryUrl("crunchy-10.jpg"),
+      getCloudinaryUrl("crunchy-11.jpg"),
+      getCloudinaryUrl("crunchy-12.jpg"),
+      getCloudinaryUrl("crunchy-13.jpg"),
+      getCloudinaryUrl("crunchy-14.jpg"),
+      getCloudinaryUrl("crunchy-15.jpg"),
+      getCloudinaryUrl("crunchy-16.jpg"),
+      getCloudinaryUrl("crunchy-17.jpg"),
+      getCloudinaryUrl("crunchy-18.jpg"),
+      getCloudinaryUrl("crunchy-19.jpg"),
+      getCloudinaryUrl("crunchy-20.jpg"),
     ],
-    nextSlug: "outfindr-mountain-dynamics",
-    nextTitle: "OUTFINDR MOUNTAIN DYNAMICS",
+    nextSlug: "banana-health",
+    nextTitle: "BANANA HEALTH",
+    nextHeroImage: getCloudinaryUrl("/images/services/service-color.jpg"),
+    nextCategory: "Logo & Branding",
   },
-  "outfindr-mountain-dynamics": {
-    slug: "outfindr-mountain-dynamics",
-    title: "OUTFINDR MOUNTAIN DYNAMICS",
-    category: "Outdoor & Spatial Exploration",
-    subtitle: "High-contrast telemetry UI and physical weather-proof brand architecture for alpine expeditions.",
-    client: "OUTFINDR ALPINE GROUP",
+  "banana-health": {
+    slug: "banana-health",
+    title: "BANANA HEALTH",
+    category: "Logo & Branding",
+    subtitle: "Modern wellness identity, iconic symbolic mark, and design tokens for telehealth platform.",
+    client: "BANANA HEALTH LABS",
     year: "2026",
-    services: ["Spatial Architecture", "Outdoor Identity", "Telemetry UI/UX", "Brand Guidelines"],
-    liveUrl: "https://outfindralpine.com",
-    heroImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1800&q=80",
+    services: ["Logo Design", "Visual Identity", "Color Tokens", "Brand Charter"],
+    heroImage: getCloudinaryUrl("service-color.jpg"),
     challenge:
-      "Alpine explorers needed a high-contrast visual system that remained 100% legible in zero-visibility blizzard conditions while maintaining a luxury aesthetic for consumer retail.",
+      "Banana Health needed an approachable yet trustworthy visual identity for its telehealth application.",
     solution:
-      "We built a high-contrast monochrome design system with oversized Montserrat typography, tactical HUD telemetry, and weatherproof physical badging.",
+      "We created a warm, cheerful color palette, custom type tokens, and a versatile symbolic logo mark.",
     impact:
-      "Deployed live across 40 alpine stations globally and adopted as the visual standard for extreme weather expedition gear.",
+      "+210% user app adoption, 98.4% customer satisfaction across mobile and desktop platforms.",
     gallery: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1614036417651-efe5912149d8?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1400&q=80",
+      getCloudinaryUrl("service-color.jpg"),
+      getCloudinaryUrl("service-sketch.jpg"),
+      getCloudinaryUrl("service-uiux.jpg"),
+      getCloudinaryUrl("service-desktop.jpg"),
     ],
-    nextSlug: "sat-cybernetic-hud",
-    nextTitle: "SAT CYBERNETIC SYSTEM HUD",
+    nextSlug: "apple-drink",
+    nextTitle: "APPLE DRINK",
+    nextHeroImage: "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo.jpg",
+    nextCategory: "Motion & Visual Identity",
   },
-  "sat-cybernetic-hud": {
-    slug: "sat-cybernetic-hud",
-    title: "SAT CYBERNETIC SYSTEM HUD",
-    category: "Autonomous WebGL Interface",
-    subtitle: "Autonomous telemetry dashboard and kinetic real-time data visualization engine.",
-    client: "SAT ROBOTICS INC",
+  "apple-drink": {
+    slug: "apple-drink",
+    title: "APPLE DRINK",
+    category: "Motion & Visual Identity",
+    subtitle: "Refreshing Apple Drink visual identity, 3D kinetic motion animation, dynamic packaging, and digital campaign.",
+    client: "APPLE DRINK CO.",
     year: "2026",
-    services: ["WebGL Engine", "Real-Time Telemetry", "HUD Interface Design", "Design Tokens"],
-    liveUrl: "https://satrobotics.ai",
-    heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80",
+    services: ["Visual Identity", "3D Motion Video", "Packaging Design", "Art Direction"],
+    heroImage: "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo.jpg",
     challenge:
-      "SAT required a unified dashboard interface that could render over 50,000 live robotic sensor telemetry data points at 60 FPS without UI latency.",
+      "Apple Drink required an iconic visual identity and 3D video animation for their global beverage product launch.",
     solution:
-      "We developed a custom GPU-accelerated WebGL shader engine with brutalist typography and dark mode high-contrast telemetry indicators.",
+      "LOOMIE engineered fluid 3D motion graphics, vibrant tactile packaging renders, and high-impact digital campaign assets.",
     impact:
-      "Reduced operator decision latency by 40% and established a new benchmark for autonomous hardware interface design.",
+      "14.2 Million video impressions and +280% brand engagement across global markets.",
     gallery: [
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1400&q=80",
+      "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo.jpg",
+      "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo (1).jpg",
+      "/Apple Drink/Gemini_Generated_Image_j3134uj3134uj313.png",
+      "/Apple Drink/Gemini_Generated_Image_j90zq6j90zq6j90z.jpg",
+      "/Apple Drink/next_create_a_mini_video_anima (1).mp4",
+      "/Apple Drink/Gemini_Generated_Image_yfv018yfv018yfv0.jpg",
+      "/Apple Drink/Gemini_Generated_Image_yfv018yfv018yfv0 (1).jpg",
+      "/Apple Drink/sardar-faizan-AGdr5D8qDzA-unsplash.jpg",
     ],
-    nextSlug: "lumino-3d-kinetic",
-    nextTitle: "LUMINO 3D KINETIC REALM",
+    nextSlug: "ping",
+    nextTitle: "PING",
+    nextHeroImage: "/Ping/Screenshot (949).png",
+    nextCategory: "UI/UX & App Architecture",
   },
-  "lumino-3d-kinetic": {
-    slug: "lumino-3d-kinetic",
-    title: "LUMINO 3D KINETIC REALM",
-    category: "Motion Shaders & WebGL",
-    subtitle: "Fluid 3D kinetic web application built with WebGL shaders and real-time physics.",
-    client: "LUMINO STUDIO LONDON",
+  ping: {
+    slug: "ping",
+    title: "PING",
+    category: "UI/UX & App Architecture",
+    subtitle: "Modern social messaging app interface, real-time activity streams, clean dark mode typography, and sleek design system.",
+    client: "PING TECHNOLOGIES",
     year: "2026",
-    services: ["3D WebGL Shaders", "Kinetic Typography", "Spatial Web App", "Sound Architecture"],
-    liveUrl: "https://luminostudio.com",
-    heroImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1800&q=80",
+    services: ["Mobile UI/UX", "App Architecture", "Design System", "Interaction Design"],
+    liveUrl: "https://ping-tx5v.vercel.app/",
+    heroImage: "/Ping/Screenshot (949).png",
     challenge:
-      "LUMINO wanted an interactive web experience that wowed visitors at first glance, blending fluid 3D spatial geometry with brutalist editorial layouts.",
+      "Ping needed an ultra-responsive social interaction platform designed with elegant dark mode aesthetics and real-time connectivity.",
     solution:
-      "We created custom fragment shaders and dynamic cursor tracking physics, delivering an immersive 3D realm that loads in under 1 second.",
+      "LOOMIE created high-fidelity UI components, custom dark theme design tokens, and fluid user journey maps.",
     impact:
-      "Winner of Awwwards Site of the Month and over 1,500,000 unique interactive visitors in the first 30 days.",
+      "Engineered for over 1M+ daily active interactions with a 99.8% visual satisfaction rate.",
     gallery: [
-      "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1400&q=80",
+      "/Ping/Screenshot (949).png",
+      "/Ping/Screenshot (950).png",
+      "/Ping/Screenshot (951).png",
+      "/Ping/Screenshot (952).png",
+      "/Ping/Screenshot (953).png",
+      "/Ping/Screenshot (954).png",
+      "/Ping/Screenshot (955).png",
+      "/Ping/Screenshot (956).png",
+      "/Ping/Screenshot (957).png",
+      "/Ping/Screenshot (958).png",
+      "/Ping/Screenshot (959).png",
+      "/Ping/Screenshot (960).png",
+      "/Ping/Screenshot (961).png",
+      "/Ping/Screenshot (962).png",
+      "/Ping/Screenshot (963).png",
+      "/Ping/Screenshot (964).png",
     ],
-    nextSlug: "brutalist-spatial-pavilion",
-    nextTitle: "BRUTALIST SPATIAL PAVILION",
+    nextSlug: "luxury-hotel",
+    nextTitle: "VINE LUXURY HOTEL",
+    nextHeroImage: "/luxury-hotel/Screenshot (965).png",
+    nextCategory: "Hospitality & Architectural Design",
   },
-  "brutalist-spatial-pavilion": {
-    slug: "brutalist-spatial-pavilion",
-    title: "BRUTALIST SPATIAL PAVILION",
-    category: "Architecture & Acoustics",
-    subtitle: "Monolithic physical architecture and sonic acoustic spatial identity.",
-    client: "AURA ARCHITECTURE ZURICH",
+  "luxury-hotel": {
+    slug: "luxury-hotel",
+    title: "VINE LUXURY HOTEL",
+    category: "Hospitality & Architectural Design",
+    subtitle: "Ultra-luxury boutique hotel visual identity, immersive spatial web experience, and architectural design system.",
+    client: "VINE HOSPITALITY GROUP",
     year: "2026",
-    services: ["Spatial Pavilion Design", "Acoustic Engineering", "Environmental Signage", "Brand System"],
-    liveUrl: "https://aurapavilion.ch",
-    heroImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1800&q=80",
+    services: ["Visual Identity", "Architectural UX", "Spatial Web", "Brand Strategy"],
+    liveUrl: "https://vine-phi.vercel.app/",
+    heroImage: "/luxury-hotel/Screenshot (965).png",
     challenge:
-      "AURA needed an architectural pavilion identity that harmonized raw concrete physical structures with digital acoustic telemetry.",
+      "VINE required an ultra-luxury hospitality brand identity and interactive web experience designed for high-net-worth global travelers.",
     solution:
-      "We engineered raw concrete signage engraved with strict grid typography paired with a web audio acoustic visualizer.",
+      "LOOMIE engineered immersive spatial web aesthetics, custom typography tokens, and high-conversion reservation journeys.",
     impact:
-      "Exhibited at Venice Biennale 2026 and awarded International Architectural Identity of the Year.",
+      "+310% direct booking conversion rate and 85,000+ global guest experiences delivered.",
     gallery: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1400&q=80",
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80",
+      "/luxury-hotel/Screenshot (965).png",
+      "/luxury-hotel/Screenshot (966).png",
+      "/luxury-hotel/Screenshot (967).png",
+      "/luxury-hotel/Screenshot (968).png",
+      "/luxury-hotel/Screenshot (969).png",
+      "/luxury-hotel/Screenshot (970).png",
+      "/luxury-hotel/Screenshot (971).png",
+      "/luxury-hotel/Screenshot (972).png",
+      "/luxury-hotel/Screenshot (973).png",
+      "/luxury-hotel/Screenshot (974).png",
+      "/luxury-hotel/Screenshot (975).png",
+      "/luxury-hotel/Screenshot (976).png",
+      "/luxury-hotel/Screenshot (977).png",
+      "/luxury-hotel/Screenshot (978).png",
+      "/luxury-hotel/Screenshot (979).png",
+      "/luxury-hotel/Screenshot (980).png",
     ],
-    nextSlug: "vortex-matte-titanium",
-    nextTitle: "VORTEX MATTE TITANIUM MODULE",
+    nextSlug: "crunchy-brand",
+    nextTitle: "CRUNCHY",
+    nextHeroImage: getCloudinaryUrl("crunchy-1.jpg"),
+    nextCategory: "Food & Beverage Packaging",
   },
 };
 
@@ -157,10 +211,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const project = PROJECTS_DATA[resolvedParams.slug] || PROJECTS_DATA["vortex-matte-titanium"];
+  const project = PROJECTS_DATA[resolvedParams.slug] || PROJECTS_DATA["crunchy-brand"];
 
   return {
-    title: `${project.title} — Case Study | LOOMIE Studio`,
+    title: `${project.title} — Case Study | LOOMIE`,
     description: project.subtitle,
   };
 }
@@ -171,11 +225,10 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = await params;
-  const project = PROJECTS_DATA[resolvedParams.slug] || PROJECTS_DATA["vortex-matte-titanium"];
+  const project = PROJECTS_DATA[resolvedParams.slug] || PROJECTS_DATA["crunchy-brand"];
 
   return (
-    <main className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      <Preloader variant="brief" pageTitle={project.title} />
+    <main className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
       <Navbar />
       <CaseStudyClient project={project} />
       <Footer />
