@@ -115,47 +115,57 @@ export function TiltingSectionsScrollSection() {
     const main = mainRef.current;
     if (!main) return;
 
-    const ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray<HTMLElement>(".tilt-section");
+    const mm = gsap.matchMedia();
 
-      sections.forEach((section, index) => {
-        const container = section.querySelector<HTMLElement>(".tilt-container");
-        if (!container) return;
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+      },
+      (context) => {
+        const { isDesktop } = context.conditions as { isDesktop: boolean; isMobile: boolean };
+        const sections = gsap.utils.toArray<HTMLElement>(".tilt-section");
 
-        // 1. Un-tilt 30deg -> 0deg on scroll scrub
-        gsap.fromTo(
-          container,
-          { rotation: 30, transformOrigin: "bottom left" },
-          {
-            rotation: 0,
-            ease: "none",
-            scrollTrigger: {
+        sections.forEach((section, index) => {
+          const container = section.querySelector<HTMLElement>(".tilt-container");
+          if (!container) return;
+
+          // 1. Un-tilt on scroll scrub (30deg on desktop, 0deg straight on mobile)
+          gsap.fromTo(
+            container,
+            { rotation: isDesktop ? 30 : 0, transformOrigin: "bottom left" },
+            {
+              rotation: 0,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: isDesktop ? "top bottom" : "top 95%",
+                end: isDesktop ? "top 15%" : "top top",
+                scrub: true,
+              },
+            }
+          );
+
+          // 2. Card Stacking Pinning
+          if (index < sections.length - 1) {
+            ScrollTrigger.create({
               trigger: section,
-              start: "top bottom",
-              end: "top 15%",
-              scrub: true,
-            },
+              start: "bottom bottom",
+              end: "bottom top",
+              pin: true,
+              pinSpacing: false,
+            });
           }
-        );
+        });
+      },
+      mainRef
+    );
 
-        // 2. Card Stacking Pinning
-        if (index < sections.length - 1) {
-          ScrollTrigger.create({
-            trigger: section,
-            start: "bottom bottom",
-            end: "bottom top",
-            pin: true,
-            pinSpacing: false,
-          });
-        }
-      });
-    }, mainRef);
-
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   return (
-    <div ref={mainRef} className="relative w-full overflow-hidden bg-[#050505] text-white select-none py-8">
+    <div ref={mainRef} className="relative w-full overflow-hidden bg-[#050505] text-white select-none py-0 sm:py-2">
       {/* Official Barlow Condensed & Instrument Sans Brand Font Styles */}
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Instrument+Sans:wght@400;500;600;700&display=swap");
@@ -174,25 +184,23 @@ export function TiltingSectionsScrollSection() {
           <section
             key={sec.id}
             id={sec.id}
-            className={`tilt-section relative w-full ${
-              isStance ? "h-[115vh] min-h-[115vh]" : "h-[100vh] min-h-[100vh]"
-            } overflow-hidden px-3 sm:px-6 lg:px-10 py-4`}
+            className={`tilt-section relative w-full ${isStance ? "h-[100vh] min-h-[100vh] md:h-[135vh] md:min-h-[135vh]" : "h-[100vh] min-h-[100vh] md:h-[120vh] md:min-h-[120vh]"
+              } overflow-hidden px-1 sm:px-3 lg:px-6 py-1 sm:py-2`}
           >
             <div
-              className="tilt-container relative w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-center rounded-none shadow-[0_35px_80px_-15px_rgba(0,0,0,0.9)] will-change-transform overflow-hidden"
+              className="tilt-container relative w-full h-full p-4 sm:p-8 lg:p-12 flex flex-col justify-center rounded-none shadow-[0_35px_80px_-15px_rgba(0,0,0,0.9)] will-change-transform overflow-hidden"
               style={{
                 backgroundColor: sec.bgColor,
                 color: sec.textColor,
-                transform: "rotate(30deg)",
                 transformOrigin: "bottom left",
               }}
             >
-              <div className="w-full max-w-[1500px] h-full mx-auto my-auto flex flex-col justify-center px-2 sm:px-8 py-6">
+              <div className="w-full max-w-[1700px] h-full mx-auto my-auto flex flex-col justify-center px-2 sm:px-6 py-2 sm:py-4">
                 {/* 1. ENTRY POINT LAYOUT */}
                 {sec.layout === "entry" && (
-                  <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-4">
+                  <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center space-y-4 sm:space-y-6">
                     {sec.paragraphs.map((p, pIdx) => (
-                      <p key={pIdx} className="instrument-font text-lg sm:text-2xl lg:text-3xl text-stone-900 font-medium leading-relaxed">
+                      <p key={pIdx} className="instrument-font text-base sm:text-3xl lg:text-4xl text-stone-900 font-medium leading-relaxed">
                         {p}
                       </p>
                     ))}
@@ -201,24 +209,24 @@ export function TiltingSectionsScrollSection() {
 
                 {/* 2. GESTURE LAYOUT */}
                 {sec.layout === "gesture" && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-                    <div className="flex justify-center lg:justify-start">
-                      <div className="relative w-full max-w-full sm:max-w-md lg:max-w-lg aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-10 lg:gap-14 items-center w-full">
+                    <div className="flex justify-center lg:justify-start w-full">
+                      <div className="relative w-full max-w-[280px] sm:max-w-lg lg:max-w-xl xl:max-w-2xl aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
                         {sec.image && (
                           <Image
                             src={sec.image}
                             alt={sec.imageAlt || "Gesture Form"}
                             fill
-                            sizes="(max-width: 1024px) 100vw, 550px"
+                            sizes="(max-width: 1024px) 100vw, 750px"
                             className="object-cover"
                           />
                         )}
                       </div>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-6">
                       {sec.paragraphs.map((p, pIdx) => (
-                        <p key={pIdx} className="instrument-font text-base sm:text-lg lg:text-xl text-stone-800 font-medium leading-relaxed max-w-xl">
+                        <p key={pIdx} className="instrument-font text-xs sm:text-xl lg:text-2xl text-stone-800 font-medium leading-normal sm:leading-relaxed max-w-2xl">
                           {p}
                         </p>
                       ))}
@@ -228,23 +236,23 @@ export function TiltingSectionsScrollSection() {
 
                 {/* 3. VARIATION LAYOUT */}
                 {sec.layout === "variation" && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-                    <div className="space-y-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-10 lg:gap-14 items-center w-full">
+                    <div className="space-y-3 sm:space-y-6 order-2 lg:order-1">
                       {sec.paragraphs.map((p, pIdx) => (
-                        <p key={pIdx} className="instrument-font text-base sm:text-lg lg:text-xl text-stone-800 font-medium leading-relaxed max-w-xl">
+                        <p key={pIdx} className="instrument-font text-xs sm:text-xl lg:text-2xl text-stone-800 font-medium leading-normal sm:leading-relaxed max-w-2xl">
                           {p}
                         </p>
                       ))}
                     </div>
 
-                    <div className="flex justify-center lg:justify-end">
-                      <div className="relative w-full max-w-full sm:max-w-md lg:max-w-lg aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
+                    <div className="flex justify-center lg:justify-end w-full order-1 lg:order-2">
+                      <div className="relative w-full max-w-[280px] sm:max-w-lg lg:max-w-xl xl:max-w-2xl aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
                         {sec.image && (
                           <Image
                             src={sec.image}
                             alt={sec.imageAlt || "Variation Architecture"}
                             fill
-                            sizes="(max-width: 1024px) 100vw, 550px"
+                            sizes="(max-width: 1024px) 100vw, 750px"
                             className="object-cover"
                           />
                         )}
@@ -255,21 +263,21 @@ export function TiltingSectionsScrollSection() {
 
                 {/* 4. THE STANCE LAYOUT */}
                 {sec.layout === "stance" && (
-                  <div className="flex flex-col items-center justify-center text-center space-y-5 max-w-3xl mx-auto py-2">
+                  <div className="flex flex-col items-center justify-center text-center space-y-4 sm:space-y-6 max-w-4xl mx-auto py-2 w-full">
                     {sec.image && (
-                      <div className="relative w-full max-w-full sm:max-w-sm lg:max-w-md aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black mb-2">
+                      <div className="relative w-full max-w-[240px] sm:max-w-md lg:max-w-lg aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black mb-1 sm:mb-2">
                         <Image
                           src={sec.image}
                           alt={sec.imageAlt || "The Stance Form"}
                           fill
-                          sizes="(max-width: 1024px) 100vw, 500px"
+                          sizes="(max-width: 1024px) 100vw, 600px"
                           className="object-cover"
                         />
                       </div>
                     )}
-                    <div className="space-y-3 max-w-2xl">
+                    <div className="space-y-3 sm:space-y-4 max-w-3xl">
                       {sec.paragraphs.map((p, pIdx) => (
-                        <p key={pIdx} className="instrument-font text-base sm:text-lg lg:text-xl text-stone-800 font-medium leading-relaxed">
+                        <p key={pIdx} className="instrument-font text-xs sm:text-xl lg:text-2xl text-stone-800 font-medium leading-normal sm:leading-relaxed">
                           {p}
                         </p>
                       ))}
@@ -279,23 +287,23 @@ export function TiltingSectionsScrollSection() {
 
                 {/* 5. STILLNESS LAYOUT */}
                 {sec.layout === "stillness" && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-                    <div className="space-y-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-10 lg:gap-14 items-center w-full">
+                    <div className="space-y-3 sm:space-y-6 order-2 lg:order-1">
                       {sec.paragraphs.map((p, pIdx) => (
-                        <p key={pIdx} className="instrument-font text-base sm:text-lg lg:text-xl text-stone-800 font-medium leading-relaxed max-w-xl">
+                        <p key={pIdx} className="instrument-font text-xs sm:text-xl lg:text-2xl text-stone-800 font-medium leading-normal sm:leading-relaxed max-w-2xl">
                           {p}
                         </p>
                       ))}
                     </div>
 
                     {sec.image && (
-                      <div className="flex justify-center lg:justify-end">
-                        <div className="relative w-full max-w-full sm:max-w-md lg:max-w-lg aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
+                      <div className="flex justify-center lg:justify-end w-full order-1 lg:order-2">
+                        <div className="relative w-full max-w-[280px] sm:max-w-lg lg:max-w-xl xl:max-w-2xl aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
                           <Image
                             src={sec.image}
                             alt={sec.imageAlt || "Stillness Form"}
                             fill
-                            sizes="(max-width: 1024px) 100vw, 550px"
+                            sizes="(max-width: 1024px) 100vw, 750px"
                             className="object-cover"
                           />
                         </div>
@@ -306,23 +314,23 @@ export function TiltingSectionsScrollSection() {
 
                 {/* 6. RELEASE LAYOUT */}
                 {sec.layout === "release" && (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
-                    <div className="space-y-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-10 lg:gap-14 items-center w-full">
+                    <div className="space-y-3 sm:space-y-6 order-2 lg:order-1">
                       {sec.paragraphs.map((p, pIdx) => (
-                        <p key={pIdx} className="instrument-font text-base sm:text-lg lg:text-xl text-stone-800 font-medium leading-relaxed max-w-xl">
+                        <p key={pIdx} className="instrument-font text-xs sm:text-xl lg:text-2xl text-stone-800 font-medium leading-normal sm:leading-relaxed max-w-2xl">
                           {p}
                         </p>
                       ))}
                     </div>
 
                     {sec.image && (
-                      <div className="flex justify-center lg:justify-end">
-                        <div className="relative w-full max-w-full sm:max-w-md lg:max-w-lg aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
+                      <div className="flex justify-center lg:justify-end w-full order-1 lg:order-2">
+                        <div className="relative w-full max-w-[280px] sm:max-w-lg lg:max-w-xl xl:max-w-2xl aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-black">
                           <Image
                             src={sec.image}
                             alt={sec.imageAlt || "Release Form"}
                             fill
-                            sizes="(max-width: 1024px) 100vw, 550px"
+                            sizes="(max-width: 1024px) 100vw, 750px"
                             className="object-cover"
                           />
                         </div>

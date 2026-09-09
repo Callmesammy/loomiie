@@ -374,7 +374,7 @@ export function CapsulesStickyColsSection() {
           >
             <div className="w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden shadow-2xl">
               <div className="space-y-5 my-auto">
-                <h1 className="barlow-font text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1]">
+                <h1 className="barlow-font text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1]">
                   {card1Data.title}
                 </h1>
                 <p className="instrument-font font-medium text-sm sm:text-base md:text-lg text-[#a1a1a1] max-w-lg leading-relaxed">
@@ -389,16 +389,16 @@ export function CapsulesStickyColsSection() {
                 </div>
               </div>
 
-              <div className="font-mono text-xs text-[#a1a1a1] uppercase tracking-widest pt-4 border-t border-white/10">
+              <div className="whitespace-nowrap font-mono text-[10px] sm:text-xs text-[#a1a1a1] uppercase tracking-widest pt-4 border-t border-white/10">
                 LOOMIE BRAND ARCHITECTURE
               </div>
             </div>
           </div>
 
-          {/* COLUMN 2: RIGHT SIDE SHOWCASE IMAGES (Image 1 & Image 2 Layer Clip Reveal) */}
+          {/* COLUMN 2: RIGHT SIDE SHOWCASE IMAGES (Image 1 & Image 2 Layer Clip Reveal - HIDDEN ON MOBILE ONLY) */}
           <div
             ref={col2Ref}
-            className="absolute top-1/2 -translate-y-1/2 md:top-0 md:translate-y-0 left-0 w-full md:w-[50%] h-[55vh] max-h-[440px] md:h-full md:max-h-none p-2 origin-center transform-gpu z-20"
+            className="hidden md:block absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-20"
           >
             <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
               {/* Image 1 Layer */}
@@ -658,10 +658,10 @@ export function CapsulesStickyColsSection() {
             </div>
           </div>
 
-          {/* COLUMN 4: RIGHT SIDE SHOWCASE IMAGES (Images 3, 4, 5, 6 Layers) */}
+          {/* COLUMN 4: RIGHT SIDE SHOWCASE IMAGES (Images 3, 4, 5, 6 Layers - HIDDEN ON MOBILE ONLY) */}
           <div
             ref={col4Ref}
-            className="absolute top-1/2 -translate-y-1/2 md:top-0 md:translate-y-0 left-0 w-full md:w-[50%] h-[55vh] max-h-[440px] md:h-full md:max-h-none p-2 origin-center transform-gpu z-40"
+            className="hidden md:block absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-40"
           >
             <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
               {/* Image 3 Layer */}
