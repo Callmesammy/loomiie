@@ -28,7 +28,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "LOOMIE — Clear. Connected. Complete.",
+  title: "LOOMIE",
   description:
     "LOOMIE is a premium design & technology studio. Clear. Connected. Complete. — Specializing in kinetic web development, brutalist spatial concepts, and digital branding.",
   keywords: [

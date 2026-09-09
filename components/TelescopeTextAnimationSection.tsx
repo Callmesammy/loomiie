@@ -70,9 +70,9 @@ export function TelescopeTextAnimationSection() {
         // ScrollTrigger Scrub Animation
         ScrollTrigger.create({
           trigger: titleEl,
-          start: "top bottom",
-          end: "top -25%",
-          scrub: 1,
+          start: "top 90%",
+          end: "bottom center",
+          scrub: 0.6,
           onUpdate: (self) => {
             // Container Slide X
             const containerX = initialX - self.progress * initialX;
@@ -147,7 +147,7 @@ export function TelescopeTextAnimationSection() {
                 titleRefs.current[index] = el;
               }}
               style={{ backgroundColor: item.bgColor, color: item.textColor }}
-              className="relative w-full h-[85vh] flex items-center justify-center overflow-hidden border-b border-black/10 transition-colors duration-500"
+              className="relative w-full h-[50vh] sm:h-[55vh] flex items-center justify-center overflow-hidden border-b border-black/10 transition-colors duration-500"
             >
               {/* Optional background sub-tagline */}
               {item.subTagline && (

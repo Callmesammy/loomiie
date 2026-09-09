@@ -18,7 +18,8 @@ export function getCloudinaryUrl(
     path.startsWith("/Ping/") ||
     path.startsWith("/luxury-hotel/") ||
     path.startsWith("/files/") ||
-    path.startsWith("/logo/")
+    path.startsWith("/logo/") ||
+    path.startsWith("/cloud-architecture/")
   ) {
     return path;
   }

@@ -73,8 +73,8 @@ export function RoshanServicesInlineSection() {
       <div className="max-w-[1600px] mx-auto w-full my-auto space-y-10">
 
         {/* Streamlined High-Impact Typography with Verified Inline Swapping Photos */}
-        <div className="py-2">
-          <h2 className="barlow-font text-[2.1rem] xs:text-4xl sm:text-5xl md:text-[3.2rem] lg:text-[3.6rem] xl:text-[4.0rem] font-medium uppercase tracking-wide leading-[1.38] text-stone-100">
+        <div className="py-4">
+          <h2 className="barlow-font text-[2.1rem] xs:text-4xl sm:text-5xl md:text-[3.2rem] lg:text-[3.6rem] xl:text-[4.0rem] font-medium uppercase tracking-wide leading-[1.42] text-stone-100">
             LOGOS & BRAND IDENTITIES,
             <InlineSwappingImage
               images={[
@@ -83,7 +83,7 @@ export function RoshanServicesInlineSection() {
               ]}
               intervalMs={4800}
             />
-            UI/UX ARCHITECTURE & PACKAGING,
+            UI/UX ARCHITECTURE & TACTILE PACKAGING,
             <InlineSwappingImage
               images={[
                 { src: "/Apple Drink/Gemini_Generated_Image_bzwot3bzwot3bzwo.jpg", alt: "Product Packaging" },
@@ -91,7 +91,7 @@ export function RoshanServicesInlineSection() {
               ]}
               intervalMs={5200}
             />
-            WEBSITES & NEXT.JS DEVELOPMENT,
+            HIGH-SPEED WEBSITES & NEXT.JS DEVELOPMENT,
             <InlineSwappingImage
               images={[
                 { src: "/Ping/Screenshot (962).png", alt: "Web Apps" },
@@ -99,7 +99,7 @@ export function RoshanServicesInlineSection() {
               ]}
               intervalMs={4200}
             />
-            KINETIC ANIMATION & 3D WEBGL SHADERS.
+            KINETIC ANIMATION & 3D WEBGL SHADERS,
             <InlineSwappingImage
               images={[
                 { src: getCloudinaryUrl("/images/project-digital.jpg"), alt: "Interactive Motion" },
@@ -107,12 +107,37 @@ export function RoshanServicesInlineSection() {
               ]}
               intervalMs={5000}
             />
+            SPATIAL AUDIO TELEMETRY & SONIC BRANDING,
+            <InlineSwappingImage
+              images={[
+                { src: getCloudinaryUrl("/images/partners/spatial-audio.jpg"), alt: "Spatial Sound" },
+                { src: getCloudinaryUrl("/images/partners/digital-engine.jpg"), alt: "Audio Engineering" },
+              ]}
+              intervalMs={4600}
+            />
+            CINEMATIC FILM & EDITORIAL ART DIRECTION,
+            <InlineSwappingImage
+              images={[
+                { src: getCloudinaryUrl("/images/partners/film-production.jpg"), alt: "Film Production" },
+                { src: getCloudinaryUrl("/images/partners/tech-alliance.jpg"), alt: "Cinematic Reel" },
+              ]}
+              intervalMs={5400}
+            />
+            STRATEGIC DIGITAL CAMPAIGNS & IDENTITY SYSTEMS.
+            <InlineSwappingImage
+              images={[
+                { src: getCloudinaryUrl("/images/project-packaging.jpg"), alt: "Campaign Identity" },
+                { src: getCloudinaryUrl("/images/project-spatial.jpg"), alt: "Brand Architecture" },
+              ]}
+              intervalMs={4400}
+            />
           </h2>
         </div>
 
         {/* Section Telemetry Footer */}
         <div className="pt-6 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-stone-400 font-semibold uppercase tracking-widest">
-          <span>CAPABILITIES - STACK MATRIX</span>
+          <span>CAPABILITIES - STACK MATRIX // 07 CORE DISCIPLINES</span>
+          <span>FULL STACK CREATIVE & MOTION ENGINEERING</span>
           <span>STUDIO CAPABILITIES</span>
         </div>
       </div>

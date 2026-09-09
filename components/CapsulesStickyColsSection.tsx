@@ -42,27 +42,32 @@ export function CapsulesStickyColsSection() {
   // Text Data
   const card1Data = {
     title: "Brand Architecture & Visual Systems",
-    body: "Crafting logomark geometry, bespoke typography tokens, and unified brand architectures built for high recall.",
+    body: "Engineering comprehensive identity systems from foundation to execution. We develop logomark geometry, bespoke typographic tokens, visual guidelines, and cohesive design systems engineered for maximum market recall and long-term brand equity.",
+    highlights: ["Logomark Geometry", "Typographic Tokens", "Brand Systems", "Design Guidelines"],
   };
 
   const card2Data = {
     title: "3D WebGL & Motion Engineering",
-    body: "Interactive WebGL canvas animations, GSAP physics, and real-time GPU-rendered motion tailored for modern web apps.",
+    body: "Transforming static web interfaces into dynamic 3D spatial canvases. We engineer custom GLSL shaders, GSAP inertia physics, and GPU-accelerated motion systems that run seamlessly at 60 FPS across desktop and mobile browsers.",
+    highlights: ["GLSL Shaders", "GSAP Inertia Physics", "60 FPS Motion", "3D Spatial Canvas"],
   };
 
   const card3Data = {
     title: "Tactile Packaging & Surface Graphics",
-    body: "Structural packaging finishes, 3D product visualizers, and spatial graphics that command attention on shelves and screens.",
+    body: "Bridging physical craftsmanship with digital 3D product visualizers. We craft structural packaging finishes, sustainable material specifications, retail graphics, and spatial visuals engineered to command instant visual dominance.",
+    highlights: ["Structural Packaging", "3D Retail Renders", "Material Specifications", "Spatial Graphics"],
   };
 
   const card4Data = {
     title: "High-Speed Edge Web Applications",
-    body: "Next.js digital storefronts and reactive web apps built on edge pipelines for instantaneous loading and conversion.",
+    body: "Building lightning-fast digital storefronts and reactive web applications powered by Next.js and edge pipelines. Optimized for sub-100ms global latency, instant page hydration, search engine dominance, and high conversion velocity.",
+    highlights: ["Next.js 15", "Global Edge CDN", "Sub-100ms Hydration", "E-Commerce Engines"],
   };
 
   const card5Data = {
     title: "Strategic Digital Campaigns & Identity",
-    body: "Harmonizing visual storytelling, performance analytics, and social identity systems that turn visitors into loyal advocates.",
+    body: "Harmonizing visual storytelling, editorial photography, cinematic film reels, and performance telemetry. We build end-to-end digital campaign frameworks that captivate global audiences and transform casual visitors into long-term brand advocates.",
+    highlights: ["Cinematic Art Direction", "Editorial Reels", "Performance Growth", "Omnichannel Identity"],
   };
 
   const whyWorkWithUsBullets = [
@@ -115,7 +120,7 @@ export function CapsulesStickyColsSection() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: whyUsTagRef.current,
-              start: "top bottom-=15%",
+              start: "top 92%",
               toggleActions: "play none none reverse",
             },
           }
@@ -137,8 +142,8 @@ export function CapsulesStickyColsSection() {
               ease: "power3.out",
               scrollTrigger: {
                 trigger: whyUsHeadingRef.current,
-                start: "top 85%",
-                toggleActions: "play reverse play reverse",
+                start: "top 92%",
+                toggleActions: "play none none reverse",
               },
             }
           );
@@ -150,18 +155,18 @@ export function CapsulesStickyColsSection() {
         if (cards.length > 0) {
           gsap.fromTo(
             cards,
-            { y: 65, opacity: 0, scale: 0.94 },
+            { y: 45, opacity: 0, scale: 0.96 },
             {
               y: 0,
               opacity: 1,
               scale: 1,
               duration: 0.85,
-              stagger: 0.15,
+              stagger: 0.12,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: whyUsCardsRef.current,
-                start: "top 85%",
-                toggleActions: "play reverse play reverse",
+                start: "top 92%",
+                toggleActions: "play none none reverse",
               },
             }
           );
@@ -219,8 +224,8 @@ export function CapsulesStickyColsSection() {
           trigger: trigger,
           pin: true,
           start: "top top",
-          end: "+=550%",
-          scrub: 0.8,
+          end: "+=220%",
+          scrub: 0.5,
           invalidateOnRefresh: true,
         },
       });
@@ -342,10 +347,10 @@ export function CapsulesStickyColsSection() {
       `}</style>
 
       {/* 1. INTRO SECTION (Staggered Word Reveal on Scroll) */}
-      <section className="relative w-full h-screen bg-[#141414] text-[#f1f1f1] flex items-center justify-center p-6 sm:p-12 z-10 border-b border-white/10">
+      <section className="relative w-full min-h-[60vh] sm:h-screen bg-[#141414] text-[#f1f1f1] flex items-center justify-center p-6 sm:p-12 z-10 border-b border-white/10">
         <h1
           ref={introHeadingRef}
-          className="barlow-font text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center uppercase tracking-tight max-w-5xl leading-[0.92] text-[#f1f1f1] flex flex-wrap justify-center gap-x-[0.25em] gap-y-1"
+          className="barlow-font text-4xl xs:text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-extrabold text-center uppercase tracking-tight max-w-5xl leading-[0.92] text-[#f1f1f1] flex flex-wrap justify-center gap-x-[0.25em] gap-y-1"
         >
           {"CRAFTING ICONIC BRAND & DIGITAL EXPERIENCES THAT MAKE PEOPLE LOOK TWICE.".split(" ").map((word, wIdx) => (
             <span key={wIdx} className="inline-block overflow-hidden pb-1">
@@ -367,14 +372,21 @@ export function CapsulesStickyColsSection() {
             ref={col1Ref}
             className="absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-10"
           >
-            <div className="w-full h-full bg-[#282828] border border-white/15 rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden shadow-2xl">
-              <div className="space-y-6 my-auto">
+            <div className="w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden shadow-2xl">
+              <div className="space-y-5 my-auto">
                 <h1 className="barlow-font text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1]">
                   {card1Data.title}
                 </h1>
                 <p className="instrument-font font-medium text-sm sm:text-base md:text-lg text-[#a1a1a1] max-w-lg leading-relaxed">
                   {card1Data.body}
                 </p>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {card1Data.highlights.map((tag, idx) => (
+                    <span key={idx} className="px-3 py-1 bg-white/10 border border-white/15 text-[#e1e1e1] font-mono text-xs font-semibold uppercase tracking-wider rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               <div className="font-mono text-xs text-[#a1a1a1] uppercase tracking-widest pt-4 border-t border-white/10">
@@ -386,9 +398,9 @@ export function CapsulesStickyColsSection() {
           {/* COLUMN 2: RIGHT SIDE SHOWCASE IMAGES (Image 1 & Image 2 Layer Clip Reveal) */}
           <div
             ref={col2Ref}
-            className="absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-20"
+            className="absolute top-1/2 -translate-y-1/2 md:top-0 md:translate-y-0 left-0 w-full md:w-[50%] h-[55vh] max-h-[440px] md:h-full md:max-h-none p-2 origin-center transform-gpu z-20"
           >
-            <div className="relative w-full h-full bg-[#282828] border border-white/15 rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
+            <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
               {/* Image 1 Layer */}
               <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <Image
@@ -425,7 +437,7 @@ export function CapsulesStickyColsSection() {
             ref={col3Ref}
             className="absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-30"
           >
-            <div className="relative w-full h-full bg-[#282828] border border-white/15 rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl flex flex-col justify-between">
+            <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl flex flex-col justify-between">
               
               {/* Text Wrapper 1 (Image 2 Pair: 3D WebGL & Motion Engineering) */}
               <div className="relative w-full my-auto space-y-4 z-10">
@@ -450,9 +462,24 @@ export function CapsulesStickyColsSection() {
                     {card2Data.body}
                   </span>
                 </div>
+
+                <div className="overflow-hidden pt-2">
+                  <div
+                    ref={(el) => {
+                      textWrap1LinesRef.current[lineIdx1++] = el;
+                    }}
+                    className="flex flex-wrap gap-2 transform-gpu"
+                  >
+                    {card2Data.highlights.map((tag, idx) => (
+                      <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Text Wrapper 2 (Image 3 Pair: Serverless & AI-Powered Development) */}
+              {/* Text Wrapper 2 (Image 3 Pair: Tactile Packaging & Surface Graphics) */}
               <div className="absolute inset-0 w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-20">
                 <span className="opacity-0">HEADER PLACEHOLDER</span>
 
@@ -478,12 +505,27 @@ export function CapsulesStickyColsSection() {
                       {card3Data.body}
                     </span>
                   </div>
+
+                  <div className="overflow-hidden pt-2">
+                    <div
+                      ref={(el) => {
+                        textWrap2LinesRef.current[lineIdx2++] = el;
+                      }}
+                      className="flex flex-wrap gap-2 transform-gpu"
+                    >
+                      {card3Data.highlights.map((tag, idx) => (
+                        <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 <span className="opacity-0">FOOTER PLACEHOLDER</span>
               </div>
 
-              {/* Text Wrapper 3 (Image 4 Pair: Cloud Alliance & Partnership Advisory) */}
+              {/* Text Wrapper 3 (Image 4 Pair: High-Speed Edge Web Applications) */}
               <div className="absolute inset-0 w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-30">
                 <span className="opacity-0">HEADER PLACEHOLDER</span>
 
@@ -509,12 +551,27 @@ export function CapsulesStickyColsSection() {
                       {card4Data.body}
                     </span>
                   </div>
+
+                  <div className="overflow-hidden pt-2">
+                    <div
+                      ref={(el) => {
+                        textWrap3LinesRef.current[lineIdx3++] = el;
+                      }}
+                      className="flex flex-wrap gap-2 transform-gpu"
+                    >
+                      {card4Data.highlights.map((tag, idx) => (
+                        <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 <span className="opacity-0">FOOTER PLACEHOLDER</span>
               </div>
 
-              {/* Text Wrapper 4 (Image 5 Pair: Managed Cloud Support) */}
+              {/* Text Wrapper 4 (Image 5 Pair: Strategic Digital Campaigns & Identity) */}
               <div className="absolute inset-0 w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-40">
                 <span className="opacity-0">HEADER PLACEHOLDER</span>
 
@@ -539,6 +596,21 @@ export function CapsulesStickyColsSection() {
                     >
                       {card5Data.body}
                     </span>
+                  </div>
+
+                  <div className="overflow-hidden pt-2">
+                    <div
+                      ref={(el) => {
+                        textWrap4LinesRef.current[lineIdx4++] = el;
+                      }}
+                      className="flex flex-wrap gap-2 transform-gpu"
+                    >
+                      {card5Data.highlights.map((tag, idx) => (
+                        <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -589,9 +661,9 @@ export function CapsulesStickyColsSection() {
           {/* COLUMN 4: RIGHT SIDE SHOWCASE IMAGES (Images 3, 4, 5, 6 Layers) */}
           <div
             ref={col4Ref}
-            className="absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-40"
+            className="absolute top-1/2 -translate-y-1/2 md:top-0 md:translate-y-0 left-0 w-full md:w-[50%] h-[55vh] max-h-[440px] md:h-full md:max-h-none p-2 origin-center transform-gpu z-40"
           >
-            <div className="relative w-full h-full bg-[#282828] border border-white/15 rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
+            <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
               {/* Image 3 Layer */}
               <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <Image
@@ -658,9 +730,9 @@ export function CapsulesStickyColsSection() {
         </div>
       </section>
 
-      {/* 3. WHY WORK WITH US SECTION (Left-Aligned, Staggered GSAP Scroll Up & Down Animation) */}
-      <section className="relative w-full min-h-screen bg-[#141414] text-[#f1f1f1] p-6 sm:p-12 lg:p-20 flex flex-col justify-center items-start z-10 border-t border-white/10">
-        <div className="max-w-5xl w-full mx-auto space-y-10">
+      {/* 3. WHY WORK WITH US SECTION */}
+      <section className="relative w-full bg-[#141414] text-[#f1f1f1] py-16 sm:py-24 lg:py-28 px-6 sm:px-12 lg:px-20 border-t border-white/10">
+        <div className="max-w-5xl w-full mx-auto space-y-8">
           <div className="space-y-4 text-left">
             <span
               ref={whyUsTagRef}
@@ -678,13 +750,16 @@ export function CapsulesStickyColsSection() {
                 </span>
               ))}
             </h2>
+            <p className="instrument-font font-medium text-base sm:text-lg lg:text-xl text-[#a1a1a1] max-w-3xl leading-relaxed">
+              We eliminate agency complexity and bloated middle management. LOOMIE pairs senior creative direction with high-speed digital engineering to build scalable brand systems, 3D WebGL motion, and high-converting web applications.
+            </p>
           </div>
 
           <div ref={whyUsCardsRef} className="space-y-6 pt-4 w-full">
             {whyWorkWithUsBullets.map((bullet, bIdx) => (
               <div
                 key={bIdx}
-                className="why-us-card p-6 sm:p-8 md:p-10 bg-[#282828] border border-white/15 rounded-2xl sm:rounded-3xl flex items-start gap-5 shadow-xl hover:border-[#f75828]/50 transition-all duration-500 group transform-gpu"
+                className="why-us-card p-6 sm:p-8 md:p-10 bg-[#282828] rounded-2xl sm:rounded-3xl flex items-start gap-5 shadow-xl transition-all duration-500 group transform-gpu"
               >
                 <span className="w-3.5 h-3.5 rounded-full bg-[#f75828] mt-2 shrink-0 group-hover:scale-125 transition-transform" />
                 <p className="instrument-font font-medium text-base sm:text-xl lg:text-2xl text-[#f1f1f1] leading-relaxed">

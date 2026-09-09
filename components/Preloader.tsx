@@ -241,7 +241,7 @@ export function Preloader({ onComplete, variant = "full" }: PreloaderProps) {
               </span>
               <span>MIE</span>
             </div>
-            <span className="font-mono text-[11px] sm:text-xs font-bold tracking-[0.3em] text-white/90 uppercase">
+            <span className="font-mono text-[9px] xs:text-[10px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.3em] text-white/90 uppercase whitespace-nowrap">
               CLEAR. CONNECTED. COMPLETE.
             </span>
           </div>

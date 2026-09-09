@@ -87,7 +87,7 @@ export function CookieConsent() {
             <div className="space-y-2 border-b border-stone-200 pb-4">
               <div className="flex items-center gap-2 font-mono text-xs font-bold text-stone-500 uppercase tracking-widest">
                 <Cookie className="w-4 h-4 text-[#0E0E0E]" />
-                <span>LOOMIE // COOKIE PREFERENCES</span>
+                <span>COOKIE PREFERENCES</span>
               </div>
               <h3 className="text-2xl font-light font-sans text-[#0E0E0E]">
                 Cookie Privacy Settings

@@ -20,44 +20,37 @@ interface MenuNavItem {
 
 const MENU_ITEMS: MenuNavItem[] = [
   {
-    label: "Home",
-    href: "/",
-    number: "01",
-    image: getCloudinaryUrl("/images/project-minimal.jpg"),
-    alt: "LOOMIE Home & Motion Canvas",
-  },
-  {
     label: "Work",
     href: "/work",
-    number: "02",
+    number: "01",
     image: getCloudinaryUrl("/images/projects/hero-project-2.jpg"),
     alt: "LOOMIE Work & Portfolio Showcase",
   },
   {
     label: "About Us",
     href: "/about-us",
-    number: "03",
+    number: "02",
     image: getCloudinaryUrl("/images/about/brand-architecture.jpg"),
     alt: "LOOMIE Team & 3D Rolling Cube Canvas",
   },
   {
     label: "Story",
     href: "/story",
-    number: "04",
+    number: "03",
     image: "/cloud-architecture/card1-architecture.jpg",
     alt: "LOOMIE Chronicle & Genesis",
   },
   {
     label: "Values",
     href: "/values",
-    number: "05",
+    number: "04",
     image: getCloudinaryUrl("/images/services/service-uiux.jpg"),
     alt: "LOOMIE Core Discipline Values",
   },
   {
     label: "Connect",
     href: "/contact",
-    number: "06",
+    number: "05",
     image: getCloudinaryUrl("/images/services/service-desktop.jpg"),
     alt: "LOOMIE Booking & Collaboration",
   },
@@ -163,11 +156,10 @@ export function Navbar() {
     }
   };
 
-  // Swipe Left GSAP Exit Animation on Submenu Click + Preloader Trigger
   const closeMenuWithSwipeLeft = (targetHref?: string, label?: string) => {
     if (targetHref && pathname !== targetHref) {
       setIsNavigating(true);
-      setNavigatingTitle(`LOOMIE // ${label || "DISCOVERY"}`);
+      setNavigatingTitle(label || "DISCOVERY");
     }
 
     if (!overlayRef.current) {
@@ -225,7 +217,7 @@ export function Navbar() {
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsNavigating(true);
-    setNavigatingTitle("LOOMIE // HOME");
+    setNavigatingTitle("HOME");
 
     if (menuOpen) {
       closeMenuWithSwipeLeft("/", "HOME");
