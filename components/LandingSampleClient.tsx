@@ -464,7 +464,7 @@ export function LandingSampleClient() {
             >
               {/* Instagram Icon */}
               <a
-                href="https://www.instagram.com/loomiestudio/"
+                href="https://www.instagram.com/atloomiestudio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -511,12 +511,12 @@ export function LandingSampleClient() {
               className="pointer-events-auto flex items-center font-mono font-bold text-xs sm:text-sm text-white"
             >
               <a
-                href="https://www.instagram.com/loomiestudio/"
+                href="https://www.instagram.com/atloomiestudio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#f75828] transition-colors"
               >
-                @LOOMIESTUDIO
+                @ATLOOMIESTUDIO
               </a>
             </div>
           </div>

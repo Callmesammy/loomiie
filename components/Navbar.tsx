@@ -375,7 +375,7 @@ export function Navbar() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-[11px] sm:text-xs text-stone-400 uppercase tracking-widest max-w-[1800px] w-full mx-auto border-t border-white/15 pt-4 shrink-0">
           <span className="text-white font-bold">LOOMIE</span>
           <div className="flex items-center gap-4 text-white font-bold">
-            <a href="https://www.instagram.com/loomiestudio/" target="_blank" rel="noopener noreferrer" className="hover:text-[#f75828] transition-colors">INSTAGRAM</a>
+            <a href="https://www.instagram.com/atloomiestudio/" target="_blank" rel="noopener noreferrer" className="hover:text-[#f75828] transition-colors">INSTAGRAM</a>
             <span>•</span>
             <a href="https://www.linkedin.com/company/loomieofficial/" target="_blank" rel="noopener noreferrer" className="hover:text-[#f75828] transition-colors">LINKEDIN</a>
             <span>•</span>
