@@ -172,159 +172,175 @@ export function CapsulesStickyColsSection() {
           );
         }
       }
+    });
 
-      // 3. Initial Sticky Column States
-      if (col1Ref.current) gsap.set(col1Ref.current, { opacity: 1, scale: 1, xPercent: 0, yPercent: 0 });
-      if (col2Ref.current) gsap.set(col2Ref.current, { xPercent: 100, opacity: 1, scale: 1, yPercent: 0 });
-      if (col3Ref.current) gsap.set(col3Ref.current, { xPercent: 100, yPercent: 100, scale: 1 });
-      if (col4Ref.current) gsap.set(col4Ref.current, { xPercent: 100, yPercent: 100, scale: 1 });
+    const mm = gsap.matchMedia();
 
-      if (colImg1Ref.current) gsap.set(colImg1Ref.current, { scale: 1 });
-      if (colImg2LayerRef.current) {
-        gsap.set(colImg2LayerRef.current, { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" });
-      }
-      if (colImg2Ref.current) gsap.set(colImg2Ref.current, { scale: 1.25 });
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+      },
+      (context) => {
+        const { isDesktop } = context.conditions as { isDesktop: boolean; isMobile: boolean };
 
-      if (colImg3Ref.current) gsap.set(colImg3Ref.current, { scale: 1 });
-      if (colImg4LayerRef.current) {
-        gsap.set(colImg4LayerRef.current, { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" });
-      }
-      if (colImg4Ref.current) gsap.set(colImg4Ref.current, { scale: 1.25 });
+        // 3. Initial Sticky Column States
+        if (col1Ref.current) gsap.set(col1Ref.current, { opacity: 1, scale: 1, xPercent: 0, yPercent: 0 });
+        if (col2Ref.current) gsap.set(col2Ref.current, { xPercent: isDesktop ? 100 : 0, opacity: 1, scale: 1, yPercent: 0 });
+        if (col3Ref.current) gsap.set(col3Ref.current, { xPercent: isDesktop ? 100 : 0, yPercent: 100, scale: 1 });
+        if (col4Ref.current) gsap.set(col4Ref.current, { xPercent: isDesktop ? 100 : 0, yPercent: 100, scale: 1 });
 
-      if (colImg5LayerRef.current) {
-        gsap.set(colImg5LayerRef.current, { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" });
-      }
-      if (colImg5Ref.current) gsap.set(colImg5Ref.current, { scale: 1.25 });
+        if (colImg1Ref.current) gsap.set(colImg1Ref.current, { scale: 1 });
+        if (colImg2LayerRef.current) {
+          gsap.set(colImg2LayerRef.current, { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" });
+        }
+        if (colImg2Ref.current) gsap.set(colImg2Ref.current, { scale: 1.25 });
 
-      if (colImg6LayerRef.current) {
-        gsap.set(colImg6LayerRef.current, { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" });
-      }
-      if (colImg6Ref.current) gsap.set(colImg6Ref.current, { scale: 1.25 });
+        if (colImg3Ref.current) gsap.set(colImg3Ref.current, { scale: 1 });
+        if (colImg4LayerRef.current) {
+          gsap.set(colImg4LayerRef.current, { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" });
+        }
+        if (colImg4Ref.current) gsap.set(colImg4Ref.current, { scale: 1.25 });
 
-      // Initial Text Lines Positions inside Column 3
-      textWrap1LinesRef.current.forEach((line) => {
-        if (line) gsap.set(line, { yPercent: 0 });
-      });
-      textWrap2LinesRef.current.forEach((line) => {
-        if (line) gsap.set(line, { yPercent: 125 });
-      });
-      textWrap3LinesRef.current.forEach((line) => {
-        if (line) gsap.set(line, { yPercent: 125 });
-      });
-      textWrap4LinesRef.current.forEach((line) => {
-        if (line) gsap.set(line, { yPercent: 125 });
-      });
-      textWrap5LinesRef.current.forEach((item) => {
-        if (item) gsap.set(item, { yPercent: 125, opacity: 0 });
-      });
+        if (colImg5LayerRef.current) {
+          gsap.set(colImg5LayerRef.current, { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" });
+        }
+        if (colImg5Ref.current) gsap.set(colImg5Ref.current, { scale: 1.25 });
 
-      // 4. Dynamic Sticky Scrubbed Timeline (Every Single Phase Moves Capsules)
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: trigger,
-          pin: true,
-          start: "top top",
-          end: "+=220%",
-          scrub: 0.5,
-          invalidateOnRefresh: true,
-        },
-      });
+        if (colImg6LayerRef.current) {
+          gsap.set(colImg6LayerRef.current, { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" });
+        }
+        if (colImg6Ref.current) gsap.set(colImg6Ref.current, { scale: 1.25 });
 
-      // --- PHASE 1: Step 1 -> Step 2 (Col 1 scales away, Col 2 slides in, Col 3 slides UP from bottom) ---
-      tl.to(col1Ref.current, { opacity: 0, scale: 0.7, xPercent: -20, duration: 0.8, ease: "power2.inOut" }, "phase1")
-        .to(col2Ref.current, { xPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase1")
-        .to(col3Ref.current, { yPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase1")
-        .to(colImg1Ref.current, { scale: 1.2, duration: 1.0, ease: "power2.inOut" }, "phase1")
-        .to(
-          colImg2LayerRef.current,
-          { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
-          "phase1"
-        )
-        .to(colImg2Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase1");
+        // Initial Text Lines Positions inside Column 3
+        textWrap1LinesRef.current.forEach((line) => {
+          if (line) gsap.set(line, { yPercent: 0 });
+        });
+        textWrap2LinesRef.current.forEach((line) => {
+          if (line) gsap.set(line, { yPercent: 125 });
+        });
+        textWrap3LinesRef.current.forEach((line) => {
+          if (line) gsap.set(line, { yPercent: 125 });
+        });
+        textWrap4LinesRef.current.forEach((line) => {
+          if (line) gsap.set(line, { yPercent: 125 });
+        });
+        textWrap5LinesRef.current.forEach((item) => {
+          if (item) gsap.set(item, { yPercent: 125, opacity: 0 });
+        });
 
-      tl.to({}, { duration: 0.2 });
+        // 4. Dynamic Sticky Scrubbed Timeline
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: trigger,
+            pin: true,
+            start: "top top",
+            end: "+=220%",
+            scrub: 0.5,
+            invalidateOnRefresh: true,
+          },
+        });
 
-      // --- PHASE 2: Step 2 -> Step 3 (Col 2 scales away, Col 3 slides LEFT, Col 4 slides UP from bottom) ---
-      tl.to(col2Ref.current, { opacity: 0, scale: 0.7, xPercent: 20, duration: 0.8, ease: "power2.inOut" }, "phase2")
-        .to(col3Ref.current, { xPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase2")
-        .to(col4Ref.current, { yPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase2");
+        // --- PHASE 1: Step 1 -> Step 2 ---
+        tl.to(col1Ref.current, { opacity: 0, scale: 0.7, xPercent: isDesktop ? -20 : 0, yPercent: isDesktop ? 0 : -20, duration: 0.8, ease: "power2.inOut" }, "phase1")
+          .to(col2Ref.current, { xPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase1")
+          .to(col3Ref.current, { yPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase1")
+          .to(colImg1Ref.current, { scale: 1.2, duration: 1.0, ease: "power2.inOut" }, "phase1")
+          .to(
+            colImg2LayerRef.current,
+            { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
+            "phase1"
+          )
+          .to(colImg2Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase1");
 
-      const validText1 = textWrap1LinesRef.current.filter(Boolean);
-      if (validText1.length > 0) {
-        tl.to(validText1, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase2");
-      }
+        tl.to({}, { duration: 0.2 });
 
-      const validText2 = textWrap2LinesRef.current.filter(Boolean);
-      if (validText2.length > 0) {
-        tl.to(validText2, { yPercent: 0, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase2+=0.2");
-      }
+        // --- PHASE 2: Step 2 -> Step 3 ---
+        tl.to(col2Ref.current, { opacity: 0, scale: 0.7, xPercent: isDesktop ? 20 : 0, yPercent: isDesktop ? 0 : -20, duration: 0.8, ease: "power2.inOut" }, "phase2")
+          .to(col3Ref.current, { xPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase2")
+          .to(col4Ref.current, { yPercent: 0, duration: 1.0, ease: "power2.inOut" }, "phase2");
 
-      tl.to({}, { duration: 0.2 });
+        const validText1 = textWrap1LinesRef.current.filter(Boolean);
+        if (validText1.length > 0) {
+          tl.to(validText1, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase2");
+        }
 
-      // --- PHASE 3: Step 3 -> Step 4 ---
-      tl.to(colImg3Ref.current, { scale: 1.25, duration: 1.0, ease: "power2.inOut" }, "phase3")
-        .to(
-          colImg4LayerRef.current,
-          { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
-          "phase3"
-        )
-        .to(colImg4Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase3");
+        const validText2 = textWrap2LinesRef.current.filter(Boolean);
+        if (validText2.length > 0) {
+          tl.to(validText2, { yPercent: 0, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase2+=0.2");
+        }
 
-      if (validText2.length > 0) {
-        tl.to(validText2, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase3");
-      }
+        tl.to({}, { duration: 0.2 });
 
-      const validText3 = textWrap3LinesRef.current.filter(Boolean);
-      if (validText3.length > 0) {
-        tl.to(validText3, { yPercent: 0, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase3+=0.2");
-      }
+        // --- PHASE 3: Step 3 -> Step 4 ---
+        tl.to(colImg3Ref.current, { scale: 1.25, duration: 1.0, ease: "power2.inOut" }, "phase3")
+          .to(
+            colImg4LayerRef.current,
+            { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
+            "phase3"
+          )
+          .to(colImg4Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase3");
 
-      tl.to({}, { duration: 0.2 });
+        if (validText2.length > 0) {
+          tl.to(validText2, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase3");
+        }
 
-      // --- PHASE 4: Step 4 -> Step 5 ---
-      tl.to(colImg4Ref.current, { scale: 1.25, duration: 1.0, ease: "power2.inOut" }, "phase4")
-        .to(
-          colImg5LayerRef.current,
-          { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
-          "phase4"
-        )
-        .to(colImg5Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase4");
+        const validText3 = textWrap3LinesRef.current.filter(Boolean);
+        if (validText3.length > 0) {
+          tl.to(validText3, { yPercent: 0, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase3+=0.2");
+        }
 
-      if (validText3.length > 0) {
-        tl.to(validText3, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase4");
-      }
+        tl.to({}, { duration: 0.2 });
 
-      const validText4 = textWrap4LinesRef.current.filter(Boolean);
-      if (validText4.length > 0) {
-        tl.to(validText4, { yPercent: 0, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase4+=0.2");
-      }
+        // --- PHASE 4: Step 4 -> Step 5 ---
+        tl.to(colImg4Ref.current, { scale: 1.25, duration: 1.0, ease: "power2.inOut" }, "phase4")
+          .to(
+            colImg5LayerRef.current,
+            { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
+            "phase4"
+          )
+          .to(colImg5Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase4");
 
-      tl.to({}, { duration: 0.2 });
+        if (validText3.length > 0) {
+          tl.to(validText3, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase4");
+        }
 
-      // --- PHASE 5: Step 5 -> Step 6 ---
-      tl.to(colImg5Ref.current, { scale: 1.25, duration: 1.0, ease: "power2.inOut" }, "phase5")
-        .to(
-          colImg6LayerRef.current,
-          { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
-          "phase5"
-        )
-        .to(colImg6Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase5");
+        const validText4 = textWrap4LinesRef.current.filter(Boolean);
+        if (validText4.length > 0) {
+          tl.to(validText4, { yPercent: 0, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase4+=0.2");
+        }
 
-      if (validText4.length > 0) {
-        tl.to(validText4, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase5");
-      }
+        tl.to({}, { duration: 0.2 });
 
-      const validText5 = textWrap5LinesRef.current.filter(Boolean);
-      if (validText5.length > 0) {
-        tl.to(
-          validText5,
-          { yPercent: 0, opacity: 1, duration: 0.7, stagger: 0.06, ease: "power2.inOut" },
-          "phase5+=0.2"
-        );
-      }
-    }, containerRef);
+        // --- PHASE 5: Step 5 -> Step 6 ---
+        tl.to(colImg5Ref.current, { scale: 1.25, duration: 1.0, ease: "power2.inOut" }, "phase5")
+          .to(
+            colImg6LayerRef.current,
+            { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 1.0, ease: "power2.inOut" },
+            "phase5"
+          )
+          .to(colImg6Ref.current, { scale: 1.0, duration: 1.0, ease: "power2.inOut" }, "phase5");
 
-    return () => ctx.revert();
+        if (validText4.length > 0) {
+          tl.to(validText4, { yPercent: -125, duration: 0.7, stagger: 0.04, ease: "power2.inOut" }, "phase5");
+        }
+
+        const validText5 = textWrap5LinesRef.current.filter(Boolean);
+        if (validText5.length > 0) {
+          tl.to(
+            validText5,
+            { yPercent: 0, opacity: 1, duration: 0.7, stagger: 0.06, ease: "power2.inOut" },
+            "phase5+=0.2"
+          );
+        }
+      },
+      containerRef
+    );
+
+    return () => {
+      ctx.revert();
+      mm.revert();
+    };
   }, []);
 
   let lineIdx1 = 0;
@@ -350,7 +366,7 @@ export function CapsulesStickyColsSection() {
       <section className="relative w-full min-h-[60vh] sm:h-screen bg-[#141414] text-[#f1f1f1] flex items-center justify-center p-6 sm:p-12 z-10 border-b border-white/10">
         <h1
           ref={introHeadingRef}
-          className="barlow-font text-4xl xs:text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-extrabold text-center uppercase tracking-tight max-w-5xl leading-[0.92] text-[#f1f1f1] flex flex-wrap justify-center gap-x-[0.25em] gap-y-1"
+          className="barlow-font text-4xl xs:text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-extrabold text-[#f1f1f1] text-center uppercase tracking-tight max-w-5xl leading-[0.92] flex flex-wrap justify-center gap-x-[0.25em] gap-y-1"
         >
           {"CRAFTING ICONIC BRAND & DIGITAL EXPERIENCES THAT MAKE PEOPLE LOOK TWICE.".split(" ").map((word, wIdx) => (
             <span key={wIdx} className="inline-block overflow-hidden pb-1">
@@ -370,35 +386,35 @@ export function CapsulesStickyColsSection() {
           {/* COLUMN 1: LEFT SIDE INTRO CAPSULE (Image 1 Pair: Cloud Architecture & Strategy) */}
           <div
             ref={col1Ref}
-            className="absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-10"
+            className="absolute top-0 left-0 w-full md:w-[50%] h-[47vh] md:h-full p-2 origin-center transform-gpu z-10"
           >
-            <div className="w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden shadow-2xl">
-              <div className="space-y-5 my-auto">
-                <h1 className="barlow-font text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1]">
+            <div className="w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] p-4 sm:p-10 lg:p-12 flex flex-col justify-between overflow-hidden shadow-2xl">
+              <div className="space-y-3 sm:space-y-5 my-auto">
+                <h1 className="barlow-font text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1]">
                   {card1Data.title}
                 </h1>
-                <p className="instrument-font font-medium text-sm sm:text-base md:text-lg text-[#a1a1a1] max-w-lg leading-relaxed">
+                <p className="instrument-font font-medium text-xs sm:text-base md:text-lg text-[#a1a1a1] max-w-lg leading-snug sm:leading-relaxed">
                   {card1Data.body}
                 </p>
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                   {card1Data.highlights.map((tag, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-white/10 border border-white/15 text-[#e1e1e1] font-mono text-xs font-semibold uppercase tracking-wider rounded-full">
+                    <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 border border-white/15 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="whitespace-nowrap font-mono text-[10px] sm:text-xs text-[#a1a1a1] uppercase tracking-widest pt-4 border-t border-white/10">
+              <div className="whitespace-nowrap font-mono text-[10px] sm:text-xs text-[#a1a1a1] uppercase tracking-widest pt-2 sm:pt-4 border-t border-white/10">
                 LOOMIE BRAND ARCHITECTURE
               </div>
             </div>
           </div>
 
-          {/* COLUMN 2: RIGHT SIDE SHOWCASE IMAGES (Image 1 & Image 2 Layer Clip Reveal - HIDDEN ON MOBILE ONLY) */}
+          {/* COLUMN 2: RIGHT SIDE SHOWCASE IMAGES (Image 1 & Image 2 Layer Clip Reveal) */}
           <div
             ref={col2Ref}
-            className="hidden md:block absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-20"
+            className="absolute top-[48vh] left-0 md:top-0 md:left-0 w-full md:w-[50%] h-[47vh] md:h-full p-2 origin-center transform-gpu z-20"
           >
             <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
               {/* Image 1 Layer */}
@@ -435,40 +451,40 @@ export function CapsulesStickyColsSection() {
           {/* COLUMN 3: TEXT SWAP CAPSULE (Text Cards 2 through 6) */}
           <div
             ref={col3Ref}
-            className="absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-30"
+            className="absolute top-0 left-0 w-full md:w-[50%] h-[47vh] md:h-full p-2 origin-center transform-gpu z-30"
           >
-            <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl flex flex-col justify-between">
+            <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] p-4 sm:p-10 lg:p-12 overflow-hidden shadow-2xl flex flex-col justify-between">
               
               {/* Text Wrapper 1 (Image 2 Pair: 3D WebGL & Motion Engineering) */}
-              <div className="relative w-full my-auto space-y-4 z-10">
+              <div className="relative w-full my-auto space-y-3 sm:space-y-4 z-10">
                 <div className="overflow-hidden">
                   <span
                     ref={(el) => {
                       textWrap1LinesRef.current[lineIdx1++] = el;
                     }}
-                    className="block barlow-font text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
+                    className="block barlow-font text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
                   >
                     {card2Data.title}
                   </span>
                 </div>
 
-                <div className="overflow-hidden pt-2">
+                <div className="overflow-hidden pt-1">
                   <span
                     ref={(el) => {
                       textWrap1LinesRef.current[lineIdx1++] = el;
                     }}
-                    className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-relaxed transform-gpu"
+                    className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-snug sm:leading-relaxed transform-gpu"
                   >
                     {card2Data.body}
                   </span>
                 </div>
 
-                <div className="overflow-hidden pt-2">
+                <div className="overflow-hidden pt-1">
                   <div
                     ref={(el) => {
                       textWrap1LinesRef.current[lineIdx1++] = el;
                     }}
-                    className="flex flex-wrap gap-2 transform-gpu"
+                    className="flex flex-wrap gap-1.5 sm:gap-2 transform-gpu"
                   >
                     {card2Data.highlights.map((tag, idx) => (
                       <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
@@ -480,38 +496,38 @@ export function CapsulesStickyColsSection() {
               </div>
 
               {/* Text Wrapper 2 (Image 3 Pair: Tactile Packaging & Surface Graphics) */}
-              <div className="absolute inset-0 w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-20">
+              <div className="absolute inset-0 w-full h-full p-4 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-20">
                 <span className="opacity-0">HEADER PLACEHOLDER</span>
 
-                <div className="space-y-4 my-auto">
+                <div className="space-y-3 sm:space-y-4 my-auto">
                   <div className="overflow-hidden">
                     <span
                       ref={(el) => {
                         textWrap2LinesRef.current[lineIdx2++] = el;
                       }}
-                      className="block barlow-font text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
+                      className="block barlow-font text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
                     >
                       {card3Data.title}
                     </span>
                   </div>
 
-                  <div className="overflow-hidden pt-2">
+                  <div className="overflow-hidden pt-1">
                     <span
                       ref={(el) => {
                         textWrap2LinesRef.current[lineIdx2++] = el;
                       }}
-                      className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-relaxed transform-gpu"
+                      className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-snug sm:leading-relaxed transform-gpu"
                     >
                       {card3Data.body}
                     </span>
                   </div>
 
-                  <div className="overflow-hidden pt-2">
+                  <div className="overflow-hidden pt-1">
                     <div
                       ref={(el) => {
                         textWrap2LinesRef.current[lineIdx2++] = el;
                       }}
-                      className="flex flex-wrap gap-2 transform-gpu"
+                      className="flex flex-wrap gap-1.5 sm:gap-2 transform-gpu"
                     >
                       {card3Data.highlights.map((tag, idx) => (
                         <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
@@ -526,38 +542,38 @@ export function CapsulesStickyColsSection() {
               </div>
 
               {/* Text Wrapper 3 (Image 4 Pair: High-Speed Edge Web Applications) */}
-              <div className="absolute inset-0 w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-30">
+              <div className="absolute inset-0 w-full h-full p-4 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-30">
                 <span className="opacity-0">HEADER PLACEHOLDER</span>
 
-                <div className="space-y-4 my-auto">
+                <div className="space-y-3 sm:space-y-4 my-auto">
                   <div className="overflow-hidden">
                     <span
                       ref={(el) => {
                         textWrap3LinesRef.current[lineIdx3++] = el;
                       }}
-                      className="block barlow-font text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
+                      className="block barlow-font text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
                     >
                       {card4Data.title}
                     </span>
                   </div>
 
-                  <div className="overflow-hidden pt-2">
+                  <div className="overflow-hidden pt-1">
                     <span
                       ref={(el) => {
                         textWrap3LinesRef.current[lineIdx3++] = el;
                       }}
-                      className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-relaxed transform-gpu"
+                      className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-snug sm:leading-relaxed transform-gpu"
                     >
                       {card4Data.body}
                     </span>
                   </div>
 
-                  <div className="overflow-hidden pt-2">
+                  <div className="overflow-hidden pt-1">
                     <div
                       ref={(el) => {
                         textWrap3LinesRef.current[lineIdx3++] = el;
                       }}
-                      className="flex flex-wrap gap-2 transform-gpu"
+                      className="flex flex-wrap gap-1.5 sm:gap-2 transform-gpu"
                     >
                       {card4Data.highlights.map((tag, idx) => (
                         <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
@@ -572,38 +588,38 @@ export function CapsulesStickyColsSection() {
               </div>
 
               {/* Text Wrapper 4 (Image 5 Pair: Strategic Digital Campaigns & Identity) */}
-              <div className="absolute inset-0 w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-40">
+              <div className="absolute inset-0 w-full h-full p-4 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-40">
                 <span className="opacity-0">HEADER PLACEHOLDER</span>
 
-                <div className="space-y-4 my-auto">
+                <div className="space-y-3 sm:space-y-4 my-auto">
                   <div className="overflow-hidden">
                     <span
                       ref={(el) => {
                         textWrap4LinesRef.current[lineIdx4++] = el;
                       }}
-                      className="block barlow-font text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
+                      className="block barlow-font text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1] transform-gpu"
                     >
                       {card5Data.title}
                     </span>
                   </div>
 
-                  <div className="overflow-hidden pt-2">
+                  <div className="overflow-hidden pt-1">
                     <span
                       ref={(el) => {
                         textWrap4LinesRef.current[lineIdx4++] = el;
                       }}
-                      className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-relaxed transform-gpu"
+                      className="block instrument-font font-medium text-xs sm:text-base text-[#a1a1a1] leading-snug sm:leading-relaxed transform-gpu"
                     >
                       {card5Data.body}
                     </span>
                   </div>
 
-                  <div className="overflow-hidden pt-2">
+                  <div className="overflow-hidden pt-1">
                     <div
                       ref={(el) => {
                         textWrap4LinesRef.current[lineIdx4++] = el;
                       }}
-                      className="flex flex-wrap gap-2 transform-gpu"
+                      className="flex flex-wrap gap-1.5 sm:gap-2 transform-gpu"
                     >
                       {card5Data.highlights.map((tag, idx) => (
                         <span key={idx} className="px-2.5 py-0.5 sm:px-3 sm:py-1 bg-white/10 text-[#e1e1e1] font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-wider rounded-full">
@@ -618,10 +634,10 @@ export function CapsulesStickyColsSection() {
               </div>
 
               {/* Text Wrapper 5 (Image 6 Pair: Why Work With Us) */}
-              <div className="absolute inset-0 w-full h-full p-6 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-50">
+              <div className="absolute inset-0 w-full h-full p-4 sm:p-10 lg:p-12 flex flex-col justify-between pointer-events-none z-50">
                 <span className="opacity-0">HEADER PLACEHOLDER</span>
 
-                <div className="space-y-4 my-auto">
+                <div className="space-y-3 sm:space-y-4 my-auto">
                   <div className="overflow-hidden">
                     <div
                       ref={(el) => {
@@ -629,23 +645,23 @@ export function CapsulesStickyColsSection() {
                       }}
                       className="transform-gpu"
                     >
-                      <h2 className="barlow-font text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1]">
+                      <h2 className="barlow-font text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase leading-[0.92] text-[#f1f1f1]">
                         Why Work With Us
                       </h2>
                     </div>
                   </div>
 
-                  <div className="space-y-3 pt-2">
+                  <div className="space-y-2 sm:space-y-3 pt-1">
                     {whyWorkWithUsBullets.map((bullet, bIdx) => (
                       <div
                         key={bIdx}
                         ref={(el) => {
                           textWrap5LinesRef.current[lineIdx5++] = el;
                         }}
-                        className="flex items-start gap-3 transform-gpu"
+                        className="flex items-start gap-2.5 transform-gpu"
                       >
-                        <span className="w-2 h-2 rounded-full bg-[#f75828] mt-1.5 shrink-0" />
-                        <p className="instrument-font font-medium text-xs sm:text-sm md:text-base text-[#d1d1d1] leading-snug">
+                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#f75828] mt-1 sm:mt-1.5 shrink-0" />
+                        <p className="instrument-font font-medium text-[11px] sm:text-sm md:text-base text-[#d1d1d1] leading-snug">
                           {bullet}
                         </p>
                       </div>
@@ -658,10 +674,10 @@ export function CapsulesStickyColsSection() {
             </div>
           </div>
 
-          {/* COLUMN 4: RIGHT SIDE SHOWCASE IMAGES (Images 3, 4, 5, 6 Layers - HIDDEN ON MOBILE ONLY) */}
+          {/* COLUMN 4: RIGHT SIDE SHOWCASE IMAGES (Images 3, 4, 5, 6 Layers) */}
           <div
             ref={col4Ref}
-            className="hidden md:block absolute top-0 left-0 w-full md:w-[50%] h-full p-2 origin-center transform-gpu z-40"
+            className="absolute top-[48vh] left-0 md:top-0 md:left-0 w-full md:w-[50%] h-[47vh] md:h-full p-2 origin-center transform-gpu z-40"
           >
             <div className="relative w-full h-full bg-[#282828] rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl">
               {/* Image 3 Layer */}

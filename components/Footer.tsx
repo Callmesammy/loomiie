@@ -172,7 +172,7 @@ export function Footer() {
             </h4>
             <div className="flex flex-wrap items-center gap-3 font-mono text-xs font-bold text-white">
               <a
-                href="https://www.instagram.com/byloomie/"
+                href="https://www.instagram.com/loomiestudio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
