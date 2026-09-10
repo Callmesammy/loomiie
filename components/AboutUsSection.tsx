@@ -20,7 +20,7 @@ interface TeamMember {
 }
 
 const ALL_TEAM_MEMBERS: TeamMember[] = [
-  // Pair 1 (Row 1 Right Side)
+  // Mohamed Ragab & Samson Imoh
   {
     id: "mohamed-ragab",
     name: "Mohamed Ragab",
@@ -31,17 +31,6 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     tags: ["Growth Strategy", "Brand Building", "Execution"],
   },
   {
-    id: "yaya",
-    name: "Yaya",
-    role: "UX Design Intern",
-    image: getCloudinaryUrl("/images/about/team-3.jpg"),
-    alt: "Yaya — UX Design Intern",
-    bio: "I'm a UX design intern, with a background in photography and digital marketing. I'm passionate about solving problems through design and creating user experiences.",
-    tags: ["UX Design", "Photography", "Digital Marketing"],
-  },
-
-  // Pair 2 (Row 2 Left Side: Samson & Nebiyu)
-  {
     id: "samson-imoh",
     name: "Samson Imoh",
     role: "Full Stack Software Engineer",
@@ -50,17 +39,8 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     bio: "Full Stack Software Engineer focused on building scalable web applications and modern software solutions using C#, ASP.NET Core, React, Next.js, and Azure.",
     tags: ["Full Stack", "C# / ASP.NET", "Next.js & Azure"],
   },
-  {
-    id: "nebiyu-elias",
-    name: "Nebiyu Elias",
-    role: "Full Stack & Software Engineer",
-    image: getCloudinaryUrl("/images/about/team-2.jpg"),
-    alt: "Nebiyu Elias — Full Stack & Software Engineer",
-    bio: "Full Stack and Software Engineer focused on building web applications and custom software solutions using React, Next.js, and Python, with a background in Computer Science.",
-    tags: ["Software Engineering", "React & Next.js", "Python"],
-  },
 
-  // Pair 3 (Row 3 Right Side)
+  // Sarah Mahmoud & Mohammed Umar
   {
     id: "sarah-mahmoud",
     name: "Sarah Mahmoud",
@@ -80,16 +60,7 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     tags: ["Data Science", "Machine Learning", "Social Media"],
   },
 
-  // Pair 4 (Row 4 Left Side)
-  {
-    id: "jenine-jaradat",
-    name: "Jenine Jaradat",
-    role: "Computer Science & Economics",
-    image: getCloudinaryUrl("/images/about/team-6.jpg"),
-    alt: "Jenine Jaradat — Computer Science & Economics",
-    bio: "I'm a final year university student studying Computer Science and Economics with experience in several fields such as marketing and data analytics.",
-    tags: ["Computer Science", "Economics", "Data Analytics"],
-  },
+  // Yahya Azez
   {
     id: "yahya-azez",
     name: "Yahya Azez",
@@ -160,11 +131,10 @@ export function AboutUsSection() {
     return () => ctx.revert();
   }, []);
 
-  // Split team into 4 alternating pairs of 2
-  const pair1 = ALL_TEAM_MEMBERS.slice(0, 2); // Mohamed Ragab & Yaya (Right)
-  const pair2 = ALL_TEAM_MEMBERS.slice(2, 4); // Samson Imoh & Nebiyu Elias (Left)
-  const pair3 = ALL_TEAM_MEMBERS.slice(4, 6); // Sarah & Umar (Right)
-  const pair4 = ALL_TEAM_MEMBERS.slice(6, 8); // Jenine & Yahya (Left)
+  // Split 5 team members into alternating rows
+  const row1Members = ALL_TEAM_MEMBERS.slice(0, 2); // Mohamed Ragab & Samson Imoh
+  const row2Members = ALL_TEAM_MEMBERS.slice(2, 4); // Sarah Mahmoud & Mohammed Umar
+  const row3Member = ALL_TEAM_MEMBERS[4]; // Yahya Azez
 
   return (
     <section ref={containerRef} className="w-full bg-[#050505] text-white py-12 sm:py-16 lg:py-24 select-none">
@@ -198,13 +168,13 @@ export function AboutUsSection() {
               </h2>
             </div>
             <span className="font-mono text-xs font-bold text-stone-400 uppercase tracking-widest">
-              8 CORE SPECIALISTS
+              5 CORE SPECIALISTS
             </span>
           </div>
 
           <div className="space-y-16 lg:space-y-24">
             
-            {/* ROW 1: Left Editorial Scroll Block (Cols 1 & 2) + Right Team Cards (Cols 3 & 4) */}
+            {/* ROW 1: Left Editorial Scroll Block (Cols 1 & 2) + Right Team Cards (Cols 3 & 4: Mohamed & Samson) */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 items-center">
               <div className="kinetic-scroll-block lg:col-span-2 p-8 sm:p-12 bg-white/80 border border-stone-300 rounded-2xl shadow-xs space-y-6" data-speed="20">
                 <div className="flex items-center justify-between border-b border-stone-200 pb-4">
@@ -227,14 +197,14 @@ export function AboutUsSection() {
                 </div>
               </div>
 
-              {pair1.map((member) => (
+              {row1Members.map((member) => (
                 <TeamCard key={member.id} member={member} onSelect={setSelectedMember} />
               ))}
             </div>
 
-            {/* ROW 2: Left Team Cards (Cols 1 & 2: Samson & Nebiyu) + Right Editorial Scroll Block (Cols 3 & 4) */}
+            {/* ROW 2: Left Team Cards (Cols 1 & 2: Sarah & Umar) + Right Editorial Scroll Block (Cols 3 & 4) */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 items-center">
-              {pair2.map((member) => (
+              {row2Members.map((member) => (
                 <TeamCard key={member.id} member={member} onSelect={setSelectedMember} />
               ))}
 
@@ -264,43 +234,9 @@ export function AboutUsSection() {
               </div>
             </div>
 
-            {/* ROW 3: Left Editorial Scroll Block (Cols 1 & 2) + Right Team Cards (Cols 3 & 4) */}
+            {/* ROW 3: Left Editorial Scroll Block (Cols 1 & 2) + Right Team Card (Yahya) & Join Us Card (Cols 3 & 4) */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 items-center">
               <div className="kinetic-scroll-block lg:col-span-2 p-8 sm:p-12 bg-white/80 border border-stone-300 rounded-2xl shadow-xs space-y-6" data-speed="18">
-                <div className="flex items-center justify-between border-b border-stone-200 pb-4">
-                  <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-stone-700" />
-                    <span>PERFORMANCE & GROWTH</span>
-                  </span>
-                  <span className="font-mono text-xs text-stone-400">DATA-BACKED</span>
-                </div>
-
-                <h3 className="text-2xl sm:text-4xl font-light font-sans tracking-tight text-[#0E0E0E] leading-snug">
-                  DATA-DRIVEN SEO ARCHITECTURE & CONVERSION OPTIMIZATION.
-                </h3>
-
-                <p className="font-sans text-sm text-stone-600 leading-relaxed font-normal">
-                  Harmonizing creative storytelling with audience targeting, Meta ads management, and deep marketing analytics to maximize brand reach and revenue.
-                </p>
-
-                <div className="pt-2 flex items-center gap-2 font-mono text-xs font-bold text-[#0E0E0E]">
-                  <span>MEASURABLE BRAND SCALING</span>
-                  <ArrowUpRight className="w-4 h-4 text-stone-700" />
-                </div>
-              </div>
-
-              {pair3.map((member) => (
-                <TeamCard key={member.id} member={member} onSelect={setSelectedMember} />
-              ))}
-            </div>
-
-            {/* ROW 4: Left Team Cards (Cols 1 & 2) + Right Editorial Scroll Block (Cols 3 & 4) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 items-center">
-              {pair4.map((member) => (
-                <TeamCard key={member.id} member={member} onSelect={setSelectedMember} />
-              ))}
-
-              <div className="kinetic-scroll-block lg:col-span-2 p-8 sm:p-12 bg-white border border-stone-300 rounded-2xl shadow-xs space-y-6" data-speed="-18">
                 <div className="flex items-center justify-between border-b border-stone-200 pb-4">
                   <span className="font-mono text-xs font-bold text-stone-500 uppercase tracking-widest flex items-center gap-2">
                     <Layers className="w-4 h-4 text-stone-700" />
@@ -318,14 +254,42 @@ export function AboutUsSection() {
                 </p>
 
                 <div className="pt-4 border-t border-stone-200 flex items-center justify-between">
-                  <span className="font-mono text-xs text-stone-500 font-bold uppercase">WANT TO COLLABORATE?</span>
+                  <span className="font-mono text-xs text-stone-500 font-bold uppercase">PERFORMANCE & CRAFT</span>
+                  <ArrowUpRight className="w-4 h-4 text-stone-700" />
+                </div>
+              </div>
+
+              <TeamCard member={row3Member} onSelect={setSelectedMember} />
+
+              <div className="brandappart-card-item flex flex-col space-y-3">
+                <div className="relative w-full aspect-[4/4.6] rounded-2xl overflow-hidden bg-[#0E0E0E] border border-stone-800 p-6 flex flex-col justify-between shadow-md">
+                  <div className="space-y-3">
+                    <span className="font-mono text-[11px] font-bold text-[#FF3B00] uppercase tracking-widest block">
+                      JOIN OUR TEAM
+                    </span>
+                    <h4 className="text-xl font-light font-sans text-white tracking-tight leading-snug">
+                      Want to build with Loomie?
+                    </h4>
+                    <p className="font-sans text-xs text-stone-400 leading-relaxed font-normal">
+                      We are always looking for visionary designers, engineers, and brand strategists.
+                    </p>
+                  </div>
+
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0E0E0E] text-white hover:bg-stone-800 transition-colors duration-300 font-mono text-xs font-bold"
+                    className="w-full py-3 px-4 rounded-xl bg-white text-[#0E0E0E] hover:bg-[#FF3B00] hover:text-white transition-colors duration-300 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-between group"
                   >
-                    <span>START A PROJECT</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <span>GET IN TOUCH</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </Link>
+                </div>
+                <div className="pt-1 space-y-0.5">
+                  <h3 className="text-lg font-normal font-sans tracking-tight text-[#0E0E0E]">
+                    Open Roles
+                  </h3>
+                  <p className="font-sans text-xs text-stone-500 font-light">
+                    Careers & Collaboration
+                  </p>
                 </div>
               </div>
             </div>

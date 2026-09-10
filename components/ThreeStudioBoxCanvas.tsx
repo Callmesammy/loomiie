@@ -10,12 +10,12 @@ interface ThreeStudioBoxCanvasProps {
 }
 
 const DEFAULT_CUBE_IMAGES = [
-  getCloudinaryUrl("/images/about/team-1.jpg"),
-  getCloudinaryUrl("/images/about/team-3.jpg"),
   getCloudinaryUrl("/images/about/team-5.jpg"),
+  getCloudinaryUrl("/images/about/team-7.jpg"),
+  getCloudinaryUrl("/images/about/team-1.jpg"),
   getCloudinaryUrl("/images/about/team-umar.jpg"),
-  getCloudinaryUrl("/images/about/team-6.jpg"),
   getCloudinaryUrl("/images/about/team-8.jpg"),
+  getCloudinaryUrl("/images/about/team-5.jpg"),
 ];
 
 /**
